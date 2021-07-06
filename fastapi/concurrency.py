@@ -1,9 +1,9 @@
 from typing import Any, Callable
 
-from starlette.concurrency import iterate_in_threadpool as iterate_in_threadpool  # noqa
-from starlette.concurrency import run_in_threadpool as run_in_threadpool  # noqa
+from starlette.concurrency import iterate_in_threadpool  # noqa
+from starlette.concurrency import run_in_threadpool  # noqa
 from starlette.concurrency import (  # noqa
-    run_until_first_complete as run_until_first_complete,
+    run_until_first_complete,
 )
 
 asynccontextmanager_error_message = """
@@ -21,20 +21,20 @@ def _fake_asynccontextmanager(func: Callable[..., Any]) -> Callable[..., Any]:
 
 
 try:
-    from contextlib import asynccontextmanager as asynccontextmanager  # type: ignore
+    from contextlib import asynccontextmanager  # type: ignore
 except ImportError:
     try:
         from async_generator import (  # type: ignore  # isort: skip
-            asynccontextmanager as asynccontextmanager,
+            asynccontextmanager,
         )
     except ImportError:  # pragma: no cover
         asynccontextmanager = _fake_asynccontextmanager
 
 try:
-    from contextlib import AsyncExitStack as AsyncExitStack  # type: ignore
+    from contextlib import AsyncExitStack  # type: ignore
 except ImportError:
     try:
-        from async_exit_stack import AsyncExitStack as AsyncExitStack  # type: ignore
+        from async_exit_stack import AsyncExitStack  # type: ignore
     except ImportError:  # pragma: no cover
         AsyncExitStack = None  # type: ignore
 
