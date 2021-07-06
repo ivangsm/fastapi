@@ -19,24 +19,38 @@ client = TestClient(app)
 
 openapi_schema = {
     "openapi": "3.0.2",
-    "info": {"title": "FastAPI", "version": "0.1.0"},
+    "info": {
+        "title": "FastAPI",
+        "version": "0.1.0"
+    },
     "paths": {
         "/users/me": {
             "get": {
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/json": {"schema": {}}},
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        },
                     }
                 },
                 "summary": "Read Current User",
                 "operationId": "read_current_user_users_me_get",
-                "security": [{"HTTPBasic": []}],
+                "security": [{
+                    "HTTPBasic": []
+                }],
             }
         }
     },
     "components": {
-        "securitySchemes": {"HTTPBasic": {"type": "http", "scheme": "basic"}}
+        "securitySchemes": {
+            "HTTPBasic": {
+                "type": "http",
+                "scheme": "basic"
+            }
+        }
     },
 }
 
@@ -62,9 +76,8 @@ def test_security_http_basic_no_credentials():
 
 
 def test_security_http_basic_invalid_credentials():
-    response = client.get(
-        "/users/me", headers={"Authorization": "Basic notabase64token"}
-    )
+    response = client.get("/users/me",
+                          headers={"Authorization": "Basic notabase64token"})
     assert response.status_code == 401, response.text
     assert response.headers["WWW-Authenticate"] == 'Basic realm="simple"'
     assert response.json() == {"detail": "Invalid authentication credentials"}

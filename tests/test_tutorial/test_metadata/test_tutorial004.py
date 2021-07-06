@@ -5,8 +5,12 @@ from docs_src.metadata.tutorial004 import app
 client = TestClient(app)
 
 openapi_schema = {
-    "openapi": "3.0.2",
-    "info": {"title": "FastAPI", "version": "0.1.0"},
+    "openapi":
+    "3.0.2",
+    "info": {
+        "title": "FastAPI",
+        "version": "0.1.0"
+    },
     "paths": {
         "/users/": {
             "get": {
@@ -16,7 +20,11 @@ openapi_schema = {
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/json": {"schema": {}}},
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        },
                     }
                 },
             }
@@ -29,7 +37,11 @@ openapi_schema = {
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/json": {"schema": {}}},
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        },
                     }
                 },
             }
@@ -37,12 +49,15 @@ openapi_schema = {
     },
     "tags": [
         {
-            "name": "users",
-            "description": "Operations with users. The **login** logic is also here.",
+            "name":
+            "users",
+            "description":
+            "Operations with users. The **login** logic is also here.",
         },
         {
             "name": "items",
-            "description": "Manage items. So _fancy_ they have their own docs.",
+            "description":
+            "Manage items. So _fancy_ they have their own docs.",
             "externalDocs": {
                 "description": "Items external docs",
                 "url": "https://fastapi.tiangolo.com/",

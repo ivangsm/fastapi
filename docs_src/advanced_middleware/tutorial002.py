@@ -3,9 +3,8 @@ from fastapi.middleware.trustedhost import TrustedHostMiddleware
 
 app = FastAPI()
 
-app.add_middleware(
-    TrustedHostMiddleware, allowed_hosts=["example.com", "*.example.com"]
-)
+app.add_middleware(TrustedHostMiddleware,
+                   allowed_hosts=["example.com", "*.example.com"])
 
 
 @app.get("/")

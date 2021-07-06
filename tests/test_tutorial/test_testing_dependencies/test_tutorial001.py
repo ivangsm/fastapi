@@ -24,7 +24,11 @@ def test_override_in_users():
     assert response.status_code == 200, response.text
     assert response.json() == {
         "message": "Hello Users!",
-        "params": {"q": None, "skip": 5, "limit": 10},
+        "params": {
+            "q": None,
+            "skip": 5,
+            "limit": 10
+        },
     }
 
 
@@ -33,7 +37,11 @@ def test_override_in_users_with_q():
     assert response.status_code == 200, response.text
     assert response.json() == {
         "message": "Hello Users!",
-        "params": {"q": "foo", "skip": 5, "limit": 10},
+        "params": {
+            "q": "foo",
+            "skip": 5,
+            "limit": 10
+        },
     }
 
 
@@ -42,7 +50,11 @@ def test_override_in_users_with_params():
     assert response.status_code == 200, response.text
     assert response.json() == {
         "message": "Hello Users!",
-        "params": {"q": "foo", "skip": 5, "limit": 10},
+        "params": {
+            "q": "foo",
+            "skip": 5,
+            "limit": 10
+        },
     }
 
 
@@ -52,5 +64,9 @@ def test_normal_app():
     assert response.status_code == 200, response.text
     assert response.json() == {
         "message": "Hello Items!",
-        "params": {"q": "foo", "skip": 100, "limit": 200},
+        "params": {
+            "q": "foo",
+            "skip": 100,
+            "limit": 200
+        },
     }

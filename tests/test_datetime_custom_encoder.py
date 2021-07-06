@@ -10,9 +10,9 @@ class ModelWithDatetimeField(BaseModel):
 
     class Config:
         json_encoders = {
-            datetime: lambda dt: dt.replace(
-                microsecond=0, tzinfo=timezone.utc
-            ).isoformat()
+            datetime:
+            lambda dt: dt.replace(microsecond=0, tzinfo=timezone.utc).
+            isoformat()
         }
 
 

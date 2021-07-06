@@ -14,11 +14,10 @@ DictIntStrAny = Dict[Union[int, str], Any]
 def generate_encoders_by_class_tuples(
     type_encoder_map: Dict[Any, Callable[[Any], Any]]
 ) -> Dict[Callable[[Any], Any], Tuple[Any, ...]]:
-    encoders_by_class_tuples: Dict[Callable[[Any], Any], Tuple[Any, ...]] = defaultdict(
-        tuple
-    )
+    encoders_by_class_tuples: Dict[Callable[[Any], Any],
+                                   Tuple[Any, ...]] = defaultdict(tuple)
     for type_, encoder in type_encoder_map.items():
-        encoders_by_class_tuples[encoder] += (type_,)
+        encoders_by_class_tuples[encoder] += (type_, )
     return encoders_by_class_tuples
 
 
@@ -72,15 +71,11 @@ def jsonable_encoder(
     if isinstance(obj, dict):
         encoded_dict = {}
         for key, value in obj.items():
-            if (
-                (
-                    not sqlalchemy_safe
-                    or (not isinstance(key, str))
-                    or (not key.startswith("_sa"))
-                )
-                and (value is not None or not exclude_none)
-                and ((include and key in include) or not exclude or key not in exclude)
-            ):
+            if ((not sqlalchemy_safe or (not isinstance(key, str)) or
+                 (not key.startswith("_sa")))
+                    and (value is not None or not exclude_none)
+                    and ((include and key in include) or not exclude
+                         or key not in exclude)):
                 encoded_key = jsonable_encoder(
                     key,
                     by_alias=by_alias,
@@ -113,8 +108,7 @@ def jsonable_encoder(
                     exclude_none=exclude_none,
                     custom_encoder=custom_encoder,
                     sqlalchemy_safe=sqlalchemy_safe,
-                )
-            )
+                ))
         return encoded_list
 
     if custom_encoder:

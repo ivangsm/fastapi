@@ -43,9 +43,9 @@ class ModelWithCustomEncoder(BaseModel):
 
     class Config:
         json_encoders = {
-            datetime: lambda dt: dt.replace(
-                microsecond=0, tzinfo=timezone.utc
-            ).isoformat()
+            datetime:
+            lambda dt: dt.replace(microsecond=0, tzinfo=timezone.utc).
+            isoformat()
         }
 
 
@@ -80,15 +80,16 @@ class ModelWithRoot(BaseModel):
     __root__: str
 
 
-@pytest.fixture(
-    name="model_with_path", params=[PurePath, PurePosixPath, PureWindowsPath]
-)
+@pytest.fixture(name="model_with_path",
+                params=[PurePath, PurePosixPath, PureWindowsPath])
 def fixture_model_with_path(request):
     class Config:
         arbitrary_types_allowed = True
 
     ModelWithPath = create_model(
-        "ModelWithPath", path=(request.param, ...), __config__=Config  # type: ignore
+        "ModelWithPath",
+        path=(request.param, ...),
+        __config__=Config  # type: ignore
     )
     return ModelWithPath(path=request.param("/foo", "bar"))
 
@@ -96,13 +97,23 @@ def fixture_model_with_path(request):
 def test_encode_class():
     person = Person(name="Foo")
     pet = Pet(owner=person, name="Firulais")
-    assert jsonable_encoder(pet) == {"name": "Firulais", "owner": {"name": "Foo"}}
+    assert jsonable_encoder(pet) == {
+        "name": "Firulais",
+        "owner": {
+            "name": "Foo"
+        }
+    }
 
 
 def test_encode_dictable():
     person = DictablePerson(name="Foo")
     pet = DictablePet(owner=person, name="Firulais")
-    assert jsonable_encoder(pet) == {"name": "Firulais", "owner": {"name": "Foo"}}
+    assert jsonable_encoder(pet) == {
+        "name": "Firulais",
+        "owner": {
+            "name": "Foo"
+        }
+    }
 
 
 def test_encode_unsupported():
@@ -138,12 +149,20 @@ def test_encode_model_with_alias():
 
 def test_encode_model_with_default():
     model = ModelWithDefault(foo="foo", bar="bar")
-    assert jsonable_encoder(model) == {"foo": "foo", "bar": "bar", "bla": "bla"}
-    assert jsonable_encoder(model, exclude_unset=True) == {"foo": "foo", "bar": "bar"}
-    assert jsonable_encoder(model, exclude_defaults=True) == {"foo": "foo"}
-    assert jsonable_encoder(model, exclude_unset=True, exclude_defaults=True) == {
-        "foo": "foo"
+    assert jsonable_encoder(model) == {
+        "foo": "foo",
+        "bar": "bar",
+        "bla": "bla"
     }
+    assert jsonable_encoder(model, exclude_unset=True) == {
+        "foo": "foo",
+        "bar": "bar"
+    }
+    assert jsonable_encoder(model, exclude_defaults=True) == {"foo": "foo"}
+    assert jsonable_encoder(model, exclude_unset=True,
+                            exclude_defaults=True) == {
+                                "foo": "foo"
+                            }
 
 
 def test_custom_encoders():
@@ -156,8 +175,7 @@ def test_custom_encoders():
     instance = MyModel(dt_field=safe_datetime.now())
 
     encoded_instance = jsonable_encoder(
-        instance, custom_encoder={safe_datetime: lambda o: o.isoformat()}
-    )
+        instance, custom_encoder={safe_datetime: lambda o: o.isoformat()})
     assert encoded_instance["dt_field"] == instance.dt_field.isoformat()
 
 

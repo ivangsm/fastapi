@@ -18,7 +18,9 @@ app = FastAPI()
     response_model=Item,
     responses={
         200: {
-            "content": {"image/png": {}},
+            "content": {
+                "image/png": {}
+            },
             "description": "Return the JSON item or an image.",
         }
     },

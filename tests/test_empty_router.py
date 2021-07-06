@@ -14,7 +14,6 @@ def get_empty():
 
 app.include_router(router, prefix="/prefix")
 
-
 client = TestClient(app)
 
 
