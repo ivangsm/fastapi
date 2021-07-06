@@ -162,7 +162,7 @@ def test_encode_model_with_default():
     assert jsonable_encoder(model, exclude_unset=True,
                             exclude_defaults=True) == {
                                 "foo": "foo"
-    }
+                            }
 
 
 def test_custom_encoders():

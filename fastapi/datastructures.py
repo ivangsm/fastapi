@@ -24,7 +24,6 @@ class DefaultPlaceholder:
     It's used internally to recognize when a default value has been overwritten, even
     if the overriden default value was truthy.
     """
-
     def __init__(self, value: Any):
         self.value = value
 

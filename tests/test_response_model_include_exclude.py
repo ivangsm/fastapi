@@ -26,7 +26,7 @@ app = FastAPI()
     "/simple_include",
     response_model=Test2,
     response_model_include={
-        "baz": ...,
+        "baz":...,
         "test": {"foo"}
     },
 )
@@ -42,7 +42,7 @@ def simple_include():
     "/simple_include_dict",
     response_model=Test2,
     response_model_include={
-        "baz": ...,
+        "baz":...,
         "test": {"foo"}
     },
 )

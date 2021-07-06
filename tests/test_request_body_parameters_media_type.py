@@ -65,7 +65,7 @@ def test_openapi_schema():
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
     openapi_schema = response.json()
-    assert (openapi_schema["paths"]["/products"]["post"]["requestBody"]
-            == create_product_request_body)
-    assert (openapi_schema["paths"]["/shops"]["post"]["requestBody"]
-            == create_shop_request_body)
+    assert (openapi_schema["paths"]["/products"]["post"]["requestBody"] ==
+            create_product_request_body)
+    assert (openapi_schema["paths"]["/shops"]["post"]["requestBody"] ==
+            create_shop_request_body)

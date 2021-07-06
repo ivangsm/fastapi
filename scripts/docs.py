@@ -117,7 +117,7 @@ def new_lang(lang: str = typer.Argument(..., callback=lang_callback)):
 
 @app.command()
 def build_lang(lang: str = typer.Argument(
-        ..., callback=lang_callback, autocompletion=complete_existing_lang)):
+    ..., callback=lang_callback, autocompletion=complete_existing_lang)):
     """
     Build the docs for a language, filling missing pages with translation notifications.
     """
@@ -295,7 +295,7 @@ def update_single_lang(lang: str):
 
 @app.command()
 def update_languages(lang: str = typer.Argument(
-        None, callback=lang_callback, autocompletion=complete_existing_lang)):
+    None, callback=lang_callback, autocompletion=complete_existing_lang)):
     """
     Update the mkdocs.yml file Languages section including all the available languages.
 

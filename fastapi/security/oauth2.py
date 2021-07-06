@@ -42,7 +42,6 @@ class OAuth2PasswordRequestForm:
     client_secret: optional string. OAuth2 recommends sending the client_id and client_secret (if any)
         using HTTP Basic auth, as: client_id:client_secret
     """
-
     def __init__(
             self,
             grant_type: str = Form(None, regex="password"),
@@ -92,7 +91,6 @@ class OAuth2PasswordRequestFormStrict(OAuth2PasswordRequestForm):
     client_secret: optional string. OAuth2 recommends sending the client_id and client_secret (if any)
         using HTTP Basic auth, as: client_id:client_secret
     """
-
     def __init__(
             self,
             grant_type: str = Form(..., regex="password"),

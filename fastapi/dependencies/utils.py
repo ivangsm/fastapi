@@ -205,8 +205,8 @@ def get_flat_dependant(
 
 def get_flat_params(dependant: Dependant) -> List[ModelField]:
     flat_dependant = get_flat_dependant(dependant, skip_repeats=True)
-    return (flat_dependant.path_params + flat_dependant.query_params
-            + flat_dependant.header_params + flat_dependant.cookie_params)
+    return (flat_dependant.path_params + flat_dependant.query_params +
+            flat_dependant.header_params + flat_dependant.cookie_params)
 
 
 def is_scalar_field(field: ModelField) -> bool:
@@ -647,9 +647,9 @@ async def request_body_to_args(
                         errors.append(get_missing_field_error(loc))
                         continue
             if (value is None
-                    or (isinstance(field_info, params.Form) and value == "")
-                or (isinstance(field_info, params.Form)
-                        and field.shape in sequence_shapes and len(value) == 0)):
+                    or (isinstance(field_info, params.Form) and value == "") or
+                (isinstance(field_info, params.Form)
+                 and field.shape in sequence_shapes and len(value) == 0)):
                 if field.required:
                     errors.append(get_missing_field_error(loc))
                 else:

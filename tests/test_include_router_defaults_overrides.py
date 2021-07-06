@@ -444,8 +444,8 @@ def test_paths_level3(override1, override2, override3):
     url += "?level3=foo"
     response = client.get(url)
     assert response.json() == "foo"
-    assert (response.headers["content-type"]
-            == f"application/x-level-{content_type_level}")
+    assert (response.headers["content-type"] ==
+            f"application/x-level-{content_type_level}")
     assert "x-level0" in response.headers
     assert not override1 or "x-level1" in response.headers
     assert not override2 or "x-level2" in response.headers
@@ -480,8 +480,8 @@ def test_paths_level5(override1, override2, override3, override4, override5):
     url += "?level5=foo"
     response = client.get(url)
     assert response.json() == "foo"
-    assert (response.headers["content-type"]
-            == f"application/x-level-{content_type_level}")
+    assert (response.headers["content-type"] ==
+            f"application/x-level-{content_type_level}")
     assert "x-level0" in response.headers
     assert not override1 or "x-level1" in response.headers
     assert not override2 or "x-level2" in response.headers

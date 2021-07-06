@@ -338,7 +338,7 @@ def get_openapi_path(
 
 
 def get_flat_models_from_routes(
-        routes: Sequence[BaseRoute], ) -> Set[Union[Type[BaseModel], Type[Enum]]]:
+    routes: Sequence[BaseRoute], ) -> Set[Union[Type[BaseModel], Type[Enum]]]:
     body_fields_from_routes: List[ModelField] = []
     responses_from_routes: List[ModelField] = []
     request_fields_from_routes: List[ModelField] = []
@@ -362,8 +362,8 @@ def get_flat_models_from_routes(
             request_fields_from_routes.extend(params)
 
     flat_models = callback_flat_models | get_flat_models_from_fields(
-        body_fields_from_routes + responses_from_routes
-        + request_fields_from_routes,
+        body_fields_from_routes + responses_from_routes +
+        request_fields_from_routes,
         known_models=set(),
     )
     return flat_models
