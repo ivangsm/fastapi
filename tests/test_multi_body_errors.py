@@ -20,24 +20,31 @@ def save_item_no_body(item: List[Item]):
 
 client = TestClient(app)
 
-
 openapi_schema = {
     "openapi": "3.0.2",
-    "info": {"title": "FastAPI", "version": "0.1.0"},
+    "info": {
+        "title": "FastAPI",
+        "version": "0.1.0"
+    },
     "paths": {
         "/items/": {
             "post": {
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/json": {"schema": {}}},
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        },
                     },
                     "422": {
                         "description": "Validation Error",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                    "$ref":
+                                    "#/components/schemas/HTTPValidationError"
                                 }
                             }
                         },
@@ -51,7 +58,9 @@ openapi_schema = {
                             "schema": {
                                 "title": "Item",
                                 "type": "array",
-                                "items": {"$ref": "#/components/schemas/Item"},
+                                "items": {
+                                    "$ref": "#/components/schemas/Item"
+                                },
                             }
                         }
                     },
@@ -67,8 +76,15 @@ openapi_schema = {
                 "required": ["name", "age"],
                 "type": "object",
                 "properties": {
-                    "name": {"title": "Name", "type": "string"},
-                    "age": {"title": "Age", "exclusiveMinimum": 0.0, "type": "number"},
+                    "name": {
+                        "title": "Name",
+                        "type": "string"
+                    },
+                    "age": {
+                        "title": "Age",
+                        "exclusiveMinimum": 0.0,
+                        "type": "number"
+                    },
                 },
             },
             "ValidationError": {
@@ -79,10 +95,18 @@ openapi_schema = {
                     "loc": {
                         "title": "Location",
                         "type": "array",
-                        "items": {"type": "string"},
+                        "items": {
+                            "type": "string"
+                        },
                     },
-                    "msg": {"title": "Message", "type": "string"},
-                    "type": {"title": "Error Type", "type": "string"},
+                    "msg": {
+                        "title": "Message",
+                        "type": "string"
+                    },
+                    "type": {
+                        "title": "Error Type",
+                        "type": "string"
+                    },
                 },
             },
             "HTTPValidationError": {
@@ -92,7 +116,9 @@ openapi_schema = {
                     "detail": {
                         "title": "Detail",
                         "type": "array",
-                        "items": {"$ref": "#/components/schemas/ValidationError"},
+                        "items": {
+                            "$ref": "#/components/schemas/ValidationError"
+                        },
                     }
                 },
             },
@@ -101,14 +127,14 @@ openapi_schema = {
 }
 
 single_error = {
-    "detail": [
-        {
-            "ctx": {"limit_value": 0.0},
-            "loc": ["body", 0, "age"],
-            "msg": "ensure this value is greater than 0",
-            "type": "value_error.number.not_gt",
-        }
-    ]
+    "detail": [{
+        "ctx": {
+            "limit_value": 0.0
+        },
+        "loc": ["body", 0, "age"],
+        "msg": "ensure this value is greater than 0",
+        "type": "value_error.number.not_gt",
+    }]
 }
 
 multiple_errors = {

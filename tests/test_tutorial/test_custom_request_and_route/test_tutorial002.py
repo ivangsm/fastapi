@@ -15,13 +15,12 @@ def test_exception_handler_body_access():
 
     assert response.json() == {
         "detail": {
-            "body": '{"numbers": [1, 2, 3]}',
-            "errors": [
-                {
-                    "loc": ["body"],
-                    "msg": "value is not a valid list",
-                    "type": "type_error.list",
-                }
-            ],
+            "body":
+            '{"numbers": [1, 2, 3]}',
+            "errors": [{
+                "loc": ["body"],
+                "msg": "value is not a valid list",
+                "type": "type_error.list",
+            }],
         }
     }

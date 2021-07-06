@@ -32,10 +32,12 @@ reusable_oauth2 = OAuth2(
     flows={
         "password": {
             "tokenUrl": "token",
-            "scopes": {"read:user": "Read a User", "write:user": "Create a user"},
+            "scopes": {
+                "read:user": "Read a User",
+                "write:user": "Create a user"
+            },
         }
-    }
-)
+    })
 
 
 @app.get("/security/oauth2")
@@ -91,9 +93,8 @@ class UserInDB(BaseModel):
     last_name: str
 
 
-def require_token(
-    token: str = Security(reusable_oauth2, scopes=["read:user", "write:user"])
-):
+def require_token(token: str = Security(reusable_oauth2,
+                                        scopes=["read:user", "write:user"])):
     raw_token = token.replace("Bearer ", "")
     # Never do this plaintext password usage in production
     username, password = raw_token.split(":")
@@ -101,8 +102,8 @@ def require_token(
 
 
 def require_user(
-    db: FakeDB = Depends(connection_manager),
-    user_data: TokenUserData = Depends(require_token),
+        db: FakeDB = Depends(connection_manager),
+        user_data: TokenUserData = Depends(require_token),
 ):
     return db.data[user_data.username]
 

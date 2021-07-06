@@ -22,7 +22,8 @@ def get_current_user(oauth_header: Optional[str] = Security(api_key)):
 
 
 @app.get("/users/me")
-def read_current_user(current_user: Optional[User] = Depends(get_current_user)):
+def read_current_user(
+        current_user: Optional[User] = Depends(get_current_user)):
     if current_user is None:
         return {"msg": "Create an account first"}
     return current_user
@@ -32,25 +33,38 @@ client = TestClient(app)
 
 openapi_schema = {
     "openapi": "3.0.2",
-    "info": {"title": "FastAPI", "version": "0.1.0"},
+    "info": {
+        "title": "FastAPI",
+        "version": "0.1.0"
+    },
     "paths": {
         "/users/me": {
             "get": {
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/json": {"schema": {}}},
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        },
                     }
                 },
                 "summary": "Read Current User",
                 "operationId": "read_current_user_users_me_get",
-                "security": [{"APIKeyHeader": []}],
+                "security": [{
+                    "APIKeyHeader": []
+                }],
             }
         }
     },
     "components": {
         "securitySchemes": {
-            "APIKeyHeader": {"type": "apiKey", "name": "key", "in": "header"}
+            "APIKeyHeader": {
+                "type": "apiKey",
+                "name": "key",
+                "in": "header"
+            }
         }
     },
 }

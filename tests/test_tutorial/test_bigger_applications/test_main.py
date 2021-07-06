@@ -7,32 +7,43 @@ client = TestClient(app)
 
 openapi_schema = {
     "openapi": "3.0.2",
-    "info": {"title": "FastAPI", "version": "0.1.0"},
+    "info": {
+        "title": "FastAPI",
+        "version": "0.1.0"
+    },
     "paths": {
         "/users/": {
             "get": {
                 "tags": ["users"],
-                "summary": "Read Users",
-                "operationId": "read_users_users__get",
-                "parameters": [
-                    {
-                        "required": True,
-                        "schema": {"title": "Token", "type": "string"},
-                        "name": "token",
-                        "in": "query",
-                    }
-                ],
+                "summary":
+                "Read Users",
+                "operationId":
+                "read_users_users__get",
+                "parameters": [{
+                    "required": True,
+                    "schema": {
+                        "title": "Token",
+                        "type": "string"
+                    },
+                    "name": "token",
+                    "in": "query",
+                }],
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/json": {"schema": {}}},
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        },
                     },
                     "422": {
                         "description": "Validation Error",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                    "$ref":
+                                    "#/components/schemas/HTTPValidationError"
                                 }
                             }
                         },
@@ -43,27 +54,35 @@ openapi_schema = {
         "/users/me": {
             "get": {
                 "tags": ["users"],
-                "summary": "Read User Me",
-                "operationId": "read_user_me_users_me_get",
-                "parameters": [
-                    {
-                        "required": True,
-                        "schema": {"title": "Token", "type": "string"},
-                        "name": "token",
-                        "in": "query",
-                    }
-                ],
+                "summary":
+                "Read User Me",
+                "operationId":
+                "read_user_me_users_me_get",
+                "parameters": [{
+                    "required": True,
+                    "schema": {
+                        "title": "Token",
+                        "type": "string"
+                    },
+                    "name": "token",
+                    "in": "query",
+                }],
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/json": {"schema": {}}},
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        },
                     },
                     "422": {
                         "description": "Validation Error",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                    "$ref":
+                                    "#/components/schemas/HTTPValidationError"
                                 }
                             }
                         },
@@ -74,18 +93,26 @@ openapi_schema = {
         "/users/{username}": {
             "get": {
                 "tags": ["users"],
-                "summary": "Read User",
-                "operationId": "read_user_users__username__get",
+                "summary":
+                "Read User",
+                "operationId":
+                "read_user_users__username__get",
                 "parameters": [
                     {
                         "required": True,
-                        "schema": {"title": "Username", "type": "string"},
+                        "schema": {
+                            "title": "Username",
+                            "type": "string"
+                        },
                         "name": "username",
                         "in": "path",
                     },
                     {
                         "required": True,
-                        "schema": {"title": "Token", "type": "string"},
+                        "schema": {
+                            "title": "Token",
+                            "type": "string"
+                        },
                         "name": "token",
                         "in": "query",
                     },
@@ -93,14 +120,19 @@ openapi_schema = {
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/json": {"schema": {}}},
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        },
                     },
                     "422": {
                         "description": "Validation Error",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                    "$ref":
+                                    "#/components/schemas/HTTPValidationError"
                                 }
                             }
                         },
@@ -111,18 +143,26 @@ openapi_schema = {
         "/items/": {
             "get": {
                 "tags": ["items"],
-                "summary": "Read Items",
-                "operationId": "read_items_items__get",
+                "summary":
+                "Read Items",
+                "operationId":
+                "read_items_items__get",
                 "parameters": [
                     {
                         "required": True,
-                        "schema": {"title": "Token", "type": "string"},
+                        "schema": {
+                            "title": "Token",
+                            "type": "string"
+                        },
                         "name": "token",
                         "in": "query",
                     },
                     {
                         "required": True,
-                        "schema": {"title": "X-Token", "type": "string"},
+                        "schema": {
+                            "title": "X-Token",
+                            "type": "string"
+                        },
                         "name": "x-token",
                         "in": "header",
                     },
@@ -130,15 +170,22 @@ openapi_schema = {
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/json": {"schema": {}}},
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        },
                     },
-                    "404": {"description": "Not found"},
+                    "404": {
+                        "description": "Not found"
+                    },
                     "422": {
                         "description": "Validation Error",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                    "$ref":
+                                    "#/components/schemas/HTTPValidationError"
                                 }
                             }
                         },
@@ -149,24 +196,35 @@ openapi_schema = {
         "/items/{item_id}": {
             "get": {
                 "tags": ["items"],
-                "summary": "Read Item",
-                "operationId": "read_item_items__item_id__get",
+                "summary":
+                "Read Item",
+                "operationId":
+                "read_item_items__item_id__get",
                 "parameters": [
                     {
                         "required": True,
-                        "schema": {"title": "Item Id", "type": "string"},
+                        "schema": {
+                            "title": "Item Id",
+                            "type": "string"
+                        },
                         "name": "item_id",
                         "in": "path",
                     },
                     {
                         "required": True,
-                        "schema": {"title": "Token", "type": "string"},
+                        "schema": {
+                            "title": "Token",
+                            "type": "string"
+                        },
                         "name": "token",
                         "in": "query",
                     },
                     {
                         "required": True,
-                        "schema": {"title": "X-Token", "type": "string"},
+                        "schema": {
+                            "title": "X-Token",
+                            "type": "string"
+                        },
                         "name": "x-token",
                         "in": "header",
                     },
@@ -174,15 +232,22 @@ openapi_schema = {
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/json": {"schema": {}}},
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        },
                     },
-                    "404": {"description": "Not found"},
+                    "404": {
+                        "description": "Not found"
+                    },
                     "422": {
                         "description": "Validation Error",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                    "$ref":
+                                    "#/components/schemas/HTTPValidationError"
                                 }
                             }
                         },
@@ -191,24 +256,35 @@ openapi_schema = {
             },
             "put": {
                 "tags": ["items", "custom"],
-                "summary": "Update Item",
-                "operationId": "update_item_items__item_id__put",
+                "summary":
+                "Update Item",
+                "operationId":
+                "update_item_items__item_id__put",
                 "parameters": [
                     {
                         "required": True,
-                        "schema": {"title": "Item Id", "type": "string"},
+                        "schema": {
+                            "title": "Item Id",
+                            "type": "string"
+                        },
                         "name": "item_id",
                         "in": "path",
                     },
                     {
                         "required": True,
-                        "schema": {"title": "Token", "type": "string"},
+                        "schema": {
+                            "title": "Token",
+                            "type": "string"
+                        },
                         "name": "token",
                         "in": "query",
                     },
                     {
                         "required": True,
-                        "schema": {"title": "X-Token", "type": "string"},
+                        "schema": {
+                            "title": "X-Token",
+                            "type": "string"
+                        },
                         "name": "x-token",
                         "in": "header",
                     },
@@ -216,16 +292,25 @@ openapi_schema = {
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/json": {"schema": {}}},
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        },
                     },
-                    "404": {"description": "Not found"},
-                    "403": {"description": "Operation forbidden"},
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "403": {
+                        "description": "Operation forbidden"
+                    },
                     "422": {
                         "description": "Validation Error",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                    "$ref":
+                                    "#/components/schemas/HTTPValidationError"
                                 }
                             }
                         },
@@ -236,18 +321,26 @@ openapi_schema = {
         "/admin/": {
             "post": {
                 "tags": ["admin"],
-                "summary": "Update Admin",
-                "operationId": "update_admin_admin__post",
+                "summary":
+                "Update Admin",
+                "operationId":
+                "update_admin_admin__post",
                 "parameters": [
                     {
                         "required": True,
-                        "schema": {"title": "Token", "type": "string"},
+                        "schema": {
+                            "title": "Token",
+                            "type": "string"
+                        },
                         "name": "token",
                         "in": "query",
                     },
                     {
                         "required": True,
-                        "schema": {"title": "X-Token", "type": "string"},
+                        "schema": {
+                            "title": "X-Token",
+                            "type": "string"
+                        },
                         "name": "x-token",
                         "in": "header",
                     },
@@ -255,15 +348,22 @@ openapi_schema = {
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/json": {"schema": {}}},
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        },
                     },
-                    "418": {"description": "I'm a teapot"},
+                    "418": {
+                        "description": "I'm a teapot"
+                    },
                     "422": {
                         "description": "Validation Error",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                    "$ref":
+                                    "#/components/schemas/HTTPValidationError"
                                 }
                             }
                         },
@@ -273,27 +373,35 @@ openapi_schema = {
         },
         "/": {
             "get": {
-                "summary": "Root",
-                "operationId": "root__get",
-                "parameters": [
-                    {
-                        "required": True,
-                        "schema": {"title": "Token", "type": "string"},
-                        "name": "token",
-                        "in": "query",
-                    }
-                ],
+                "summary":
+                "Root",
+                "operationId":
+                "root__get",
+                "parameters": [{
+                    "required": True,
+                    "schema": {
+                        "title": "Token",
+                        "type": "string"
+                    },
+                    "name": "token",
+                    "in": "query",
+                }],
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/json": {"schema": {}}},
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        },
                     },
                     "422": {
                         "description": "Validation Error",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                    "$ref":
+                                    "#/components/schemas/HTTPValidationError"
                                 }
                             }
                         },
@@ -311,7 +419,9 @@ openapi_schema = {
                     "detail": {
                         "title": "Detail",
                         "type": "array",
-                        "items": {"$ref": "#/components/schemas/ValidationError"},
+                        "items": {
+                            "$ref": "#/components/schemas/ValidationError"
+                        },
                     }
                 },
             },
@@ -323,16 +433,23 @@ openapi_schema = {
                     "loc": {
                         "title": "Location",
                         "type": "array",
-                        "items": {"type": "string"},
+                        "items": {
+                            "type": "string"
+                        },
                     },
-                    "msg": {"title": "Message", "type": "string"},
-                    "type": {"title": "Error Type", "type": "string"},
+                    "msg": {
+                        "title": "Message",
+                        "type": "string"
+                    },
+                    "type": {
+                        "title": "Error Type",
+                        "type": "string"
+                    },
                 },
             },
         }
     },
 }
-
 
 no_jessica = {
     "detail": [
@@ -351,51 +468,83 @@ no_jessica = {
         (
             "/users?token=jessica",
             200,
-            [{"username": "Rick"}, {"username": "Morty"}],
+            [{
+                "username": "Rick"
+            }, {
+                "username": "Morty"
+            }],
             {},
         ),
         ("/users", 422, no_jessica, {}),
-        ("/users/foo?token=jessica", 200, {"username": "foo"}, {}),
+        ("/users/foo?token=jessica", 200, {
+            "username": "foo"
+        }, {}),
         ("/users/foo", 422, no_jessica, {}),
-        ("/users/me?token=jessica", 200, {"username": "fakecurrentuser"}, {}),
+        ("/users/me?token=jessica", 200, {
+            "username": "fakecurrentuser"
+        }, {}),
         ("/users/me", 422, no_jessica, {}),
         (
             "/items?token=jessica",
             200,
-            {"plumbus": {"name": "Plumbus"}, "gun": {"name": "Portal Gun"}},
-            {"X-Token": "fake-super-secret-token"},
+            {
+                "plumbus": {
+                    "name": "Plumbus"
+                },
+                "gun": {
+                    "name": "Portal Gun"
+                }
+            },
+            {
+                "X-Token": "fake-super-secret-token"
+            },
         ),
-        ("/items", 422, no_jessica, {"X-Token": "fake-super-secret-token"}),
+        ("/items", 422, no_jessica, {
+            "X-Token": "fake-super-secret-token"
+        }),
         (
             "/items/plumbus?token=jessica",
             200,
-            {"name": "Plumbus", "item_id": "plumbus"},
-            {"X-Token": "fake-super-secret-token"},
+            {
+                "name": "Plumbus",
+                "item_id": "plumbus"
+            },
+            {
+                "X-Token": "fake-super-secret-token"
+            },
         ),
-        ("/items/plumbus", 422, no_jessica, {"X-Token": "fake-super-secret-token"}),
+        ("/items/plumbus", 422, no_jessica, {
+            "X-Token": "fake-super-secret-token"
+        }),
         (
             "/items?token=jessica",
             400,
-            {"detail": "X-Token header invalid"},
-            {"X-Token": "invalid"},
+            {
+                "detail": "X-Token header invalid"
+            },
+            {
+                "X-Token": "invalid"
+            },
         ),
         (
             "/items/bar?token=jessica",
             400,
-            {"detail": "X-Token header invalid"},
-            {"X-Token": "invalid"},
+            {
+                "detail": "X-Token header invalid"
+            },
+            {
+                "X-Token": "invalid"
+            },
         ),
         (
             "/items?token=jessica",
             422,
             {
-                "detail": [
-                    {
-                        "loc": ["header", "x-token"],
-                        "msg": "field required",
-                        "type": "value_error.missing",
-                    }
-                ]
+                "detail": [{
+                    "loc": ["header", "x-token"],
+                    "msg": "field required",
+                    "type": "value_error.missing",
+                }]
             },
             {},
         ),
@@ -403,17 +552,17 @@ no_jessica = {
             "/items/plumbus?token=jessica",
             422,
             {
-                "detail": [
-                    {
-                        "loc": ["header", "x-token"],
-                        "msg": "field required",
-                        "type": "value_error.missing",
-                    }
-                ]
+                "detail": [{
+                    "loc": ["header", "x-token"],
+                    "msg": "field required",
+                    "type": "value_error.missing",
+                }]
             },
             {},
         ),
-        ("/?token=jessica", 200, {"message": "Hello Bigger Applications!"}, {}),
+        ("/?token=jessica", 200, {
+            "message": "Hello Bigger Applications!"
+        }, {}),
         ("/", 422, no_jessica, {}),
         ("/openapi.json", 200, openapi_schema, {}),
     ],
@@ -450,25 +599,27 @@ def test_put_invalid_header():
 
 
 def test_put():
-    response = client.put(
-        "/items/plumbus?token=jessica", headers={"X-Token": "fake-super-secret-token"}
-    )
+    response = client.put("/items/plumbus?token=jessica",
+                          headers={"X-Token": "fake-super-secret-token"})
     assert response.status_code == 200, response.text
-    assert response.json() == {"item_id": "plumbus", "name": "The great Plumbus"}
+    assert response.json() == {
+        "item_id": "plumbus",
+        "name": "The great Plumbus"
+    }
 
 
 def test_put_forbidden():
-    response = client.put(
-        "/items/bar?token=jessica", headers={"X-Token": "fake-super-secret-token"}
-    )
+    response = client.put("/items/bar?token=jessica",
+                          headers={"X-Token": "fake-super-secret-token"})
     assert response.status_code == 403, response.text
-    assert response.json() == {"detail": "You can only update the item: plumbus"}
+    assert response.json() == {
+        "detail": "You can only update the item: plumbus"
+    }
 
 
 def test_admin():
-    response = client.post(
-        "/admin/?token=jessica", headers={"X-Token": "fake-super-secret-token"}
-    )
+    response = client.post("/admin/?token=jessica",
+                           headers={"X-Token": "fake-super-secret-token"})
     assert response.status_code == 200, response.text
     assert response.json() == {"message": "Admin getting schwifty"}
 

@@ -58,7 +58,8 @@ def get_base_lang_config(lang: str):
     new_config = en_config.copy()
     new_config["site_url"] = en_config["site_url"] + f"{lang}/"
     new_config["theme"]["logo"] = fastapi_url_base + en_config["theme"]["logo"]
-    new_config["theme"]["favicon"] = fastapi_url_base + en_config["theme"]["favicon"]
+    new_config["theme"][
+        "favicon"] = fastapi_url_base + en_config["theme"]["favicon"]
     new_config["theme"]["language"] = lang
     new_config["nav"] = en_config["nav"][:2]
     extra_css = []
@@ -109,22 +110,21 @@ def new_lang(lang: str = typer.Argument(..., callback=lang_callback)):
     new_overrides_gitignore_path = new_path / "overrides" / ".gitignore"
     new_overrides_gitignore_path.parent.mkdir(parents=True, exist_ok=True)
     new_overrides_gitignore_path.write_text("")
-    typer.secho(f"Successfully initialized: {new_path}", color=typer.colors.GREEN)
+    typer.secho(f"Successfully initialized: {new_path}",
+                color=typer.colors.GREEN)
     update_languages(lang=None)
 
 
 @app.command()
-def build_lang(
-    lang: str = typer.Argument(
-        ..., callback=lang_callback, autocompletion=complete_existing_lang
-    )
-):
+def build_lang(lang: str = typer.Argument(
+    ..., callback=lang_callback, autocompletion=complete_existing_lang)):
     """
     Build the docs for a language, filling missing pages with translation notifications.
     """
     lang_path: Path = Path("docs") / lang
     if not lang_path.is_dir():
-        typer.echo(f"The language translation doesn't seem to exist yet: {lang}")
+        typer.echo(
+            f"The language translation doesn't seem to exist yet: {lang}")
         raise typer.Abort()
     typer.echo(f"Building docs for: {lang}")
     build_dir_path = Path("docs_build")
@@ -146,12 +146,12 @@ def build_lang(
         if not dest_path.exists():
             shutil.copy(path, dest_path)
     en_config_path: Path = en_lang_path / mkdocs_name
-    en_config: dict = mkdocs.utils.yaml_load(en_config_path.read_text(encoding="utf-8"))
+    en_config: dict = mkdocs.utils.yaml_load(
+        en_config_path.read_text(encoding="utf-8"))
     nav = en_config["nav"]
     lang_config_path: Path = lang_path / mkdocs_name
     lang_config: dict = mkdocs.utils.yaml_load(
-        lang_config_path.read_text(encoding="utf-8")
-    )
+        lang_config_path.read_text(encoding="utf-8"))
     lang_nav = lang_config["nav"]
     # Exclude first 2 entries FastAPI and Languages, for custom handling
     use_nav = nav[2:]
@@ -175,12 +175,12 @@ def build_lang(
                 composite_key = ()
                 new_key = ()
                 for key_part in file_key:
-                    composite_key += (key_part,)
+                    composite_key += (key_part, )
                     key_first_file = sections[composite_key]
                     if key_first_file in lang_file_to_nav:
                         new_key = lang_file_to_nav[key_first_file]
                     else:
-                        new_key += (key_part,)
+                        new_key += (key_part, )
                 use_lang_file_to_nav[file] = new_key
     key_to_section = {(): []}
     for file, orig_file_key in file_to_nav.items():
@@ -197,9 +197,11 @@ def build_lang(
     )
     current_dir = os.getcwd()
     os.chdir(build_lang_path)
-    mkdocs.commands.build.build(mkdocs.config.load_config(site_dir=str(dist_path)))
+    mkdocs.commands.build.build(
+        mkdocs.config.load_config(site_dir=str(dist_path)))
     os.chdir(current_dir)
-    typer.secho(f"Successfully built docs for: {lang}", color=typer.colors.GREEN)
+    typer.secho(f"Successfully built docs for: {lang}",
+                color=typer.colors.GREEN)
 
 
 index_sponsors_template = """
@@ -220,7 +222,8 @@ def generate_readme_content():
     match_start = re.search(r"<!-- sponsors -->", content)
     match_end = re.search(r"<!-- /sponsors -->", content)
     sponsors_data_path = en_docs_path / "data" / "sponsors.yml"
-    sponsors = mkdocs.utils.yaml_load(sponsors_data_path.read_text(encoding="utf-8"))
+    sponsors = mkdocs.utils.yaml_load(
+        sponsors_data_path.read_text(encoding="utf-8"))
     if not (match_start and match_end):
         raise RuntimeError("Couldn't auto-generate sponsors section")
     pre_end = match_start.end()
@@ -254,9 +257,8 @@ def verify_readme():
     generated_content = generate_readme_content()
     readme_content = readme_path.read_text("utf-8")
     if generated_content != readme_content:
-        typer.secho(
-            "README.md outdated from the latest index.md", color=typer.colors.RED
-        )
+        typer.secho("README.md outdated from the latest index.md",
+                    color=typer.colors.RED)
         raise typer.Abort()
     typer.echo("Valid README ✅")
 
@@ -272,7 +274,8 @@ def build_all():
     current_dir = os.getcwd()
     os.chdir(en_docs_path)
     typer.echo("Building docs for: en")
-    mkdocs.commands.build.build(mkdocs.config.load_config(site_dir=str(site_path)))
+    mkdocs.commands.build.build(
+        mkdocs.config.load_config(site_dir=str(site_path)))
     os.chdir(current_dir)
     langs = []
     for lang in get_lang_paths():
@@ -291,11 +294,8 @@ def update_single_lang(lang: str):
 
 
 @app.command()
-def update_languages(
-    lang: str = typer.Argument(
-        None, callback=lang_callback, autocompletion=complete_existing_lang
-    )
-):
+def update_languages(lang: str = typer.Argument(
+    None, callback=lang_callback, autocompletion=complete_existing_lang)):
     """
     Update the mkdocs.yml file Languages section including all the available languages.
 
@@ -323,7 +323,8 @@ def serve():
     """
     typer.echo("Warning: this is a very simple server.")
     typer.echo("For development, use the command live instead.")
-    typer.echo("This is here only to preview a site with translations already built.")
+    typer.echo(
+        "This is here only to preview a site with translations already built.")
     typer.echo("Make sure you run the build-all command first.")
     os.chdir("site")
     server_address = ("", 8008)
@@ -333,11 +334,9 @@ def serve():
 
 
 @app.command()
-def live(
-    lang: str = typer.Argument(
-        None, callback=lang_callback, autocompletion=complete_existing_lang
-    )
-):
+def live(lang: str = typer.Argument(None,
+                                    callback=lang_callback,
+                                    autocompletion=complete_existing_lang)):
     """
     Serve with livereload a docs site for a specific language.
 
@@ -358,8 +357,7 @@ def update_config(lang: str):
     lang_path: Path = docs_path / lang
     config_path = lang_path / mkdocs_name
     current_config: dict = mkdocs.utils.yaml_load(
-        config_path.read_text(encoding="utf-8")
-    )
+        config_path.read_text(encoding="utf-8"))
     if lang == "en":
         config = get_en_config()
     else:
@@ -391,14 +389,14 @@ def update_config(lang: str):
     )
 
 
-def get_key_section(
-    *, key_to_section: Dict[Tuple[str, ...], list], key: Tuple[str, ...]
-) -> list:
+def get_key_section(*, key_to_section: Dict[Tuple[str, ...], list],
+                    key: Tuple[str, ...]) -> list:
     if key in key_to_section:
         return key_to_section[key]
     super_key = key[:-1]
     title = key[-1]
-    super_section = get_key_section(key_to_section=key_to_section, key=super_key)
+    super_section = get_key_section(key_to_section=key_to_section,
+                                    key=super_key)
     new_section = []
     super_section.append({title: new_section})
     key_to_section[key] = new_section
@@ -422,7 +420,7 @@ def get_file_to_nav_map(nav: list) -> Dict[str, Tuple[str, ...]]:
             sub_nav = item[item_key]
             sub_file_to_nav = get_file_to_nav_map(sub_nav)
             for k, v in sub_file_to_nav.items():
-                file_to_nav[k] = (item_key,) + v
+                file_to_nav[k] = (item_key, ) + v
     return file_to_nav
 
 
@@ -434,10 +432,10 @@ def get_sections(nav: list) -> Dict[Tuple[str, ...], str]:
         if type(item) is dict:
             item_key = list(item.keys())[0]
             sub_nav = item[item_key]
-            sections[(item_key,)] = sub_nav[0]
+            sections[(item_key, )] = sub_nav[0]
             sub_sections = get_sections(sub_nav)
             for k, v in sub_sections.items():
-                new_key = (item_key,) + k
+                new_key = (item_key, ) + k
                 sections[new_key] = v
     return sections
 

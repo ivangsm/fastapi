@@ -16,8 +16,7 @@ app = FastAPI(
     exception_handlers={
         HTTPException: http_exception_handler,
         RequestValidationError: request_validation_exception_handler,
-    }
-)
+    })
 
 client = TestClient(app)
 

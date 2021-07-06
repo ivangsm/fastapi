@@ -43,19 +43,25 @@ router_b.include_router(router=router_c, prefix="/c")
 router_a.include_router(router=router_b, prefix="/b")
 app.include_router(router=router_a, prefix="/a")
 
-
 client = TestClient(app)
 
 openapi_schema = {
     "openapi": "3.0.2",
-    "info": {"title": "FastAPI", "version": "0.1.0"},
+    "info": {
+        "title": "FastAPI",
+        "version": "0.1.0"
+    },
     "paths": {
         "/a/": {
             "get": {
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/json": {"schema": {}}},
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        },
                     }
                 },
                 "summary": "Get A",
@@ -67,7 +73,11 @@ openapi_schema = {
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/json": {"schema": {}}},
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        },
                     }
                 },
                 "summary": "Get B",
@@ -79,7 +89,11 @@ openapi_schema = {
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/json": {"schema": {}}},
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        },
                     }
                 },
                 "summary": "Get C",
@@ -93,9 +107,15 @@ openapi_schema = {
 @pytest.mark.parametrize(
     "path,expected_status,expected_response",
     [
-        ("/a", 200, {"msg": "A"}),
-        ("/a/b", 200, {"msg": "B"}),
-        ("/a/b/c", 200, {"msg": "C"}),
+        ("/a", 200, {
+            "msg": "A"
+        }),
+        ("/a/b", 200, {
+            "msg": "B"
+        }),
+        ("/a/b/c", 200, {
+            "msg": "C"
+        }),
         ("/openapi.json", 200, openapi_schema),
     ],
 )

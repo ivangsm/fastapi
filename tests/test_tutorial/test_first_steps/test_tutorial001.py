@@ -7,14 +7,21 @@ client = TestClient(app)
 
 openapi_schema = {
     "openapi": "3.0.2",
-    "info": {"title": "FastAPI", "version": "0.1.0"},
+    "info": {
+        "title": "FastAPI",
+        "version": "0.1.0"
+    },
     "paths": {
         "/": {
             "get": {
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/json": {"schema": {}}},
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        },
                     }
                 },
                 "summary": "Root",
@@ -28,8 +35,12 @@ openapi_schema = {
 @pytest.mark.parametrize(
     "path,expected_status,expected_response",
     [
-        ("/", 200, {"message": "Hello World"}),
-        ("/nonexistent", 404, {"detail": "Not Found"}),
+        ("/", 200, {
+            "message": "Hello World"
+        }),
+        ("/nonexistent", 404, {
+            "detail": "Not Found"
+        }),
         ("/openapi.json", 200, openapi_schema),
     ],
 )

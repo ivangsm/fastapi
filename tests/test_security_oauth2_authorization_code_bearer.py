@@ -6,9 +6,9 @@ from fastapi.testclient import TestClient
 
 app = FastAPI()
 
-oauth2_scheme = OAuth2AuthorizationCodeBearer(
-    authorizationUrl="authorize", tokenUrl="token", auto_error=True
-)
+oauth2_scheme = OAuth2AuthorizationCodeBearer(authorizationUrl="authorize",
+                                              tokenUrl="token",
+                                              auto_error=True)
 
 
 @app.get("/items/")
@@ -20,19 +20,28 @@ client = TestClient(app)
 
 openapi_schema = {
     "openapi": "3.0.2",
-    "info": {"title": "FastAPI", "version": "0.1.0"},
+    "info": {
+        "title": "FastAPI",
+        "version": "0.1.0"
+    },
     "paths": {
         "/items/": {
             "get": {
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/json": {"schema": {}}},
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        },
                     }
                 },
                 "summary": "Read Items",
                 "operationId": "read_items_items__get",
-                "security": [{"OAuth2AuthorizationCodeBearer": []}],
+                "security": [{
+                    "OAuth2AuthorizationCodeBearer": []
+                }],
             }
         }
     },
@@ -66,12 +75,14 @@ def test_no_token():
 
 
 def test_incorrect_token():
-    response = client.get("/items", headers={"Authorization": "Non-existent testtoken"})
+    response = client.get("/items",
+                          headers={"Authorization": "Non-existent testtoken"})
     assert response.status_code == 401, response.text
     assert response.json() == {"detail": "Not authenticated"}
 
 
 def test_token():
-    response = client.get("/items", headers={"Authorization": "Bearer testtoken"})
+    response = client.get("/items",
+                          headers={"Authorization": "Bearer testtoken"})
     assert response.status_code == 200, response.text
     assert response.json() == {"token": "testtoken"}

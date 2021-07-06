@@ -103,8 +103,12 @@ async def callback5(level5: str):
 app = FastAPI(
     dependencies=[Depends(dep0)],
     responses={
-        400: {"description": "Client error level 0"},
-        500: {"description": "Server error level 0"},
+        400: {
+            "description": "Client error level 0"
+        },
+        500: {
+            "description": "Server error level 0"
+        },
     },
     default_response_class=ResponseLevel0,
     callbacks=callback_router0.routes,
@@ -115,8 +119,12 @@ router2_override = APIRouter(
     tags=["level2a", "level2b"],
     dependencies=[Depends(dep2)],
     responses={
-        402: {"description": "Client error level 2"},
-        502: {"description": "Server error level 2"},
+        402: {
+            "description": "Client error level 2"
+        },
+        502: {
+            "description": "Server error level 2"
+        },
     },
     default_response_class=ResponseLevel2,
     callbacks=callback_router2.routes,
@@ -128,8 +136,12 @@ router4_override = APIRouter(
     tags=["level4a", "level4b"],
     dependencies=[Depends(dep4)],
     responses={
-        404: {"description": "Client error level 4"},
-        504: {"description": "Server error level 4"},
+        404: {
+            "description": "Client error level 4"
+        },
+        504: {
+            "description": "Server error level 4"
+        },
     },
     default_response_class=ResponseLevel4,
     callbacks=callback_router4.routes,
@@ -142,8 +154,12 @@ router4_default = APIRouter()
     "/override1",
     tags=["path1a", "path1b"],
     responses={
-        401: {"description": "Client error level 1"},
-        501: {"description": "Server error level 1"},
+        401: {
+            "description": "Client error level 1"
+        },
+        501: {
+            "description": "Server error level 1"
+        },
     },
     deprecated=True,
     callbacks=callback_router1.routes,
@@ -163,8 +179,12 @@ async def path1_default(level1: str):
     "/override3",
     tags=["path3a", "path3b"],
     responses={
-        403: {"description": "Client error level 3"},
-        503: {"description": "Server error level 3"},
+        403: {
+            "description": "Client error level 3"
+        },
+        503: {
+            "description": "Server error level 3"
+        },
     },
     deprecated=True,
     callbacks=callback_router3.routes,
@@ -184,8 +204,12 @@ async def path3_default_router2_override(level3: str):
     "/override3",
     tags=["path3a", "path3b"],
     responses={
-        403: {"description": "Client error level 3"},
-        503: {"description": "Server error level 3"},
+        403: {
+            "description": "Client error level 3"
+        },
+        503: {
+            "description": "Server error level 3"
+        },
     },
     deprecated=True,
     callbacks=callback_router3.routes,
@@ -205,8 +229,12 @@ async def path3_default_router2_default(level3: str):
     "/override5",
     tags=["path5a", "path5b"],
     responses={
-        405: {"description": "Client error level 5"},
-        505: {"description": "Server error level 5"},
+        405: {
+            "description": "Client error level 5"
+        },
+        505: {
+            "description": "Server error level 5"
+        },
     },
     deprecated=True,
     callbacks=callback_router5.routes,
@@ -218,8 +246,7 @@ async def path5_override_router4_override(level5: str):
 
 
 @router4_override.get(
-    "/default5",
-)
+    "/default5", )
 async def path5_default_router4_override(level5: str):
     return level5
 
@@ -228,8 +255,12 @@ async def path5_default_router4_override(level5: str):
     "/override5",
     tags=["path5a", "path5b"],
     responses={
-        405: {"description": "Client error level 5"},
-        505: {"description": "Server error level 5"},
+        405: {
+            "description": "Client error level 5"
+        },
+        505: {
+            "description": "Server error level 5"
+        },
     },
     deprecated=True,
     callbacks=callback_router5.routes,
@@ -241,8 +272,7 @@ async def path5_override_router4_default(level5: str):
 
 
 @router4_default.get(
-    "/default5",
-)
+    "/default5", )
 async def path5_default_router4_default(level5: str):
     return level5
 
@@ -253,8 +283,12 @@ router2_override.include_router(
     tags=["level3a", "level3b"],
     dependencies=[Depends(dep3)],
     responses={
-        403: {"description": "Client error level 3"},
-        503: {"description": "Server error level 3"},
+        403: {
+            "description": "Client error level 3"
+        },
+        503: {
+            "description": "Server error level 3"
+        },
     },
     default_response_class=ResponseLevel3,
     callbacks=callback_router3.routes,
@@ -266,8 +300,12 @@ router2_override.include_router(
     tags=["level3a", "level3b"],
     dependencies=[Depends(dep3)],
     responses={
-        403: {"description": "Client error level 3"},
-        503: {"description": "Server error level 3"},
+        403: {
+            "description": "Client error level 3"
+        },
+        503: {
+            "description": "Server error level 3"
+        },
     },
     default_response_class=ResponseLevel3,
     callbacks=callback_router3.routes,
@@ -283,8 +321,12 @@ router2_default.include_router(
     tags=["level3a", "level3b"],
     dependencies=[Depends(dep3)],
     responses={
-        403: {"description": "Client error level 3"},
-        503: {"description": "Server error level 3"},
+        403: {
+            "description": "Client error level 3"
+        },
+        503: {
+            "description": "Server error level 3"
+        },
     },
     default_response_class=ResponseLevel3,
     callbacks=callback_router3.routes,
@@ -296,8 +338,12 @@ router2_default.include_router(
     tags=["level3a", "level3b"],
     dependencies=[Depends(dep3)],
     responses={
-        403: {"description": "Client error level 3"},
-        503: {"description": "Server error level 3"},
+        403: {
+            "description": "Client error level 3"
+        },
+        503: {
+            "description": "Server error level 3"
+        },
     },
     default_response_class=ResponseLevel3,
     callbacks=callback_router3.routes,
@@ -307,15 +353,18 @@ router2_default.include_router(router4_override)
 
 router2_default.include_router(router4_default)
 
-
 app.include_router(
     router2_override,
     prefix="/level1",
     tags=["level1a", "level1b"],
     dependencies=[Depends(dep1)],
     responses={
-        401: {"description": "Client error level 1"},
-        501: {"description": "Server error level 1"},
+        401: {
+            "description": "Client error level 1"
+        },
+        501: {
+            "description": "Server error level 1"
+        },
     },
     default_response_class=ResponseLevel1,
     callbacks=callback_router1.routes,
@@ -327,8 +376,12 @@ app.include_router(
     tags=["level1a", "level1b"],
     dependencies=[Depends(dep1)],
     responses={
-        401: {"description": "Client error level 1"},
-        501: {"description": "Server error level 1"},
+        401: {
+            "description": "Client error level 1"
+        },
+        501: {
+            "description": "Server error level 1"
+        },
     },
     default_response_class=ResponseLevel1,
     callbacks=callback_router1.routes,
@@ -391,9 +444,8 @@ def test_paths_level3(override1, override2, override3):
     url += "?level3=foo"
     response = client.get(url)
     assert response.json() == "foo"
-    assert (
-        response.headers["content-type"] == f"application/x-level-{content_type_level}"
-    )
+    assert (response.headers["content-type"] ==
+            f"application/x-level-{content_type_level}")
     assert "x-level0" in response.headers
     assert not override1 or "x-level1" in response.headers
     assert not override2 or "x-level2" in response.headers
@@ -428,9 +480,8 @@ def test_paths_level5(override1, override2, override3, override4, override5):
     url += "?level5=foo"
     response = client.get(url)
     assert response.json() == "foo"
-    assert (
-        response.headers["content-type"] == f"application/x-level-{content_type_level}"
-    )
+    assert (response.headers["content-type"] ==
+            f"application/x-level-{content_type_level}")
     assert "x-level0" in response.headers
     assert not override1 or "x-level1" in response.headers
     assert not override2 or "x-level2" in response.headers
@@ -441,66 +492,93 @@ def test_paths_level5(override1, override2, override3, override4, override5):
 
 openapi_schema = {
     "openapi": "3.0.2",
-    "info": {"title": "FastAPI", "version": "0.1.0"},
+    "info": {
+        "title": "FastAPI",
+        "version": "0.1.0"
+    },
     "paths": {
         "/override1": {
             "get": {
                 "tags": ["path1a", "path1b"],
-                "summary": "Path1 Override",
-                "operationId": "path1_override_override1_get",
-                "parameters": [
-                    {
-                        "required": True,
-                        "schema": {"title": "Level1", "type": "string"},
-                        "name": "level1",
-                        "in": "query",
-                    }
-                ],
+                "summary":
+                "Path1 Override",
+                "operationId":
+                "path1_override_override1_get",
+                "parameters": [{
+                    "required": True,
+                    "schema": {
+                        "title": "Level1",
+                        "type": "string"
+                    },
+                    "name": "level1",
+                    "in": "query",
+                }],
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/x-level-1": {"schema": {}}},
+                        "content": {
+                            "application/x-level-1": {
+                                "schema": {}
+                            }
+                        },
                     },
-                    "400": {"description": "Client error level 0"},
-                    "401": {"description": "Client error level 1"},
+                    "400": {
+                        "description": "Client error level 0"
+                    },
+                    "401": {
+                        "description": "Client error level 1"
+                    },
                     "422": {
                         "description": "Validation Error",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                    "$ref":
+                                    "#/components/schemas/HTTPValidationError"
                                 }
                             }
                         },
                     },
-                    "500": {"description": "Server error level 0"},
-                    "501": {"description": "Server error level 1"},
+                    "500": {
+                        "description": "Server error level 0"
+                    },
+                    "501": {
+                        "description": "Server error level 1"
+                    },
                 },
                 "callbacks": {
                     "callback0": {
                         "/": {
                             "get": {
-                                "summary": "Callback0",
-                                "operationId": "callback0__get",
-                                "parameters": [
-                                    {
-                                        "name": "level0",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level0", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback0",
+                                "operationId":
+                                "callback0__get",
+                                "parameters": [{
+                                    "name": "level0",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level0",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -512,27 +590,35 @@ openapi_schema = {
                     "callback1": {
                         "/": {
                             "get": {
-                                "summary": "Callback1",
-                                "operationId": "callback1__get",
-                                "parameters": [
-                                    {
-                                        "name": "level1",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level1", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback1",
+                                "operationId":
+                                "callback1__get",
+                                "parameters": [{
+                                    "name": "level1",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level1",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -542,64 +628,85 @@ openapi_schema = {
                         }
                     },
                 },
-                "deprecated": True,
+                "deprecated":
+                True,
             }
         },
         "/default1": {
             "get": {
-                "summary": "Path1 Default",
-                "operationId": "path1_default_default1_get",
-                "parameters": [
-                    {
-                        "required": True,
-                        "schema": {"title": "Level1", "type": "string"},
-                        "name": "level1",
-                        "in": "query",
-                    }
-                ],
+                "summary":
+                "Path1 Default",
+                "operationId":
+                "path1_default_default1_get",
+                "parameters": [{
+                    "required": True,
+                    "schema": {
+                        "title": "Level1",
+                        "type": "string"
+                    },
+                    "name": "level1",
+                    "in": "query",
+                }],
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/x-level-0": {"schema": {}}},
+                        "content": {
+                            "application/x-level-0": {
+                                "schema": {}
+                            }
+                        },
                     },
-                    "400": {"description": "Client error level 0"},
+                    "400": {
+                        "description": "Client error level 0"
+                    },
                     "422": {
                         "description": "Validation Error",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                    "$ref":
+                                    "#/components/schemas/HTTPValidationError"
                                 }
                             }
                         },
                     },
-                    "500": {"description": "Server error level 0"},
+                    "500": {
+                        "description": "Server error level 0"
+                    },
                 },
                 "callbacks": {
                     "callback0": {
                         "/": {
                             "get": {
-                                "summary": "Callback0",
-                                "operationId": "callback0__get",
-                                "parameters": [
-                                    {
-                                        "name": "level0",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level0", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback0",
+                                "operationId":
+                                "callback0__get",
+                                "parameters": [{
+                                    "name": "level0",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level0",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -621,65 +728,97 @@ openapi_schema = {
                     "path3a",
                     "path3b",
                 ],
-                "summary": "Path3 Override Router2 Override",
-                "operationId": "path3_override_router2_override_level1_level2_override3_get",
-                "parameters": [
-                    {
-                        "required": True,
-                        "schema": {"title": "Level3", "type": "string"},
-                        "name": "level3",
-                        "in": "query",
-                    }
-                ],
+                "summary":
+                "Path3 Override Router2 Override",
+                "operationId":
+                "path3_override_router2_override_level1_level2_override3_get",
+                "parameters": [{
+                    "required": True,
+                    "schema": {
+                        "title": "Level3",
+                        "type": "string"
+                    },
+                    "name": "level3",
+                    "in": "query",
+                }],
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/x-level-3": {"schema": {}}},
+                        "content": {
+                            "application/x-level-3": {
+                                "schema": {}
+                            }
+                        },
                     },
-                    "400": {"description": "Client error level 0"},
-                    "401": {"description": "Client error level 1"},
-                    "402": {"description": "Client error level 2"},
-                    "403": {"description": "Client error level 3"},
+                    "400": {
+                        "description": "Client error level 0"
+                    },
+                    "401": {
+                        "description": "Client error level 1"
+                    },
+                    "402": {
+                        "description": "Client error level 2"
+                    },
+                    "403": {
+                        "description": "Client error level 3"
+                    },
                     "422": {
                         "description": "Validation Error",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                    "$ref":
+                                    "#/components/schemas/HTTPValidationError"
                                 }
                             }
                         },
                     },
-                    "500": {"description": "Server error level 0"},
-                    "501": {"description": "Server error level 1"},
-                    "502": {"description": "Server error level 2"},
-                    "503": {"description": "Server error level 3"},
+                    "500": {
+                        "description": "Server error level 0"
+                    },
+                    "501": {
+                        "description": "Server error level 1"
+                    },
+                    "502": {
+                        "description": "Server error level 2"
+                    },
+                    "503": {
+                        "description": "Server error level 3"
+                    },
                 },
                 "callbacks": {
                     "callback0": {
                         "/": {
                             "get": {
-                                "summary": "Callback0",
-                                "operationId": "callback0__get",
-                                "parameters": [
-                                    {
-                                        "name": "level0",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level0", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback0",
+                                "operationId":
+                                "callback0__get",
+                                "parameters": [{
+                                    "name": "level0",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level0",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -691,27 +830,35 @@ openapi_schema = {
                     "callback1": {
                         "/": {
                             "get": {
-                                "summary": "Callback1",
-                                "operationId": "callback1__get",
-                                "parameters": [
-                                    {
-                                        "name": "level1",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level1", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback1",
+                                "operationId":
+                                "callback1__get",
+                                "parameters": [{
+                                    "name": "level1",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level1",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -723,27 +870,35 @@ openapi_schema = {
                     "callback2": {
                         "/": {
                             "get": {
-                                "summary": "Callback2",
-                                "operationId": "callback2__get",
-                                "parameters": [
-                                    {
-                                        "name": "level2",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level2", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback2",
+                                "operationId":
+                                "callback2__get",
+                                "parameters": [{
+                                    "name": "level2",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level2",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -755,27 +910,35 @@ openapi_schema = {
                     "callback3": {
                         "/": {
                             "get": {
-                                "summary": "Callback3",
-                                "operationId": "callback3__get",
-                                "parameters": [
-                                    {
-                                        "name": "level3",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level3", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback3",
+                                "operationId":
+                                "callback3__get",
+                                "parameters": [{
+                                    "name": "level3",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level3",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -785,69 +948,98 @@ openapi_schema = {
                         }
                     },
                 },
-                "deprecated": True,
+                "deprecated":
+                True,
             }
         },
         "/level1/level2/default3": {
             "get": {
                 "tags": ["level1a", "level1b", "level2a", "level2b"],
-                "summary": "Path3 Default Router2 Override",
-                "operationId": "path3_default_router2_override_level1_level2_default3_get",
-                "parameters": [
-                    {
-                        "required": True,
-                        "schema": {"title": "Level3", "type": "string"},
-                        "name": "level3",
-                        "in": "query",
-                    }
-                ],
+                "summary":
+                "Path3 Default Router2 Override",
+                "operationId":
+                "path3_default_router2_override_level1_level2_default3_get",
+                "parameters": [{
+                    "required": True,
+                    "schema": {
+                        "title": "Level3",
+                        "type": "string"
+                    },
+                    "name": "level3",
+                    "in": "query",
+                }],
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/x-level-2": {"schema": {}}},
+                        "content": {
+                            "application/x-level-2": {
+                                "schema": {}
+                            }
+                        },
                     },
-                    "400": {"description": "Client error level 0"},
-                    "401": {"description": "Client error level 1"},
-                    "402": {"description": "Client error level 2"},
+                    "400": {
+                        "description": "Client error level 0"
+                    },
+                    "401": {
+                        "description": "Client error level 1"
+                    },
+                    "402": {
+                        "description": "Client error level 2"
+                    },
                     "422": {
                         "description": "Validation Error",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                    "$ref":
+                                    "#/components/schemas/HTTPValidationError"
                                 }
                             }
                         },
                     },
-                    "500": {"description": "Server error level 0"},
-                    "501": {"description": "Server error level 1"},
-                    "502": {"description": "Server error level 2"},
+                    "500": {
+                        "description": "Server error level 0"
+                    },
+                    "501": {
+                        "description": "Server error level 1"
+                    },
+                    "502": {
+                        "description": "Server error level 2"
+                    },
                 },
                 "callbacks": {
                     "callback0": {
                         "/": {
                             "get": {
-                                "summary": "Callback0",
-                                "operationId": "callback0__get",
-                                "parameters": [
-                                    {
-                                        "name": "level0",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level0", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback0",
+                                "operationId":
+                                "callback0__get",
+                                "parameters": [{
+                                    "name": "level0",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level0",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -859,27 +1051,35 @@ openapi_schema = {
                     "callback1": {
                         "/": {
                             "get": {
-                                "summary": "Callback1",
-                                "operationId": "callback1__get",
-                                "parameters": [
-                                    {
-                                        "name": "level1",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level1", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback1",
+                                "operationId":
+                                "callback1__get",
+                                "parameters": [{
+                                    "name": "level1",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level1",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -891,27 +1091,35 @@ openapi_schema = {
                     "callback2": {
                         "/": {
                             "get": {
-                                "summary": "Callback2",
-                                "operationId": "callback2__get",
-                                "parameters": [
-                                    {
-                                        "name": "level2",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level2", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback2",
+                                "operationId":
+                                "callback2__get",
+                                "parameters": [{
+                                    "name": "level2",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level2",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -921,7 +1129,8 @@ openapi_schema = {
                         }
                     },
                 },
-                "deprecated": True,
+                "deprecated":
+                True,
             }
         },
         "/level1/level2/level3/level4/override5": {
@@ -938,69 +1147,109 @@ openapi_schema = {
                     "path5a",
                     "path5b",
                 ],
-                "summary": "Path5 Override Router4 Override",
-                "operationId": "path5_override_router4_override_level1_level2_level3_level4_override5_get",
-                "parameters": [
-                    {
-                        "required": True,
-                        "schema": {"title": "Level5", "type": "string"},
-                        "name": "level5",
-                        "in": "query",
-                    }
-                ],
+                "summary":
+                "Path5 Override Router4 Override",
+                "operationId":
+                "path5_override_router4_override_level1_level2_level3_level4_override5_get",
+                "parameters": [{
+                    "required": True,
+                    "schema": {
+                        "title": "Level5",
+                        "type": "string"
+                    },
+                    "name": "level5",
+                    "in": "query",
+                }],
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/x-level-5": {"schema": {}}},
+                        "content": {
+                            "application/x-level-5": {
+                                "schema": {}
+                            }
+                        },
                     },
-                    "400": {"description": "Client error level 0"},
-                    "401": {"description": "Client error level 1"},
-                    "402": {"description": "Client error level 2"},
-                    "403": {"description": "Client error level 3"},
-                    "404": {"description": "Client error level 4"},
-                    "405": {"description": "Client error level 5"},
+                    "400": {
+                        "description": "Client error level 0"
+                    },
+                    "401": {
+                        "description": "Client error level 1"
+                    },
+                    "402": {
+                        "description": "Client error level 2"
+                    },
+                    "403": {
+                        "description": "Client error level 3"
+                    },
+                    "404": {
+                        "description": "Client error level 4"
+                    },
+                    "405": {
+                        "description": "Client error level 5"
+                    },
                     "422": {
                         "description": "Validation Error",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                    "$ref":
+                                    "#/components/schemas/HTTPValidationError"
                                 }
                             }
                         },
                     },
-                    "500": {"description": "Server error level 0"},
-                    "501": {"description": "Server error level 1"},
-                    "502": {"description": "Server error level 2"},
-                    "503": {"description": "Server error level 3"},
-                    "504": {"description": "Server error level 4"},
-                    "505": {"description": "Server error level 5"},
+                    "500": {
+                        "description": "Server error level 0"
+                    },
+                    "501": {
+                        "description": "Server error level 1"
+                    },
+                    "502": {
+                        "description": "Server error level 2"
+                    },
+                    "503": {
+                        "description": "Server error level 3"
+                    },
+                    "504": {
+                        "description": "Server error level 4"
+                    },
+                    "505": {
+                        "description": "Server error level 5"
+                    },
                 },
                 "callbacks": {
                     "callback0": {
                         "/": {
                             "get": {
-                                "summary": "Callback0",
-                                "operationId": "callback0__get",
-                                "parameters": [
-                                    {
-                                        "name": "level0",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level0", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback0",
+                                "operationId":
+                                "callback0__get",
+                                "parameters": [{
+                                    "name": "level0",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level0",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -1012,27 +1261,35 @@ openapi_schema = {
                     "callback1": {
                         "/": {
                             "get": {
-                                "summary": "Callback1",
-                                "operationId": "callback1__get",
-                                "parameters": [
-                                    {
-                                        "name": "level1",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level1", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback1",
+                                "operationId":
+                                "callback1__get",
+                                "parameters": [{
+                                    "name": "level1",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level1",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -1044,27 +1301,35 @@ openapi_schema = {
                     "callback2": {
                         "/": {
                             "get": {
-                                "summary": "Callback2",
-                                "operationId": "callback2__get",
-                                "parameters": [
-                                    {
-                                        "name": "level2",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level2", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback2",
+                                "operationId":
+                                "callback2__get",
+                                "parameters": [{
+                                    "name": "level2",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level2",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -1076,27 +1341,35 @@ openapi_schema = {
                     "callback3": {
                         "/": {
                             "get": {
-                                "summary": "Callback3",
-                                "operationId": "callback3__get",
-                                "parameters": [
-                                    {
-                                        "name": "level3",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level3", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback3",
+                                "operationId":
+                                "callback3__get",
+                                "parameters": [{
+                                    "name": "level3",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level3",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -1108,27 +1381,35 @@ openapi_schema = {
                     "callback4": {
                         "/": {
                             "get": {
-                                "summary": "Callback4",
-                                "operationId": "callback4__get",
-                                "parameters": [
-                                    {
-                                        "name": "level4",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level4", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback4",
+                                "operationId":
+                                "callback4__get",
+                                "parameters": [{
+                                    "name": "level4",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level4",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -1140,27 +1421,35 @@ openapi_schema = {
                     "callback5": {
                         "/": {
                             "get": {
-                                "summary": "Callback5",
-                                "operationId": "callback5__get",
-                                "parameters": [
-                                    {
-                                        "name": "level5",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level5", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback5",
+                                "operationId":
+                                "callback5__get",
+                                "parameters": [{
+                                    "name": "level5",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level5",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -1170,7 +1459,8 @@ openapi_schema = {
                         }
                     },
                 },
-                "deprecated": True,
+                "deprecated":
+                True,
             }
         },
         "/level1/level2/level3/level4/default5": {
@@ -1185,67 +1475,103 @@ openapi_schema = {
                     "level4a",
                     "level4b",
                 ],
-                "summary": "Path5 Default Router4 Override",
-                "operationId": "path5_default_router4_override_level1_level2_level3_level4_default5_get",
-                "parameters": [
-                    {
-                        "required": True,
-                        "schema": {"title": "Level5", "type": "string"},
-                        "name": "level5",
-                        "in": "query",
-                    }
-                ],
+                "summary":
+                "Path5 Default Router4 Override",
+                "operationId":
+                "path5_default_router4_override_level1_level2_level3_level4_default5_get",
+                "parameters": [{
+                    "required": True,
+                    "schema": {
+                        "title": "Level5",
+                        "type": "string"
+                    },
+                    "name": "level5",
+                    "in": "query",
+                }],
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/x-level-4": {"schema": {}}},
+                        "content": {
+                            "application/x-level-4": {
+                                "schema": {}
+                            }
+                        },
                     },
-                    "400": {"description": "Client error level 0"},
-                    "401": {"description": "Client error level 1"},
-                    "402": {"description": "Client error level 2"},
-                    "403": {"description": "Client error level 3"},
-                    "404": {"description": "Client error level 4"},
+                    "400": {
+                        "description": "Client error level 0"
+                    },
+                    "401": {
+                        "description": "Client error level 1"
+                    },
+                    "402": {
+                        "description": "Client error level 2"
+                    },
+                    "403": {
+                        "description": "Client error level 3"
+                    },
+                    "404": {
+                        "description": "Client error level 4"
+                    },
                     "422": {
                         "description": "Validation Error",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                    "$ref":
+                                    "#/components/schemas/HTTPValidationError"
                                 }
                             }
                         },
                     },
-                    "500": {"description": "Server error level 0"},
-                    "501": {"description": "Server error level 1"},
-                    "502": {"description": "Server error level 2"},
-                    "503": {"description": "Server error level 3"},
-                    "504": {"description": "Server error level 4"},
+                    "500": {
+                        "description": "Server error level 0"
+                    },
+                    "501": {
+                        "description": "Server error level 1"
+                    },
+                    "502": {
+                        "description": "Server error level 2"
+                    },
+                    "503": {
+                        "description": "Server error level 3"
+                    },
+                    "504": {
+                        "description": "Server error level 4"
+                    },
                 },
                 "callbacks": {
                     "callback0": {
                         "/": {
                             "get": {
-                                "summary": "Callback0",
-                                "operationId": "callback0__get",
-                                "parameters": [
-                                    {
-                                        "name": "level0",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level0", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback0",
+                                "operationId":
+                                "callback0__get",
+                                "parameters": [{
+                                    "name": "level0",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level0",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -1257,27 +1583,35 @@ openapi_schema = {
                     "callback1": {
                         "/": {
                             "get": {
-                                "summary": "Callback1",
-                                "operationId": "callback1__get",
-                                "parameters": [
-                                    {
-                                        "name": "level1",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level1", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback1",
+                                "operationId":
+                                "callback1__get",
+                                "parameters": [{
+                                    "name": "level1",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level1",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -1289,27 +1623,35 @@ openapi_schema = {
                     "callback2": {
                         "/": {
                             "get": {
-                                "summary": "Callback2",
-                                "operationId": "callback2__get",
-                                "parameters": [
-                                    {
-                                        "name": "level2",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level2", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback2",
+                                "operationId":
+                                "callback2__get",
+                                "parameters": [{
+                                    "name": "level2",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level2",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -1321,27 +1663,35 @@ openapi_schema = {
                     "callback3": {
                         "/": {
                             "get": {
-                                "summary": "Callback3",
-                                "operationId": "callback3__get",
-                                "parameters": [
-                                    {
-                                        "name": "level3",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level3", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback3",
+                                "operationId":
+                                "callback3__get",
+                                "parameters": [{
+                                    "name": "level3",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level3",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -1353,27 +1703,35 @@ openapi_schema = {
                     "callback4": {
                         "/": {
                             "get": {
-                                "summary": "Callback4",
-                                "operationId": "callback4__get",
-                                "parameters": [
-                                    {
-                                        "name": "level4",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level4", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback4",
+                                "operationId":
+                                "callback4__get",
+                                "parameters": [{
+                                    "name": "level4",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level4",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -1383,7 +1741,8 @@ openapi_schema = {
                         }
                     },
                 },
-                "deprecated": True,
+                "deprecated":
+                True,
             }
         },
         "/level1/level2/level3/override5": {
@@ -1398,67 +1757,103 @@ openapi_schema = {
                     "path5a",
                     "path5b",
                 ],
-                "summary": "Path5 Override Router4 Default",
-                "operationId": "path5_override_router4_default_level1_level2_level3_override5_get",
-                "parameters": [
-                    {
-                        "required": True,
-                        "schema": {"title": "Level5", "type": "string"},
-                        "name": "level5",
-                        "in": "query",
-                    }
-                ],
+                "summary":
+                "Path5 Override Router4 Default",
+                "operationId":
+                "path5_override_router4_default_level1_level2_level3_override5_get",
+                "parameters": [{
+                    "required": True,
+                    "schema": {
+                        "title": "Level5",
+                        "type": "string"
+                    },
+                    "name": "level5",
+                    "in": "query",
+                }],
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/x-level-5": {"schema": {}}},
+                        "content": {
+                            "application/x-level-5": {
+                                "schema": {}
+                            }
+                        },
                     },
-                    "400": {"description": "Client error level 0"},
-                    "401": {"description": "Client error level 1"},
-                    "402": {"description": "Client error level 2"},
-                    "403": {"description": "Client error level 3"},
-                    "405": {"description": "Client error level 5"},
+                    "400": {
+                        "description": "Client error level 0"
+                    },
+                    "401": {
+                        "description": "Client error level 1"
+                    },
+                    "402": {
+                        "description": "Client error level 2"
+                    },
+                    "403": {
+                        "description": "Client error level 3"
+                    },
+                    "405": {
+                        "description": "Client error level 5"
+                    },
                     "422": {
                         "description": "Validation Error",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                    "$ref":
+                                    "#/components/schemas/HTTPValidationError"
                                 }
                             }
                         },
                     },
-                    "500": {"description": "Server error level 0"},
-                    "501": {"description": "Server error level 1"},
-                    "502": {"description": "Server error level 2"},
-                    "503": {"description": "Server error level 3"},
-                    "505": {"description": "Server error level 5"},
+                    "500": {
+                        "description": "Server error level 0"
+                    },
+                    "501": {
+                        "description": "Server error level 1"
+                    },
+                    "502": {
+                        "description": "Server error level 2"
+                    },
+                    "503": {
+                        "description": "Server error level 3"
+                    },
+                    "505": {
+                        "description": "Server error level 5"
+                    },
                 },
                 "callbacks": {
                     "callback0": {
                         "/": {
                             "get": {
-                                "summary": "Callback0",
-                                "operationId": "callback0__get",
-                                "parameters": [
-                                    {
-                                        "name": "level0",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level0", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback0",
+                                "operationId":
+                                "callback0__get",
+                                "parameters": [{
+                                    "name": "level0",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level0",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -1470,27 +1865,35 @@ openapi_schema = {
                     "callback1": {
                         "/": {
                             "get": {
-                                "summary": "Callback1",
-                                "operationId": "callback1__get",
-                                "parameters": [
-                                    {
-                                        "name": "level1",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level1", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback1",
+                                "operationId":
+                                "callback1__get",
+                                "parameters": [{
+                                    "name": "level1",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level1",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -1502,27 +1905,35 @@ openapi_schema = {
                     "callback2": {
                         "/": {
                             "get": {
-                                "summary": "Callback2",
-                                "operationId": "callback2__get",
-                                "parameters": [
-                                    {
-                                        "name": "level2",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level2", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback2",
+                                "operationId":
+                                "callback2__get",
+                                "parameters": [{
+                                    "name": "level2",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level2",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -1534,27 +1945,35 @@ openapi_schema = {
                     "callback3": {
                         "/": {
                             "get": {
-                                "summary": "Callback3",
-                                "operationId": "callback3__get",
-                                "parameters": [
-                                    {
-                                        "name": "level3",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level3", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback3",
+                                "operationId":
+                                "callback3__get",
+                                "parameters": [{
+                                    "name": "level3",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level3",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -1566,27 +1985,35 @@ openapi_schema = {
                     "callback5": {
                         "/": {
                             "get": {
-                                "summary": "Callback5",
-                                "operationId": "callback5__get",
-                                "parameters": [
-                                    {
-                                        "name": "level5",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level5", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback5",
+                                "operationId":
+                                "callback5__get",
+                                "parameters": [{
+                                    "name": "level5",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level5",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -1596,7 +2023,8 @@ openapi_schema = {
                         }
                     },
                 },
-                "deprecated": True,
+                "deprecated":
+                True,
             }
         },
         "/level1/level2/level3/default5": {
@@ -1609,65 +2037,97 @@ openapi_schema = {
                     "level3a",
                     "level3b",
                 ],
-                "summary": "Path5 Default Router4 Default",
-                "operationId": "path5_default_router4_default_level1_level2_level3_default5_get",
-                "parameters": [
-                    {
-                        "required": True,
-                        "schema": {"title": "Level5", "type": "string"},
-                        "name": "level5",
-                        "in": "query",
-                    }
-                ],
+                "summary":
+                "Path5 Default Router4 Default",
+                "operationId":
+                "path5_default_router4_default_level1_level2_level3_default5_get",
+                "parameters": [{
+                    "required": True,
+                    "schema": {
+                        "title": "Level5",
+                        "type": "string"
+                    },
+                    "name": "level5",
+                    "in": "query",
+                }],
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/x-level-3": {"schema": {}}},
+                        "content": {
+                            "application/x-level-3": {
+                                "schema": {}
+                            }
+                        },
                     },
-                    "400": {"description": "Client error level 0"},
-                    "401": {"description": "Client error level 1"},
-                    "402": {"description": "Client error level 2"},
-                    "403": {"description": "Client error level 3"},
+                    "400": {
+                        "description": "Client error level 0"
+                    },
+                    "401": {
+                        "description": "Client error level 1"
+                    },
+                    "402": {
+                        "description": "Client error level 2"
+                    },
+                    "403": {
+                        "description": "Client error level 3"
+                    },
                     "422": {
                         "description": "Validation Error",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                    "$ref":
+                                    "#/components/schemas/HTTPValidationError"
                                 }
                             }
                         },
                     },
-                    "500": {"description": "Server error level 0"},
-                    "501": {"description": "Server error level 1"},
-                    "502": {"description": "Server error level 2"},
-                    "503": {"description": "Server error level 3"},
+                    "500": {
+                        "description": "Server error level 0"
+                    },
+                    "501": {
+                        "description": "Server error level 1"
+                    },
+                    "502": {
+                        "description": "Server error level 2"
+                    },
+                    "503": {
+                        "description": "Server error level 3"
+                    },
                 },
                 "callbacks": {
                     "callback0": {
                         "/": {
                             "get": {
-                                "summary": "Callback0",
-                                "operationId": "callback0__get",
-                                "parameters": [
-                                    {
-                                        "name": "level0",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level0", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback0",
+                                "operationId":
+                                "callback0__get",
+                                "parameters": [{
+                                    "name": "level0",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level0",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -1679,27 +2139,35 @@ openapi_schema = {
                     "callback1": {
                         "/": {
                             "get": {
-                                "summary": "Callback1",
-                                "operationId": "callback1__get",
-                                "parameters": [
-                                    {
-                                        "name": "level1",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level1", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback1",
+                                "operationId":
+                                "callback1__get",
+                                "parameters": [{
+                                    "name": "level1",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level1",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -1711,27 +2179,35 @@ openapi_schema = {
                     "callback2": {
                         "/": {
                             "get": {
-                                "summary": "Callback2",
-                                "operationId": "callback2__get",
-                                "parameters": [
-                                    {
-                                        "name": "level2",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level2", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback2",
+                                "operationId":
+                                "callback2__get",
+                                "parameters": [{
+                                    "name": "level2",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level2",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -1743,27 +2219,35 @@ openapi_schema = {
                     "callback3": {
                         "/": {
                             "get": {
-                                "summary": "Callback3",
-                                "operationId": "callback3__get",
-                                "parameters": [
-                                    {
-                                        "name": "level3",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level3", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback3",
+                                "operationId":
+                                "callback3__get",
+                                "parameters": [{
+                                    "name": "level3",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level3",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -1773,7 +2257,8 @@ openapi_schema = {
                         }
                     },
                 },
-                "deprecated": True,
+                "deprecated":
+                True,
             }
         },
         "/level1/level2/level4/override5": {
@@ -1788,67 +2273,103 @@ openapi_schema = {
                     "path5a",
                     "path5b",
                 ],
-                "summary": "Path5 Override Router4 Override",
-                "operationId": "path5_override_router4_override_level1_level2_level4_override5_get",
-                "parameters": [
-                    {
-                        "required": True,
-                        "schema": {"title": "Level5", "type": "string"},
-                        "name": "level5",
-                        "in": "query",
-                    }
-                ],
+                "summary":
+                "Path5 Override Router4 Override",
+                "operationId":
+                "path5_override_router4_override_level1_level2_level4_override5_get",
+                "parameters": [{
+                    "required": True,
+                    "schema": {
+                        "title": "Level5",
+                        "type": "string"
+                    },
+                    "name": "level5",
+                    "in": "query",
+                }],
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/x-level-5": {"schema": {}}},
+                        "content": {
+                            "application/x-level-5": {
+                                "schema": {}
+                            }
+                        },
                     },
-                    "400": {"description": "Client error level 0"},
-                    "401": {"description": "Client error level 1"},
-                    "402": {"description": "Client error level 2"},
-                    "404": {"description": "Client error level 4"},
-                    "405": {"description": "Client error level 5"},
+                    "400": {
+                        "description": "Client error level 0"
+                    },
+                    "401": {
+                        "description": "Client error level 1"
+                    },
+                    "402": {
+                        "description": "Client error level 2"
+                    },
+                    "404": {
+                        "description": "Client error level 4"
+                    },
+                    "405": {
+                        "description": "Client error level 5"
+                    },
                     "422": {
                         "description": "Validation Error",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                    "$ref":
+                                    "#/components/schemas/HTTPValidationError"
                                 }
                             }
                         },
                     },
-                    "500": {"description": "Server error level 0"},
-                    "501": {"description": "Server error level 1"},
-                    "502": {"description": "Server error level 2"},
-                    "504": {"description": "Server error level 4"},
-                    "505": {"description": "Server error level 5"},
+                    "500": {
+                        "description": "Server error level 0"
+                    },
+                    "501": {
+                        "description": "Server error level 1"
+                    },
+                    "502": {
+                        "description": "Server error level 2"
+                    },
+                    "504": {
+                        "description": "Server error level 4"
+                    },
+                    "505": {
+                        "description": "Server error level 5"
+                    },
                 },
                 "callbacks": {
                     "callback0": {
                         "/": {
                             "get": {
-                                "summary": "Callback0",
-                                "operationId": "callback0__get",
-                                "parameters": [
-                                    {
-                                        "name": "level0",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level0", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback0",
+                                "operationId":
+                                "callback0__get",
+                                "parameters": [{
+                                    "name": "level0",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level0",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -1860,27 +2381,35 @@ openapi_schema = {
                     "callback1": {
                         "/": {
                             "get": {
-                                "summary": "Callback1",
-                                "operationId": "callback1__get",
-                                "parameters": [
-                                    {
-                                        "name": "level1",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level1", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback1",
+                                "operationId":
+                                "callback1__get",
+                                "parameters": [{
+                                    "name": "level1",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level1",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -1892,27 +2421,35 @@ openapi_schema = {
                     "callback2": {
                         "/": {
                             "get": {
-                                "summary": "Callback2",
-                                "operationId": "callback2__get",
-                                "parameters": [
-                                    {
-                                        "name": "level2",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level2", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback2",
+                                "operationId":
+                                "callback2__get",
+                                "parameters": [{
+                                    "name": "level2",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level2",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -1924,27 +2461,35 @@ openapi_schema = {
                     "callback4": {
                         "/": {
                             "get": {
-                                "summary": "Callback4",
-                                "operationId": "callback4__get",
-                                "parameters": [
-                                    {
-                                        "name": "level4",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level4", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback4",
+                                "operationId":
+                                "callback4__get",
+                                "parameters": [{
+                                    "name": "level4",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level4",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -1956,27 +2501,35 @@ openapi_schema = {
                     "callback5": {
                         "/": {
                             "get": {
-                                "summary": "Callback5",
-                                "operationId": "callback5__get",
-                                "parameters": [
-                                    {
-                                        "name": "level5",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level5", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback5",
+                                "operationId":
+                                "callback5__get",
+                                "parameters": [{
+                                    "name": "level5",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level5",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -1986,7 +2539,8 @@ openapi_schema = {
                         }
                     },
                 },
-                "deprecated": True,
+                "deprecated":
+                True,
             }
         },
         "/level1/level2/level4/default5": {
@@ -1999,65 +2553,97 @@ openapi_schema = {
                     "level4a",
                     "level4b",
                 ],
-                "summary": "Path5 Default Router4 Override",
-                "operationId": "path5_default_router4_override_level1_level2_level4_default5_get",
-                "parameters": [
-                    {
-                        "required": True,
-                        "schema": {"title": "Level5", "type": "string"},
-                        "name": "level5",
-                        "in": "query",
-                    }
-                ],
+                "summary":
+                "Path5 Default Router4 Override",
+                "operationId":
+                "path5_default_router4_override_level1_level2_level4_default5_get",
+                "parameters": [{
+                    "required": True,
+                    "schema": {
+                        "title": "Level5",
+                        "type": "string"
+                    },
+                    "name": "level5",
+                    "in": "query",
+                }],
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/x-level-4": {"schema": {}}},
+                        "content": {
+                            "application/x-level-4": {
+                                "schema": {}
+                            }
+                        },
                     },
-                    "400": {"description": "Client error level 0"},
-                    "401": {"description": "Client error level 1"},
-                    "402": {"description": "Client error level 2"},
-                    "404": {"description": "Client error level 4"},
+                    "400": {
+                        "description": "Client error level 0"
+                    },
+                    "401": {
+                        "description": "Client error level 1"
+                    },
+                    "402": {
+                        "description": "Client error level 2"
+                    },
+                    "404": {
+                        "description": "Client error level 4"
+                    },
                     "422": {
                         "description": "Validation Error",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                    "$ref":
+                                    "#/components/schemas/HTTPValidationError"
                                 }
                             }
                         },
                     },
-                    "500": {"description": "Server error level 0"},
-                    "501": {"description": "Server error level 1"},
-                    "502": {"description": "Server error level 2"},
-                    "504": {"description": "Server error level 4"},
+                    "500": {
+                        "description": "Server error level 0"
+                    },
+                    "501": {
+                        "description": "Server error level 1"
+                    },
+                    "502": {
+                        "description": "Server error level 2"
+                    },
+                    "504": {
+                        "description": "Server error level 4"
+                    },
                 },
                 "callbacks": {
                     "callback0": {
                         "/": {
                             "get": {
-                                "summary": "Callback0",
-                                "operationId": "callback0__get",
-                                "parameters": [
-                                    {
-                                        "name": "level0",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level0", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback0",
+                                "operationId":
+                                "callback0__get",
+                                "parameters": [{
+                                    "name": "level0",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level0",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -2069,27 +2655,35 @@ openapi_schema = {
                     "callback1": {
                         "/": {
                             "get": {
-                                "summary": "Callback1",
-                                "operationId": "callback1__get",
-                                "parameters": [
-                                    {
-                                        "name": "level1",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level1", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback1",
+                                "operationId":
+                                "callback1__get",
+                                "parameters": [{
+                                    "name": "level1",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level1",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -2101,27 +2695,35 @@ openapi_schema = {
                     "callback2": {
                         "/": {
                             "get": {
-                                "summary": "Callback2",
-                                "operationId": "callback2__get",
-                                "parameters": [
-                                    {
-                                        "name": "level2",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level2", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback2",
+                                "operationId":
+                                "callback2__get",
+                                "parameters": [{
+                                    "name": "level2",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level2",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -2133,27 +2735,35 @@ openapi_schema = {
                     "callback4": {
                         "/": {
                             "get": {
-                                "summary": "Callback4",
-                                "operationId": "callback4__get",
-                                "parameters": [
-                                    {
-                                        "name": "level4",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level4", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback4",
+                                "operationId":
+                                "callback4__get",
+                                "parameters": [{
+                                    "name": "level4",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level4",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -2163,7 +2773,8 @@ openapi_schema = {
                         }
                     },
                 },
-                "deprecated": True,
+                "deprecated":
+                True,
             }
         },
         "/level1/level2/override5": {
@@ -2176,65 +2787,97 @@ openapi_schema = {
                     "path5a",
                     "path5b",
                 ],
-                "summary": "Path5 Override Router4 Default",
-                "operationId": "path5_override_router4_default_level1_level2_override5_get",
-                "parameters": [
-                    {
-                        "required": True,
-                        "schema": {"title": "Level5", "type": "string"},
-                        "name": "level5",
-                        "in": "query",
-                    }
-                ],
+                "summary":
+                "Path5 Override Router4 Default",
+                "operationId":
+                "path5_override_router4_default_level1_level2_override5_get",
+                "parameters": [{
+                    "required": True,
+                    "schema": {
+                        "title": "Level5",
+                        "type": "string"
+                    },
+                    "name": "level5",
+                    "in": "query",
+                }],
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/x-level-5": {"schema": {}}},
+                        "content": {
+                            "application/x-level-5": {
+                                "schema": {}
+                            }
+                        },
                     },
-                    "400": {"description": "Client error level 0"},
-                    "401": {"description": "Client error level 1"},
-                    "402": {"description": "Client error level 2"},
-                    "405": {"description": "Client error level 5"},
+                    "400": {
+                        "description": "Client error level 0"
+                    },
+                    "401": {
+                        "description": "Client error level 1"
+                    },
+                    "402": {
+                        "description": "Client error level 2"
+                    },
+                    "405": {
+                        "description": "Client error level 5"
+                    },
                     "422": {
                         "description": "Validation Error",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                    "$ref":
+                                    "#/components/schemas/HTTPValidationError"
                                 }
                             }
                         },
                     },
-                    "500": {"description": "Server error level 0"},
-                    "501": {"description": "Server error level 1"},
-                    "502": {"description": "Server error level 2"},
-                    "505": {"description": "Server error level 5"},
+                    "500": {
+                        "description": "Server error level 0"
+                    },
+                    "501": {
+                        "description": "Server error level 1"
+                    },
+                    "502": {
+                        "description": "Server error level 2"
+                    },
+                    "505": {
+                        "description": "Server error level 5"
+                    },
                 },
                 "callbacks": {
                     "callback0": {
                         "/": {
                             "get": {
-                                "summary": "Callback0",
-                                "operationId": "callback0__get",
-                                "parameters": [
-                                    {
-                                        "name": "level0",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level0", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback0",
+                                "operationId":
+                                "callback0__get",
+                                "parameters": [{
+                                    "name": "level0",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level0",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -2246,27 +2889,35 @@ openapi_schema = {
                     "callback1": {
                         "/": {
                             "get": {
-                                "summary": "Callback1",
-                                "operationId": "callback1__get",
-                                "parameters": [
-                                    {
-                                        "name": "level1",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level1", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback1",
+                                "operationId":
+                                "callback1__get",
+                                "parameters": [{
+                                    "name": "level1",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level1",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -2278,27 +2929,35 @@ openapi_schema = {
                     "callback2": {
                         "/": {
                             "get": {
-                                "summary": "Callback2",
-                                "operationId": "callback2__get",
-                                "parameters": [
-                                    {
-                                        "name": "level2",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level2", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback2",
+                                "operationId":
+                                "callback2__get",
+                                "parameters": [{
+                                    "name": "level2",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level2",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -2310,27 +2969,35 @@ openapi_schema = {
                     "callback5": {
                         "/": {
                             "get": {
-                                "summary": "Callback5",
-                                "operationId": "callback5__get",
-                                "parameters": [
-                                    {
-                                        "name": "level5",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level5", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback5",
+                                "operationId":
+                                "callback5__get",
+                                "parameters": [{
+                                    "name": "level5",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level5",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -2340,69 +3007,98 @@ openapi_schema = {
                         }
                     },
                 },
-                "deprecated": True,
+                "deprecated":
+                True,
             }
         },
         "/level1/level2/default5": {
             "get": {
                 "tags": ["level1a", "level1b", "level2a", "level2b"],
-                "summary": "Path5 Default Router4 Default",
-                "operationId": "path5_default_router4_default_level1_level2_default5_get",
-                "parameters": [
-                    {
-                        "required": True,
-                        "schema": {"title": "Level5", "type": "string"},
-                        "name": "level5",
-                        "in": "query",
-                    }
-                ],
+                "summary":
+                "Path5 Default Router4 Default",
+                "operationId":
+                "path5_default_router4_default_level1_level2_default5_get",
+                "parameters": [{
+                    "required": True,
+                    "schema": {
+                        "title": "Level5",
+                        "type": "string"
+                    },
+                    "name": "level5",
+                    "in": "query",
+                }],
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/x-level-2": {"schema": {}}},
+                        "content": {
+                            "application/x-level-2": {
+                                "schema": {}
+                            }
+                        },
                     },
-                    "400": {"description": "Client error level 0"},
-                    "401": {"description": "Client error level 1"},
-                    "402": {"description": "Client error level 2"},
+                    "400": {
+                        "description": "Client error level 0"
+                    },
+                    "401": {
+                        "description": "Client error level 1"
+                    },
+                    "402": {
+                        "description": "Client error level 2"
+                    },
                     "422": {
                         "description": "Validation Error",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                    "$ref":
+                                    "#/components/schemas/HTTPValidationError"
                                 }
                             }
                         },
                     },
-                    "500": {"description": "Server error level 0"},
-                    "501": {"description": "Server error level 1"},
-                    "502": {"description": "Server error level 2"},
+                    "500": {
+                        "description": "Server error level 0"
+                    },
+                    "501": {
+                        "description": "Server error level 1"
+                    },
+                    "502": {
+                        "description": "Server error level 2"
+                    },
                 },
                 "callbacks": {
                     "callback0": {
                         "/": {
                             "get": {
-                                "summary": "Callback0",
-                                "operationId": "callback0__get",
-                                "parameters": [
-                                    {
-                                        "name": "level0",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level0", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback0",
+                                "operationId":
+                                "callback0__get",
+                                "parameters": [{
+                                    "name": "level0",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level0",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -2414,27 +3110,35 @@ openapi_schema = {
                     "callback1": {
                         "/": {
                             "get": {
-                                "summary": "Callback1",
-                                "operationId": "callback1__get",
-                                "parameters": [
-                                    {
-                                        "name": "level1",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level1", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback1",
+                                "operationId":
+                                "callback1__get",
+                                "parameters": [{
+                                    "name": "level1",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level1",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -2446,27 +3150,35 @@ openapi_schema = {
                     "callback2": {
                         "/": {
                             "get": {
-                                "summary": "Callback2",
-                                "operationId": "callback2__get",
-                                "parameters": [
-                                    {
-                                        "name": "level2",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level2", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback2",
+                                "operationId":
+                                "callback2__get",
+                                "parameters": [{
+                                    "name": "level2",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level2",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -2476,69 +3188,98 @@ openapi_schema = {
                         }
                     },
                 },
-                "deprecated": True,
+                "deprecated":
+                True,
             }
         },
         "/level1/override3": {
             "get": {
                 "tags": ["level1a", "level1b", "path3a", "path3b"],
-                "summary": "Path3 Override Router2 Default",
-                "operationId": "path3_override_router2_default_level1_override3_get",
-                "parameters": [
-                    {
-                        "required": True,
-                        "schema": {"title": "Level3", "type": "string"},
-                        "name": "level3",
-                        "in": "query",
-                    }
-                ],
+                "summary":
+                "Path3 Override Router2 Default",
+                "operationId":
+                "path3_override_router2_default_level1_override3_get",
+                "parameters": [{
+                    "required": True,
+                    "schema": {
+                        "title": "Level3",
+                        "type": "string"
+                    },
+                    "name": "level3",
+                    "in": "query",
+                }],
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/x-level-3": {"schema": {}}},
+                        "content": {
+                            "application/x-level-3": {
+                                "schema": {}
+                            }
+                        },
                     },
-                    "400": {"description": "Client error level 0"},
-                    "401": {"description": "Client error level 1"},
-                    "403": {"description": "Client error level 3"},
+                    "400": {
+                        "description": "Client error level 0"
+                    },
+                    "401": {
+                        "description": "Client error level 1"
+                    },
+                    "403": {
+                        "description": "Client error level 3"
+                    },
                     "422": {
                         "description": "Validation Error",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                    "$ref":
+                                    "#/components/schemas/HTTPValidationError"
                                 }
                             }
                         },
                     },
-                    "500": {"description": "Server error level 0"},
-                    "501": {"description": "Server error level 1"},
-                    "503": {"description": "Server error level 3"},
+                    "500": {
+                        "description": "Server error level 0"
+                    },
+                    "501": {
+                        "description": "Server error level 1"
+                    },
+                    "503": {
+                        "description": "Server error level 3"
+                    },
                 },
                 "callbacks": {
                     "callback0": {
                         "/": {
                             "get": {
-                                "summary": "Callback0",
-                                "operationId": "callback0__get",
-                                "parameters": [
-                                    {
-                                        "name": "level0",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level0", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback0",
+                                "operationId":
+                                "callback0__get",
+                                "parameters": [{
+                                    "name": "level0",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level0",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -2550,27 +3291,35 @@ openapi_schema = {
                     "callback1": {
                         "/": {
                             "get": {
-                                "summary": "Callback1",
-                                "operationId": "callback1__get",
-                                "parameters": [
-                                    {
-                                        "name": "level1",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level1", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback1",
+                                "operationId":
+                                "callback1__get",
+                                "parameters": [{
+                                    "name": "level1",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level1",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -2582,27 +3331,35 @@ openapi_schema = {
                     "callback3": {
                         "/": {
                             "get": {
-                                "summary": "Callback3",
-                                "operationId": "callback3__get",
-                                "parameters": [
-                                    {
-                                        "name": "level3",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level3", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback3",
+                                "operationId":
+                                "callback3__get",
+                                "parameters": [{
+                                    "name": "level3",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level3",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -2612,67 +3369,92 @@ openapi_schema = {
                         }
                     },
                 },
-                "deprecated": True,
+                "deprecated":
+                True,
             }
         },
         "/level1/default3": {
             "get": {
                 "tags": ["level1a", "level1b"],
-                "summary": "Path3 Default Router2 Default",
-                "operationId": "path3_default_router2_default_level1_default3_get",
-                "parameters": [
-                    {
-                        "required": True,
-                        "schema": {"title": "Level3", "type": "string"},
-                        "name": "level3",
-                        "in": "query",
-                    }
-                ],
+                "summary":
+                "Path3 Default Router2 Default",
+                "operationId":
+                "path3_default_router2_default_level1_default3_get",
+                "parameters": [{
+                    "required": True,
+                    "schema": {
+                        "title": "Level3",
+                        "type": "string"
+                    },
+                    "name": "level3",
+                    "in": "query",
+                }],
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/x-level-1": {"schema": {}}},
+                        "content": {
+                            "application/x-level-1": {
+                                "schema": {}
+                            }
+                        },
                     },
-                    "400": {"description": "Client error level 0"},
-                    "401": {"description": "Client error level 1"},
+                    "400": {
+                        "description": "Client error level 0"
+                    },
+                    "401": {
+                        "description": "Client error level 1"
+                    },
                     "422": {
                         "description": "Validation Error",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                    "$ref":
+                                    "#/components/schemas/HTTPValidationError"
                                 }
                             }
                         },
                     },
-                    "500": {"description": "Server error level 0"},
-                    "501": {"description": "Server error level 1"},
+                    "500": {
+                        "description": "Server error level 0"
+                    },
+                    "501": {
+                        "description": "Server error level 1"
+                    },
                 },
                 "callbacks": {
                     "callback0": {
                         "/": {
                             "get": {
-                                "summary": "Callback0",
-                                "operationId": "callback0__get",
-                                "parameters": [
-                                    {
-                                        "name": "level0",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level0", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback0",
+                                "operationId":
+                                "callback0__get",
+                                "parameters": [{
+                                    "name": "level0",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level0",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -2684,27 +3466,35 @@ openapi_schema = {
                     "callback1": {
                         "/": {
                             "get": {
-                                "summary": "Callback1",
-                                "operationId": "callback1__get",
-                                "parameters": [
-                                    {
-                                        "name": "level1",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level1", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback1",
+                                "operationId":
+                                "callback1__get",
+                                "parameters": [{
+                                    "name": "level1",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level1",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -2728,67 +3518,103 @@ openapi_schema = {
                     "path5a",
                     "path5b",
                 ],
-                "summary": "Path5 Override Router4 Override",
-                "operationId": "path5_override_router4_override_level1_level3_level4_override5_get",
-                "parameters": [
-                    {
-                        "required": True,
-                        "schema": {"title": "Level5", "type": "string"},
-                        "name": "level5",
-                        "in": "query",
-                    }
-                ],
+                "summary":
+                "Path5 Override Router4 Override",
+                "operationId":
+                "path5_override_router4_override_level1_level3_level4_override5_get",
+                "parameters": [{
+                    "required": True,
+                    "schema": {
+                        "title": "Level5",
+                        "type": "string"
+                    },
+                    "name": "level5",
+                    "in": "query",
+                }],
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/x-level-5": {"schema": {}}},
+                        "content": {
+                            "application/x-level-5": {
+                                "schema": {}
+                            }
+                        },
                     },
-                    "400": {"description": "Client error level 0"},
-                    "401": {"description": "Client error level 1"},
-                    "403": {"description": "Client error level 3"},
-                    "404": {"description": "Client error level 4"},
-                    "405": {"description": "Client error level 5"},
+                    "400": {
+                        "description": "Client error level 0"
+                    },
+                    "401": {
+                        "description": "Client error level 1"
+                    },
+                    "403": {
+                        "description": "Client error level 3"
+                    },
+                    "404": {
+                        "description": "Client error level 4"
+                    },
+                    "405": {
+                        "description": "Client error level 5"
+                    },
                     "422": {
                         "description": "Validation Error",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                    "$ref":
+                                    "#/components/schemas/HTTPValidationError"
                                 }
                             }
                         },
                     },
-                    "500": {"description": "Server error level 0"},
-                    "501": {"description": "Server error level 1"},
-                    "503": {"description": "Server error level 3"},
-                    "504": {"description": "Server error level 4"},
-                    "505": {"description": "Server error level 5"},
+                    "500": {
+                        "description": "Server error level 0"
+                    },
+                    "501": {
+                        "description": "Server error level 1"
+                    },
+                    "503": {
+                        "description": "Server error level 3"
+                    },
+                    "504": {
+                        "description": "Server error level 4"
+                    },
+                    "505": {
+                        "description": "Server error level 5"
+                    },
                 },
                 "callbacks": {
                     "callback0": {
                         "/": {
                             "get": {
-                                "summary": "Callback0",
-                                "operationId": "callback0__get",
-                                "parameters": [
-                                    {
-                                        "name": "level0",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level0", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback0",
+                                "operationId":
+                                "callback0__get",
+                                "parameters": [{
+                                    "name": "level0",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level0",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -2800,27 +3626,35 @@ openapi_schema = {
                     "callback1": {
                         "/": {
                             "get": {
-                                "summary": "Callback1",
-                                "operationId": "callback1__get",
-                                "parameters": [
-                                    {
-                                        "name": "level1",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level1", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback1",
+                                "operationId":
+                                "callback1__get",
+                                "parameters": [{
+                                    "name": "level1",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level1",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -2832,27 +3666,35 @@ openapi_schema = {
                     "callback3": {
                         "/": {
                             "get": {
-                                "summary": "Callback3",
-                                "operationId": "callback3__get",
-                                "parameters": [
-                                    {
-                                        "name": "level3",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level3", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback3",
+                                "operationId":
+                                "callback3__get",
+                                "parameters": [{
+                                    "name": "level3",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level3",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -2864,27 +3706,35 @@ openapi_schema = {
                     "callback4": {
                         "/": {
                             "get": {
-                                "summary": "Callback4",
-                                "operationId": "callback4__get",
-                                "parameters": [
-                                    {
-                                        "name": "level4",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level4", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback4",
+                                "operationId":
+                                "callback4__get",
+                                "parameters": [{
+                                    "name": "level4",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level4",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -2896,27 +3746,35 @@ openapi_schema = {
                     "callback5": {
                         "/": {
                             "get": {
-                                "summary": "Callback5",
-                                "operationId": "callback5__get",
-                                "parameters": [
-                                    {
-                                        "name": "level5",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level5", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback5",
+                                "operationId":
+                                "callback5__get",
+                                "parameters": [{
+                                    "name": "level5",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level5",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -2926,7 +3784,8 @@ openapi_schema = {
                         }
                     },
                 },
-                "deprecated": True,
+                "deprecated":
+                True,
             }
         },
         "/level1/level3/level4/default5": {
@@ -2939,65 +3798,97 @@ openapi_schema = {
                     "level4a",
                     "level4b",
                 ],
-                "summary": "Path5 Default Router4 Override",
-                "operationId": "path5_default_router4_override_level1_level3_level4_default5_get",
-                "parameters": [
-                    {
-                        "required": True,
-                        "schema": {"title": "Level5", "type": "string"},
-                        "name": "level5",
-                        "in": "query",
-                    }
-                ],
+                "summary":
+                "Path5 Default Router4 Override",
+                "operationId":
+                "path5_default_router4_override_level1_level3_level4_default5_get",
+                "parameters": [{
+                    "required": True,
+                    "schema": {
+                        "title": "Level5",
+                        "type": "string"
+                    },
+                    "name": "level5",
+                    "in": "query",
+                }],
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/x-level-4": {"schema": {}}},
+                        "content": {
+                            "application/x-level-4": {
+                                "schema": {}
+                            }
+                        },
                     },
-                    "400": {"description": "Client error level 0"},
-                    "401": {"description": "Client error level 1"},
-                    "403": {"description": "Client error level 3"},
-                    "404": {"description": "Client error level 4"},
+                    "400": {
+                        "description": "Client error level 0"
+                    },
+                    "401": {
+                        "description": "Client error level 1"
+                    },
+                    "403": {
+                        "description": "Client error level 3"
+                    },
+                    "404": {
+                        "description": "Client error level 4"
+                    },
                     "422": {
                         "description": "Validation Error",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                    "$ref":
+                                    "#/components/schemas/HTTPValidationError"
                                 }
                             }
                         },
                     },
-                    "500": {"description": "Server error level 0"},
-                    "501": {"description": "Server error level 1"},
-                    "503": {"description": "Server error level 3"},
-                    "504": {"description": "Server error level 4"},
+                    "500": {
+                        "description": "Server error level 0"
+                    },
+                    "501": {
+                        "description": "Server error level 1"
+                    },
+                    "503": {
+                        "description": "Server error level 3"
+                    },
+                    "504": {
+                        "description": "Server error level 4"
+                    },
                 },
                 "callbacks": {
                     "callback0": {
                         "/": {
                             "get": {
-                                "summary": "Callback0",
-                                "operationId": "callback0__get",
-                                "parameters": [
-                                    {
-                                        "name": "level0",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level0", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback0",
+                                "operationId":
+                                "callback0__get",
+                                "parameters": [{
+                                    "name": "level0",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level0",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -3009,27 +3900,35 @@ openapi_schema = {
                     "callback1": {
                         "/": {
                             "get": {
-                                "summary": "Callback1",
-                                "operationId": "callback1__get",
-                                "parameters": [
-                                    {
-                                        "name": "level1",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level1", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback1",
+                                "operationId":
+                                "callback1__get",
+                                "parameters": [{
+                                    "name": "level1",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level1",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -3041,27 +3940,35 @@ openapi_schema = {
                     "callback3": {
                         "/": {
                             "get": {
-                                "summary": "Callback3",
-                                "operationId": "callback3__get",
-                                "parameters": [
-                                    {
-                                        "name": "level3",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level3", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback3",
+                                "operationId":
+                                "callback3__get",
+                                "parameters": [{
+                                    "name": "level3",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level3",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -3073,27 +3980,35 @@ openapi_schema = {
                     "callback4": {
                         "/": {
                             "get": {
-                                "summary": "Callback4",
-                                "operationId": "callback4__get",
-                                "parameters": [
-                                    {
-                                        "name": "level4",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level4", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback4",
+                                "operationId":
+                                "callback4__get",
+                                "parameters": [{
+                                    "name": "level4",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level4",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -3103,7 +4018,8 @@ openapi_schema = {
                         }
                     },
                 },
-                "deprecated": True,
+                "deprecated":
+                True,
             }
         },
         "/level1/level3/override5": {
@@ -3116,65 +4032,97 @@ openapi_schema = {
                     "path5a",
                     "path5b",
                 ],
-                "summary": "Path5 Override Router4 Default",
-                "operationId": "path5_override_router4_default_level1_level3_override5_get",
-                "parameters": [
-                    {
-                        "required": True,
-                        "schema": {"title": "Level5", "type": "string"},
-                        "name": "level5",
-                        "in": "query",
-                    }
-                ],
+                "summary":
+                "Path5 Override Router4 Default",
+                "operationId":
+                "path5_override_router4_default_level1_level3_override5_get",
+                "parameters": [{
+                    "required": True,
+                    "schema": {
+                        "title": "Level5",
+                        "type": "string"
+                    },
+                    "name": "level5",
+                    "in": "query",
+                }],
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/x-level-5": {"schema": {}}},
+                        "content": {
+                            "application/x-level-5": {
+                                "schema": {}
+                            }
+                        },
                     },
-                    "400": {"description": "Client error level 0"},
-                    "401": {"description": "Client error level 1"},
-                    "403": {"description": "Client error level 3"},
-                    "405": {"description": "Client error level 5"},
+                    "400": {
+                        "description": "Client error level 0"
+                    },
+                    "401": {
+                        "description": "Client error level 1"
+                    },
+                    "403": {
+                        "description": "Client error level 3"
+                    },
+                    "405": {
+                        "description": "Client error level 5"
+                    },
                     "422": {
                         "description": "Validation Error",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                    "$ref":
+                                    "#/components/schemas/HTTPValidationError"
                                 }
                             }
                         },
                     },
-                    "500": {"description": "Server error level 0"},
-                    "501": {"description": "Server error level 1"},
-                    "503": {"description": "Server error level 3"},
-                    "505": {"description": "Server error level 5"},
+                    "500": {
+                        "description": "Server error level 0"
+                    },
+                    "501": {
+                        "description": "Server error level 1"
+                    },
+                    "503": {
+                        "description": "Server error level 3"
+                    },
+                    "505": {
+                        "description": "Server error level 5"
+                    },
                 },
                 "callbacks": {
                     "callback0": {
                         "/": {
                             "get": {
-                                "summary": "Callback0",
-                                "operationId": "callback0__get",
-                                "parameters": [
-                                    {
-                                        "name": "level0",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level0", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback0",
+                                "operationId":
+                                "callback0__get",
+                                "parameters": [{
+                                    "name": "level0",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level0",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -3186,27 +4134,35 @@ openapi_schema = {
                     "callback1": {
                         "/": {
                             "get": {
-                                "summary": "Callback1",
-                                "operationId": "callback1__get",
-                                "parameters": [
-                                    {
-                                        "name": "level1",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level1", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback1",
+                                "operationId":
+                                "callback1__get",
+                                "parameters": [{
+                                    "name": "level1",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level1",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -3218,27 +4174,35 @@ openapi_schema = {
                     "callback3": {
                         "/": {
                             "get": {
-                                "summary": "Callback3",
-                                "operationId": "callback3__get",
-                                "parameters": [
-                                    {
-                                        "name": "level3",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level3", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback3",
+                                "operationId":
+                                "callback3__get",
+                                "parameters": [{
+                                    "name": "level3",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level3",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -3250,27 +4214,35 @@ openapi_schema = {
                     "callback5": {
                         "/": {
                             "get": {
-                                "summary": "Callback5",
-                                "operationId": "callback5__get",
-                                "parameters": [
-                                    {
-                                        "name": "level5",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level5", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback5",
+                                "operationId":
+                                "callback5__get",
+                                "parameters": [{
+                                    "name": "level5",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level5",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -3280,69 +4252,98 @@ openapi_schema = {
                         }
                     },
                 },
-                "deprecated": True,
+                "deprecated":
+                True,
             }
         },
         "/level1/level3/default5": {
             "get": {
                 "tags": ["level1a", "level1b", "level3a", "level3b"],
-                "summary": "Path5 Default Router4 Default",
-                "operationId": "path5_default_router4_default_level1_level3_default5_get",
-                "parameters": [
-                    {
-                        "required": True,
-                        "schema": {"title": "Level5", "type": "string"},
-                        "name": "level5",
-                        "in": "query",
-                    }
-                ],
+                "summary":
+                "Path5 Default Router4 Default",
+                "operationId":
+                "path5_default_router4_default_level1_level3_default5_get",
+                "parameters": [{
+                    "required": True,
+                    "schema": {
+                        "title": "Level5",
+                        "type": "string"
+                    },
+                    "name": "level5",
+                    "in": "query",
+                }],
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/x-level-3": {"schema": {}}},
+                        "content": {
+                            "application/x-level-3": {
+                                "schema": {}
+                            }
+                        },
                     },
-                    "400": {"description": "Client error level 0"},
-                    "401": {"description": "Client error level 1"},
-                    "403": {"description": "Client error level 3"},
+                    "400": {
+                        "description": "Client error level 0"
+                    },
+                    "401": {
+                        "description": "Client error level 1"
+                    },
+                    "403": {
+                        "description": "Client error level 3"
+                    },
                     "422": {
                         "description": "Validation Error",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                    "$ref":
+                                    "#/components/schemas/HTTPValidationError"
                                 }
                             }
                         },
                     },
-                    "500": {"description": "Server error level 0"},
-                    "501": {"description": "Server error level 1"},
-                    "503": {"description": "Server error level 3"},
+                    "500": {
+                        "description": "Server error level 0"
+                    },
+                    "501": {
+                        "description": "Server error level 1"
+                    },
+                    "503": {
+                        "description": "Server error level 3"
+                    },
                 },
                 "callbacks": {
                     "callback0": {
                         "/": {
                             "get": {
-                                "summary": "Callback0",
-                                "operationId": "callback0__get",
-                                "parameters": [
-                                    {
-                                        "name": "level0",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level0", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback0",
+                                "operationId":
+                                "callback0__get",
+                                "parameters": [{
+                                    "name": "level0",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level0",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -3354,27 +4355,35 @@ openapi_schema = {
                     "callback1": {
                         "/": {
                             "get": {
-                                "summary": "Callback1",
-                                "operationId": "callback1__get",
-                                "parameters": [
-                                    {
-                                        "name": "level1",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level1", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback1",
+                                "operationId":
+                                "callback1__get",
+                                "parameters": [{
+                                    "name": "level1",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level1",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -3386,27 +4395,35 @@ openapi_schema = {
                     "callback3": {
                         "/": {
                             "get": {
-                                "summary": "Callback3",
-                                "operationId": "callback3__get",
-                                "parameters": [
-                                    {
-                                        "name": "level3",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level3", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback3",
+                                "operationId":
+                                "callback3__get",
+                                "parameters": [{
+                                    "name": "level3",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level3",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -3428,65 +4445,97 @@ openapi_schema = {
                     "path5a",
                     "path5b",
                 ],
-                "summary": "Path5 Override Router4 Override",
-                "operationId": "path5_override_router4_override_level1_level4_override5_get",
-                "parameters": [
-                    {
-                        "required": True,
-                        "schema": {"title": "Level5", "type": "string"},
-                        "name": "level5",
-                        "in": "query",
-                    }
-                ],
+                "summary":
+                "Path5 Override Router4 Override",
+                "operationId":
+                "path5_override_router4_override_level1_level4_override5_get",
+                "parameters": [{
+                    "required": True,
+                    "schema": {
+                        "title": "Level5",
+                        "type": "string"
+                    },
+                    "name": "level5",
+                    "in": "query",
+                }],
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/x-level-5": {"schema": {}}},
+                        "content": {
+                            "application/x-level-5": {
+                                "schema": {}
+                            }
+                        },
                     },
-                    "400": {"description": "Client error level 0"},
-                    "401": {"description": "Client error level 1"},
-                    "404": {"description": "Client error level 4"},
-                    "405": {"description": "Client error level 5"},
+                    "400": {
+                        "description": "Client error level 0"
+                    },
+                    "401": {
+                        "description": "Client error level 1"
+                    },
+                    "404": {
+                        "description": "Client error level 4"
+                    },
+                    "405": {
+                        "description": "Client error level 5"
+                    },
                     "422": {
                         "description": "Validation Error",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                    "$ref":
+                                    "#/components/schemas/HTTPValidationError"
                                 }
                             }
                         },
                     },
-                    "500": {"description": "Server error level 0"},
-                    "501": {"description": "Server error level 1"},
-                    "504": {"description": "Server error level 4"},
-                    "505": {"description": "Server error level 5"},
+                    "500": {
+                        "description": "Server error level 0"
+                    },
+                    "501": {
+                        "description": "Server error level 1"
+                    },
+                    "504": {
+                        "description": "Server error level 4"
+                    },
+                    "505": {
+                        "description": "Server error level 5"
+                    },
                 },
                 "callbacks": {
                     "callback0": {
                         "/": {
                             "get": {
-                                "summary": "Callback0",
-                                "operationId": "callback0__get",
-                                "parameters": [
-                                    {
-                                        "name": "level0",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level0", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback0",
+                                "operationId":
+                                "callback0__get",
+                                "parameters": [{
+                                    "name": "level0",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level0",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -3498,27 +4547,35 @@ openapi_schema = {
                     "callback1": {
                         "/": {
                             "get": {
-                                "summary": "Callback1",
-                                "operationId": "callback1__get",
-                                "parameters": [
-                                    {
-                                        "name": "level1",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level1", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback1",
+                                "operationId":
+                                "callback1__get",
+                                "parameters": [{
+                                    "name": "level1",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level1",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -3530,27 +4587,35 @@ openapi_schema = {
                     "callback4": {
                         "/": {
                             "get": {
-                                "summary": "Callback4",
-                                "operationId": "callback4__get",
-                                "parameters": [
-                                    {
-                                        "name": "level4",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level4", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback4",
+                                "operationId":
+                                "callback4__get",
+                                "parameters": [{
+                                    "name": "level4",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level4",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -3562,27 +4627,35 @@ openapi_schema = {
                     "callback5": {
                         "/": {
                             "get": {
-                                "summary": "Callback5",
-                                "operationId": "callback5__get",
-                                "parameters": [
-                                    {
-                                        "name": "level5",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level5", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback5",
+                                "operationId":
+                                "callback5__get",
+                                "parameters": [{
+                                    "name": "level5",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level5",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -3592,69 +4665,98 @@ openapi_schema = {
                         }
                     },
                 },
-                "deprecated": True,
+                "deprecated":
+                True,
             }
         },
         "/level1/level4/default5": {
             "get": {
                 "tags": ["level1a", "level1b", "level4a", "level4b"],
-                "summary": "Path5 Default Router4 Override",
-                "operationId": "path5_default_router4_override_level1_level4_default5_get",
-                "parameters": [
-                    {
-                        "required": True,
-                        "schema": {"title": "Level5", "type": "string"},
-                        "name": "level5",
-                        "in": "query",
-                    }
-                ],
+                "summary":
+                "Path5 Default Router4 Override",
+                "operationId":
+                "path5_default_router4_override_level1_level4_default5_get",
+                "parameters": [{
+                    "required": True,
+                    "schema": {
+                        "title": "Level5",
+                        "type": "string"
+                    },
+                    "name": "level5",
+                    "in": "query",
+                }],
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/x-level-4": {"schema": {}}},
+                        "content": {
+                            "application/x-level-4": {
+                                "schema": {}
+                            }
+                        },
                     },
-                    "400": {"description": "Client error level 0"},
-                    "401": {"description": "Client error level 1"},
-                    "404": {"description": "Client error level 4"},
+                    "400": {
+                        "description": "Client error level 0"
+                    },
+                    "401": {
+                        "description": "Client error level 1"
+                    },
+                    "404": {
+                        "description": "Client error level 4"
+                    },
                     "422": {
                         "description": "Validation Error",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                    "$ref":
+                                    "#/components/schemas/HTTPValidationError"
                                 }
                             }
                         },
                     },
-                    "500": {"description": "Server error level 0"},
-                    "501": {"description": "Server error level 1"},
-                    "504": {"description": "Server error level 4"},
+                    "500": {
+                        "description": "Server error level 0"
+                    },
+                    "501": {
+                        "description": "Server error level 1"
+                    },
+                    "504": {
+                        "description": "Server error level 4"
+                    },
                 },
                 "callbacks": {
                     "callback0": {
                         "/": {
                             "get": {
-                                "summary": "Callback0",
-                                "operationId": "callback0__get",
-                                "parameters": [
-                                    {
-                                        "name": "level0",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level0", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback0",
+                                "operationId":
+                                "callback0__get",
+                                "parameters": [{
+                                    "name": "level0",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level0",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -3666,27 +4768,35 @@ openapi_schema = {
                     "callback1": {
                         "/": {
                             "get": {
-                                "summary": "Callback1",
-                                "operationId": "callback1__get",
-                                "parameters": [
-                                    {
-                                        "name": "level1",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level1", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback1",
+                                "operationId":
+                                "callback1__get",
+                                "parameters": [{
+                                    "name": "level1",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level1",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -3698,27 +4808,35 @@ openapi_schema = {
                     "callback4": {
                         "/": {
                             "get": {
-                                "summary": "Callback4",
-                                "operationId": "callback4__get",
-                                "parameters": [
-                                    {
-                                        "name": "level4",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level4", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback4",
+                                "operationId":
+                                "callback4__get",
+                                "parameters": [{
+                                    "name": "level4",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level4",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -3728,69 +4846,98 @@ openapi_schema = {
                         }
                     },
                 },
-                "deprecated": True,
+                "deprecated":
+                True,
             }
         },
         "/level1/override5": {
             "get": {
                 "tags": ["level1a", "level1b", "path5a", "path5b"],
-                "summary": "Path5 Override Router4 Default",
-                "operationId": "path5_override_router4_default_level1_override5_get",
-                "parameters": [
-                    {
-                        "required": True,
-                        "schema": {"title": "Level5", "type": "string"},
-                        "name": "level5",
-                        "in": "query",
-                    }
-                ],
+                "summary":
+                "Path5 Override Router4 Default",
+                "operationId":
+                "path5_override_router4_default_level1_override5_get",
+                "parameters": [{
+                    "required": True,
+                    "schema": {
+                        "title": "Level5",
+                        "type": "string"
+                    },
+                    "name": "level5",
+                    "in": "query",
+                }],
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/x-level-5": {"schema": {}}},
+                        "content": {
+                            "application/x-level-5": {
+                                "schema": {}
+                            }
+                        },
                     },
-                    "400": {"description": "Client error level 0"},
-                    "401": {"description": "Client error level 1"},
-                    "405": {"description": "Client error level 5"},
+                    "400": {
+                        "description": "Client error level 0"
+                    },
+                    "401": {
+                        "description": "Client error level 1"
+                    },
+                    "405": {
+                        "description": "Client error level 5"
+                    },
                     "422": {
                         "description": "Validation Error",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                    "$ref":
+                                    "#/components/schemas/HTTPValidationError"
                                 }
                             }
                         },
                     },
-                    "500": {"description": "Server error level 0"},
-                    "501": {"description": "Server error level 1"},
-                    "505": {"description": "Server error level 5"},
+                    "500": {
+                        "description": "Server error level 0"
+                    },
+                    "501": {
+                        "description": "Server error level 1"
+                    },
+                    "505": {
+                        "description": "Server error level 5"
+                    },
                 },
                 "callbacks": {
                     "callback0": {
                         "/": {
                             "get": {
-                                "summary": "Callback0",
-                                "operationId": "callback0__get",
-                                "parameters": [
-                                    {
-                                        "name": "level0",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level0", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback0",
+                                "operationId":
+                                "callback0__get",
+                                "parameters": [{
+                                    "name": "level0",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level0",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -3802,27 +4949,35 @@ openapi_schema = {
                     "callback1": {
                         "/": {
                             "get": {
-                                "summary": "Callback1",
-                                "operationId": "callback1__get",
-                                "parameters": [
-                                    {
-                                        "name": "level1",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level1", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback1",
+                                "operationId":
+                                "callback1__get",
+                                "parameters": [{
+                                    "name": "level1",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level1",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -3834,27 +4989,35 @@ openapi_schema = {
                     "callback5": {
                         "/": {
                             "get": {
-                                "summary": "Callback5",
-                                "operationId": "callback5__get",
-                                "parameters": [
-                                    {
-                                        "name": "level5",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level5", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback5",
+                                "operationId":
+                                "callback5__get",
+                                "parameters": [{
+                                    "name": "level5",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level5",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -3864,67 +5027,92 @@ openapi_schema = {
                         }
                     },
                 },
-                "deprecated": True,
+                "deprecated":
+                True,
             }
         },
         "/level1/default5": {
             "get": {
                 "tags": ["level1a", "level1b"],
-                "summary": "Path5 Default Router4 Default",
-                "operationId": "path5_default_router4_default_level1_default5_get",
-                "parameters": [
-                    {
-                        "required": True,
-                        "schema": {"title": "Level5", "type": "string"},
-                        "name": "level5",
-                        "in": "query",
-                    }
-                ],
+                "summary":
+                "Path5 Default Router4 Default",
+                "operationId":
+                "path5_default_router4_default_level1_default5_get",
+                "parameters": [{
+                    "required": True,
+                    "schema": {
+                        "title": "Level5",
+                        "type": "string"
+                    },
+                    "name": "level5",
+                    "in": "query",
+                }],
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/x-level-1": {"schema": {}}},
+                        "content": {
+                            "application/x-level-1": {
+                                "schema": {}
+                            }
+                        },
                     },
-                    "400": {"description": "Client error level 0"},
-                    "401": {"description": "Client error level 1"},
+                    "400": {
+                        "description": "Client error level 0"
+                    },
+                    "401": {
+                        "description": "Client error level 1"
+                    },
                     "422": {
                         "description": "Validation Error",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                    "$ref":
+                                    "#/components/schemas/HTTPValidationError"
                                 }
                             }
                         },
                     },
-                    "500": {"description": "Server error level 0"},
-                    "501": {"description": "Server error level 1"},
+                    "500": {
+                        "description": "Server error level 0"
+                    },
+                    "501": {
+                        "description": "Server error level 1"
+                    },
                 },
                 "callbacks": {
                     "callback0": {
                         "/": {
                             "get": {
-                                "summary": "Callback0",
-                                "operationId": "callback0__get",
-                                "parameters": [
-                                    {
-                                        "name": "level0",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level0", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback0",
+                                "operationId":
+                                "callback0__get",
+                                "parameters": [{
+                                    "name": "level0",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level0",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -3936,27 +5124,35 @@ openapi_schema = {
                     "callback1": {
                         "/": {
                             "get": {
-                                "summary": "Callback1",
-                                "operationId": "callback1__get",
-                                "parameters": [
-                                    {
-                                        "name": "level1",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level1", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback1",
+                                "operationId":
+                                "callback1__get",
+                                "parameters": [{
+                                    "name": "level1",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level1",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -3971,63 +5167,91 @@ openapi_schema = {
         "/level2/override3": {
             "get": {
                 "tags": ["level2a", "level2b", "path3a", "path3b"],
-                "summary": "Path3 Override Router2 Override",
-                "operationId": "path3_override_router2_override_level2_override3_get",
-                "parameters": [
-                    {
-                        "required": True,
-                        "schema": {"title": "Level3", "type": "string"},
-                        "name": "level3",
-                        "in": "query",
-                    }
-                ],
+                "summary":
+                "Path3 Override Router2 Override",
+                "operationId":
+                "path3_override_router2_override_level2_override3_get",
+                "parameters": [{
+                    "required": True,
+                    "schema": {
+                        "title": "Level3",
+                        "type": "string"
+                    },
+                    "name": "level3",
+                    "in": "query",
+                }],
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/x-level-3": {"schema": {}}},
+                        "content": {
+                            "application/x-level-3": {
+                                "schema": {}
+                            }
+                        },
                     },
-                    "400": {"description": "Client error level 0"},
-                    "402": {"description": "Client error level 2"},
-                    "403": {"description": "Client error level 3"},
+                    "400": {
+                        "description": "Client error level 0"
+                    },
+                    "402": {
+                        "description": "Client error level 2"
+                    },
+                    "403": {
+                        "description": "Client error level 3"
+                    },
                     "422": {
                         "description": "Validation Error",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                    "$ref":
+                                    "#/components/schemas/HTTPValidationError"
                                 }
                             }
                         },
                     },
-                    "500": {"description": "Server error level 0"},
-                    "502": {"description": "Server error level 2"},
-                    "503": {"description": "Server error level 3"},
+                    "500": {
+                        "description": "Server error level 0"
+                    },
+                    "502": {
+                        "description": "Server error level 2"
+                    },
+                    "503": {
+                        "description": "Server error level 3"
+                    },
                 },
                 "callbacks": {
                     "callback0": {
                         "/": {
                             "get": {
-                                "summary": "Callback0",
-                                "operationId": "callback0__get",
-                                "parameters": [
-                                    {
-                                        "name": "level0",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level0", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback0",
+                                "operationId":
+                                "callback0__get",
+                                "parameters": [{
+                                    "name": "level0",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level0",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -4039,27 +5263,35 @@ openapi_schema = {
                     "callback2": {
                         "/": {
                             "get": {
-                                "summary": "Callback2",
-                                "operationId": "callback2__get",
-                                "parameters": [
-                                    {
-                                        "name": "level2",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level2", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback2",
+                                "operationId":
+                                "callback2__get",
+                                "parameters": [{
+                                    "name": "level2",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level2",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -4071,27 +5303,35 @@ openapi_schema = {
                     "callback3": {
                         "/": {
                             "get": {
-                                "summary": "Callback3",
-                                "operationId": "callback3__get",
-                                "parameters": [
-                                    {
-                                        "name": "level3",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level3", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback3",
+                                "operationId":
+                                "callback3__get",
+                                "parameters": [{
+                                    "name": "level3",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level3",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -4101,67 +5341,92 @@ openapi_schema = {
                         }
                     },
                 },
-                "deprecated": True,
+                "deprecated":
+                True,
             }
         },
         "/level2/default3": {
             "get": {
                 "tags": ["level2a", "level2b"],
-                "summary": "Path3 Default Router2 Override",
-                "operationId": "path3_default_router2_override_level2_default3_get",
-                "parameters": [
-                    {
-                        "required": True,
-                        "schema": {"title": "Level3", "type": "string"},
-                        "name": "level3",
-                        "in": "query",
-                    }
-                ],
+                "summary":
+                "Path3 Default Router2 Override",
+                "operationId":
+                "path3_default_router2_override_level2_default3_get",
+                "parameters": [{
+                    "required": True,
+                    "schema": {
+                        "title": "Level3",
+                        "type": "string"
+                    },
+                    "name": "level3",
+                    "in": "query",
+                }],
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/x-level-2": {"schema": {}}},
+                        "content": {
+                            "application/x-level-2": {
+                                "schema": {}
+                            }
+                        },
                     },
-                    "400": {"description": "Client error level 0"},
-                    "402": {"description": "Client error level 2"},
+                    "400": {
+                        "description": "Client error level 0"
+                    },
+                    "402": {
+                        "description": "Client error level 2"
+                    },
                     "422": {
                         "description": "Validation Error",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                    "$ref":
+                                    "#/components/schemas/HTTPValidationError"
                                 }
                             }
                         },
                     },
-                    "500": {"description": "Server error level 0"},
-                    "502": {"description": "Server error level 2"},
+                    "500": {
+                        "description": "Server error level 0"
+                    },
+                    "502": {
+                        "description": "Server error level 2"
+                    },
                 },
                 "callbacks": {
                     "callback0": {
                         "/": {
                             "get": {
-                                "summary": "Callback0",
-                                "operationId": "callback0__get",
-                                "parameters": [
-                                    {
-                                        "name": "level0",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level0", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback0",
+                                "operationId":
+                                "callback0__get",
+                                "parameters": [{
+                                    "name": "level0",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level0",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -4173,27 +5438,35 @@ openapi_schema = {
                     "callback2": {
                         "/": {
                             "get": {
-                                "summary": "Callback2",
-                                "operationId": "callback2__get",
-                                "parameters": [
-                                    {
-                                        "name": "level2",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level2", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback2",
+                                "operationId":
+                                "callback2__get",
+                                "parameters": [{
+                                    "name": "level2",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level2",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -4203,7 +5476,8 @@ openapi_schema = {
                         }
                     },
                 },
-                "deprecated": True,
+                "deprecated":
+                True,
             }
         },
         "/level2/level3/level4/override5": {
@@ -4218,67 +5492,103 @@ openapi_schema = {
                     "path5a",
                     "path5b",
                 ],
-                "summary": "Path5 Override Router4 Override",
-                "operationId": "path5_override_router4_override_level2_level3_level4_override5_get",
-                "parameters": [
-                    {
-                        "required": True,
-                        "schema": {"title": "Level5", "type": "string"},
-                        "name": "level5",
-                        "in": "query",
-                    }
-                ],
+                "summary":
+                "Path5 Override Router4 Override",
+                "operationId":
+                "path5_override_router4_override_level2_level3_level4_override5_get",
+                "parameters": [{
+                    "required": True,
+                    "schema": {
+                        "title": "Level5",
+                        "type": "string"
+                    },
+                    "name": "level5",
+                    "in": "query",
+                }],
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/x-level-5": {"schema": {}}},
+                        "content": {
+                            "application/x-level-5": {
+                                "schema": {}
+                            }
+                        },
                     },
-                    "400": {"description": "Client error level 0"},
-                    "402": {"description": "Client error level 2"},
-                    "403": {"description": "Client error level 3"},
-                    "404": {"description": "Client error level 4"},
-                    "405": {"description": "Client error level 5"},
+                    "400": {
+                        "description": "Client error level 0"
+                    },
+                    "402": {
+                        "description": "Client error level 2"
+                    },
+                    "403": {
+                        "description": "Client error level 3"
+                    },
+                    "404": {
+                        "description": "Client error level 4"
+                    },
+                    "405": {
+                        "description": "Client error level 5"
+                    },
                     "422": {
                         "description": "Validation Error",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                    "$ref":
+                                    "#/components/schemas/HTTPValidationError"
                                 }
                             }
                         },
                     },
-                    "500": {"description": "Server error level 0"},
-                    "502": {"description": "Server error level 2"},
-                    "503": {"description": "Server error level 3"},
-                    "504": {"description": "Server error level 4"},
-                    "505": {"description": "Server error level 5"},
+                    "500": {
+                        "description": "Server error level 0"
+                    },
+                    "502": {
+                        "description": "Server error level 2"
+                    },
+                    "503": {
+                        "description": "Server error level 3"
+                    },
+                    "504": {
+                        "description": "Server error level 4"
+                    },
+                    "505": {
+                        "description": "Server error level 5"
+                    },
                 },
                 "callbacks": {
                     "callback0": {
                         "/": {
                             "get": {
-                                "summary": "Callback0",
-                                "operationId": "callback0__get",
-                                "parameters": [
-                                    {
-                                        "name": "level0",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level0", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback0",
+                                "operationId":
+                                "callback0__get",
+                                "parameters": [{
+                                    "name": "level0",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level0",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -4290,27 +5600,35 @@ openapi_schema = {
                     "callback2": {
                         "/": {
                             "get": {
-                                "summary": "Callback2",
-                                "operationId": "callback2__get",
-                                "parameters": [
-                                    {
-                                        "name": "level2",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level2", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback2",
+                                "operationId":
+                                "callback2__get",
+                                "parameters": [{
+                                    "name": "level2",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level2",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -4322,27 +5640,35 @@ openapi_schema = {
                     "callback3": {
                         "/": {
                             "get": {
-                                "summary": "Callback3",
-                                "operationId": "callback3__get",
-                                "parameters": [
-                                    {
-                                        "name": "level3",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level3", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback3",
+                                "operationId":
+                                "callback3__get",
+                                "parameters": [{
+                                    "name": "level3",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level3",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -4354,27 +5680,35 @@ openapi_schema = {
                     "callback4": {
                         "/": {
                             "get": {
-                                "summary": "Callback4",
-                                "operationId": "callback4__get",
-                                "parameters": [
-                                    {
-                                        "name": "level4",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level4", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback4",
+                                "operationId":
+                                "callback4__get",
+                                "parameters": [{
+                                    "name": "level4",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level4",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -4386,27 +5720,35 @@ openapi_schema = {
                     "callback5": {
                         "/": {
                             "get": {
-                                "summary": "Callback5",
-                                "operationId": "callback5__get",
-                                "parameters": [
-                                    {
-                                        "name": "level5",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level5", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback5",
+                                "operationId":
+                                "callback5__get",
+                                "parameters": [{
+                                    "name": "level5",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level5",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -4416,7 +5758,8 @@ openapi_schema = {
                         }
                     },
                 },
-                "deprecated": True,
+                "deprecated":
+                True,
             }
         },
         "/level2/level3/level4/default5": {
@@ -4429,65 +5772,97 @@ openapi_schema = {
                     "level4a",
                     "level4b",
                 ],
-                "summary": "Path5 Default Router4 Override",
-                "operationId": "path5_default_router4_override_level2_level3_level4_default5_get",
-                "parameters": [
-                    {
-                        "required": True,
-                        "schema": {"title": "Level5", "type": "string"},
-                        "name": "level5",
-                        "in": "query",
-                    }
-                ],
+                "summary":
+                "Path5 Default Router4 Override",
+                "operationId":
+                "path5_default_router4_override_level2_level3_level4_default5_get",
+                "parameters": [{
+                    "required": True,
+                    "schema": {
+                        "title": "Level5",
+                        "type": "string"
+                    },
+                    "name": "level5",
+                    "in": "query",
+                }],
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/x-level-4": {"schema": {}}},
+                        "content": {
+                            "application/x-level-4": {
+                                "schema": {}
+                            }
+                        },
                     },
-                    "400": {"description": "Client error level 0"},
-                    "402": {"description": "Client error level 2"},
-                    "403": {"description": "Client error level 3"},
-                    "404": {"description": "Client error level 4"},
+                    "400": {
+                        "description": "Client error level 0"
+                    },
+                    "402": {
+                        "description": "Client error level 2"
+                    },
+                    "403": {
+                        "description": "Client error level 3"
+                    },
+                    "404": {
+                        "description": "Client error level 4"
+                    },
                     "422": {
                         "description": "Validation Error",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                    "$ref":
+                                    "#/components/schemas/HTTPValidationError"
                                 }
                             }
                         },
                     },
-                    "500": {"description": "Server error level 0"},
-                    "502": {"description": "Server error level 2"},
-                    "503": {"description": "Server error level 3"},
-                    "504": {"description": "Server error level 4"},
+                    "500": {
+                        "description": "Server error level 0"
+                    },
+                    "502": {
+                        "description": "Server error level 2"
+                    },
+                    "503": {
+                        "description": "Server error level 3"
+                    },
+                    "504": {
+                        "description": "Server error level 4"
+                    },
                 },
                 "callbacks": {
                     "callback0": {
                         "/": {
                             "get": {
-                                "summary": "Callback0",
-                                "operationId": "callback0__get",
-                                "parameters": [
-                                    {
-                                        "name": "level0",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level0", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback0",
+                                "operationId":
+                                "callback0__get",
+                                "parameters": [{
+                                    "name": "level0",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level0",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -4499,27 +5874,35 @@ openapi_schema = {
                     "callback2": {
                         "/": {
                             "get": {
-                                "summary": "Callback2",
-                                "operationId": "callback2__get",
-                                "parameters": [
-                                    {
-                                        "name": "level2",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level2", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback2",
+                                "operationId":
+                                "callback2__get",
+                                "parameters": [{
+                                    "name": "level2",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level2",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -4531,27 +5914,35 @@ openapi_schema = {
                     "callback3": {
                         "/": {
                             "get": {
-                                "summary": "Callback3",
-                                "operationId": "callback3__get",
-                                "parameters": [
-                                    {
-                                        "name": "level3",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level3", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback3",
+                                "operationId":
+                                "callback3__get",
+                                "parameters": [{
+                                    "name": "level3",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level3",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -4563,27 +5954,35 @@ openapi_schema = {
                     "callback4": {
                         "/": {
                             "get": {
-                                "summary": "Callback4",
-                                "operationId": "callback4__get",
-                                "parameters": [
-                                    {
-                                        "name": "level4",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level4", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback4",
+                                "operationId":
+                                "callback4__get",
+                                "parameters": [{
+                                    "name": "level4",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level4",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -4593,7 +5992,8 @@ openapi_schema = {
                         }
                     },
                 },
-                "deprecated": True,
+                "deprecated":
+                True,
             }
         },
         "/level2/level3/override5": {
@@ -4606,65 +6006,97 @@ openapi_schema = {
                     "path5a",
                     "path5b",
                 ],
-                "summary": "Path5 Override Router4 Default",
-                "operationId": "path5_override_router4_default_level2_level3_override5_get",
-                "parameters": [
-                    {
-                        "required": True,
-                        "schema": {"title": "Level5", "type": "string"},
-                        "name": "level5",
-                        "in": "query",
-                    }
-                ],
+                "summary":
+                "Path5 Override Router4 Default",
+                "operationId":
+                "path5_override_router4_default_level2_level3_override5_get",
+                "parameters": [{
+                    "required": True,
+                    "schema": {
+                        "title": "Level5",
+                        "type": "string"
+                    },
+                    "name": "level5",
+                    "in": "query",
+                }],
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/x-level-5": {"schema": {}}},
+                        "content": {
+                            "application/x-level-5": {
+                                "schema": {}
+                            }
+                        },
                     },
-                    "400": {"description": "Client error level 0"},
-                    "402": {"description": "Client error level 2"},
-                    "403": {"description": "Client error level 3"},
-                    "405": {"description": "Client error level 5"},
+                    "400": {
+                        "description": "Client error level 0"
+                    },
+                    "402": {
+                        "description": "Client error level 2"
+                    },
+                    "403": {
+                        "description": "Client error level 3"
+                    },
+                    "405": {
+                        "description": "Client error level 5"
+                    },
                     "422": {
                         "description": "Validation Error",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                    "$ref":
+                                    "#/components/schemas/HTTPValidationError"
                                 }
                             }
                         },
                     },
-                    "500": {"description": "Server error level 0"},
-                    "502": {"description": "Server error level 2"},
-                    "503": {"description": "Server error level 3"},
-                    "505": {"description": "Server error level 5"},
+                    "500": {
+                        "description": "Server error level 0"
+                    },
+                    "502": {
+                        "description": "Server error level 2"
+                    },
+                    "503": {
+                        "description": "Server error level 3"
+                    },
+                    "505": {
+                        "description": "Server error level 5"
+                    },
                 },
                 "callbacks": {
                     "callback0": {
                         "/": {
                             "get": {
-                                "summary": "Callback0",
-                                "operationId": "callback0__get",
-                                "parameters": [
-                                    {
-                                        "name": "level0",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level0", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback0",
+                                "operationId":
+                                "callback0__get",
+                                "parameters": [{
+                                    "name": "level0",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level0",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -4676,27 +6108,35 @@ openapi_schema = {
                     "callback2": {
                         "/": {
                             "get": {
-                                "summary": "Callback2",
-                                "operationId": "callback2__get",
-                                "parameters": [
-                                    {
-                                        "name": "level2",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level2", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback2",
+                                "operationId":
+                                "callback2__get",
+                                "parameters": [{
+                                    "name": "level2",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level2",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -4708,27 +6148,35 @@ openapi_schema = {
                     "callback3": {
                         "/": {
                             "get": {
-                                "summary": "Callback3",
-                                "operationId": "callback3__get",
-                                "parameters": [
-                                    {
-                                        "name": "level3",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level3", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback3",
+                                "operationId":
+                                "callback3__get",
+                                "parameters": [{
+                                    "name": "level3",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level3",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -4740,27 +6188,35 @@ openapi_schema = {
                     "callback5": {
                         "/": {
                             "get": {
-                                "summary": "Callback5",
-                                "operationId": "callback5__get",
-                                "parameters": [
-                                    {
-                                        "name": "level5",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level5", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback5",
+                                "operationId":
+                                "callback5__get",
+                                "parameters": [{
+                                    "name": "level5",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level5",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -4770,69 +6226,98 @@ openapi_schema = {
                         }
                     },
                 },
-                "deprecated": True,
+                "deprecated":
+                True,
             }
         },
         "/level2/level3/default5": {
             "get": {
                 "tags": ["level2a", "level2b", "level3a", "level3b"],
-                "summary": "Path5 Default Router4 Default",
-                "operationId": "path5_default_router4_default_level2_level3_default5_get",
-                "parameters": [
-                    {
-                        "required": True,
-                        "schema": {"title": "Level5", "type": "string"},
-                        "name": "level5",
-                        "in": "query",
-                    }
-                ],
+                "summary":
+                "Path5 Default Router4 Default",
+                "operationId":
+                "path5_default_router4_default_level2_level3_default5_get",
+                "parameters": [{
+                    "required": True,
+                    "schema": {
+                        "title": "Level5",
+                        "type": "string"
+                    },
+                    "name": "level5",
+                    "in": "query",
+                }],
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/x-level-3": {"schema": {}}},
+                        "content": {
+                            "application/x-level-3": {
+                                "schema": {}
+                            }
+                        },
                     },
-                    "400": {"description": "Client error level 0"},
-                    "402": {"description": "Client error level 2"},
-                    "403": {"description": "Client error level 3"},
+                    "400": {
+                        "description": "Client error level 0"
+                    },
+                    "402": {
+                        "description": "Client error level 2"
+                    },
+                    "403": {
+                        "description": "Client error level 3"
+                    },
                     "422": {
                         "description": "Validation Error",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                    "$ref":
+                                    "#/components/schemas/HTTPValidationError"
                                 }
                             }
                         },
                     },
-                    "500": {"description": "Server error level 0"},
-                    "502": {"description": "Server error level 2"},
-                    "503": {"description": "Server error level 3"},
+                    "500": {
+                        "description": "Server error level 0"
+                    },
+                    "502": {
+                        "description": "Server error level 2"
+                    },
+                    "503": {
+                        "description": "Server error level 3"
+                    },
                 },
                 "callbacks": {
                     "callback0": {
                         "/": {
                             "get": {
-                                "summary": "Callback0",
-                                "operationId": "callback0__get",
-                                "parameters": [
-                                    {
-                                        "name": "level0",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level0", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback0",
+                                "operationId":
+                                "callback0__get",
+                                "parameters": [{
+                                    "name": "level0",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level0",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -4844,27 +6329,35 @@ openapi_schema = {
                     "callback2": {
                         "/": {
                             "get": {
-                                "summary": "Callback2",
-                                "operationId": "callback2__get",
-                                "parameters": [
-                                    {
-                                        "name": "level2",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level2", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback2",
+                                "operationId":
+                                "callback2__get",
+                                "parameters": [{
+                                    "name": "level2",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level2",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -4876,27 +6369,35 @@ openapi_schema = {
                     "callback3": {
                         "/": {
                             "get": {
-                                "summary": "Callback3",
-                                "operationId": "callback3__get",
-                                "parameters": [
-                                    {
-                                        "name": "level3",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level3", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback3",
+                                "operationId":
+                                "callback3__get",
+                                "parameters": [{
+                                    "name": "level3",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level3",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -4906,7 +6407,8 @@ openapi_schema = {
                         }
                     },
                 },
-                "deprecated": True,
+                "deprecated":
+                True,
             }
         },
         "/level2/level4/override5": {
@@ -4919,65 +6421,97 @@ openapi_schema = {
                     "path5a",
                     "path5b",
                 ],
-                "summary": "Path5 Override Router4 Override",
-                "operationId": "path5_override_router4_override_level2_level4_override5_get",
-                "parameters": [
-                    {
-                        "required": True,
-                        "schema": {"title": "Level5", "type": "string"},
-                        "name": "level5",
-                        "in": "query",
-                    }
-                ],
+                "summary":
+                "Path5 Override Router4 Override",
+                "operationId":
+                "path5_override_router4_override_level2_level4_override5_get",
+                "parameters": [{
+                    "required": True,
+                    "schema": {
+                        "title": "Level5",
+                        "type": "string"
+                    },
+                    "name": "level5",
+                    "in": "query",
+                }],
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/x-level-5": {"schema": {}}},
+                        "content": {
+                            "application/x-level-5": {
+                                "schema": {}
+                            }
+                        },
                     },
-                    "400": {"description": "Client error level 0"},
-                    "402": {"description": "Client error level 2"},
-                    "404": {"description": "Client error level 4"},
-                    "405": {"description": "Client error level 5"},
+                    "400": {
+                        "description": "Client error level 0"
+                    },
+                    "402": {
+                        "description": "Client error level 2"
+                    },
+                    "404": {
+                        "description": "Client error level 4"
+                    },
+                    "405": {
+                        "description": "Client error level 5"
+                    },
                     "422": {
                         "description": "Validation Error",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                    "$ref":
+                                    "#/components/schemas/HTTPValidationError"
                                 }
                             }
                         },
                     },
-                    "500": {"description": "Server error level 0"},
-                    "502": {"description": "Server error level 2"},
-                    "504": {"description": "Server error level 4"},
-                    "505": {"description": "Server error level 5"},
+                    "500": {
+                        "description": "Server error level 0"
+                    },
+                    "502": {
+                        "description": "Server error level 2"
+                    },
+                    "504": {
+                        "description": "Server error level 4"
+                    },
+                    "505": {
+                        "description": "Server error level 5"
+                    },
                 },
                 "callbacks": {
                     "callback0": {
                         "/": {
                             "get": {
-                                "summary": "Callback0",
-                                "operationId": "callback0__get",
-                                "parameters": [
-                                    {
-                                        "name": "level0",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level0", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback0",
+                                "operationId":
+                                "callback0__get",
+                                "parameters": [{
+                                    "name": "level0",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level0",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -4989,27 +6523,35 @@ openapi_schema = {
                     "callback2": {
                         "/": {
                             "get": {
-                                "summary": "Callback2",
-                                "operationId": "callback2__get",
-                                "parameters": [
-                                    {
-                                        "name": "level2",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level2", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback2",
+                                "operationId":
+                                "callback2__get",
+                                "parameters": [{
+                                    "name": "level2",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level2",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -5021,27 +6563,35 @@ openapi_schema = {
                     "callback4": {
                         "/": {
                             "get": {
-                                "summary": "Callback4",
-                                "operationId": "callback4__get",
-                                "parameters": [
-                                    {
-                                        "name": "level4",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level4", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback4",
+                                "operationId":
+                                "callback4__get",
+                                "parameters": [{
+                                    "name": "level4",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level4",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -5053,27 +6603,35 @@ openapi_schema = {
                     "callback5": {
                         "/": {
                             "get": {
-                                "summary": "Callback5",
-                                "operationId": "callback5__get",
-                                "parameters": [
-                                    {
-                                        "name": "level5",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level5", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback5",
+                                "operationId":
+                                "callback5__get",
+                                "parameters": [{
+                                    "name": "level5",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level5",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -5083,69 +6641,98 @@ openapi_schema = {
                         }
                     },
                 },
-                "deprecated": True,
+                "deprecated":
+                True,
             }
         },
         "/level2/level4/default5": {
             "get": {
                 "tags": ["level2a", "level2b", "level4a", "level4b"],
-                "summary": "Path5 Default Router4 Override",
-                "operationId": "path5_default_router4_override_level2_level4_default5_get",
-                "parameters": [
-                    {
-                        "required": True,
-                        "schema": {"title": "Level5", "type": "string"},
-                        "name": "level5",
-                        "in": "query",
-                    }
-                ],
+                "summary":
+                "Path5 Default Router4 Override",
+                "operationId":
+                "path5_default_router4_override_level2_level4_default5_get",
+                "parameters": [{
+                    "required": True,
+                    "schema": {
+                        "title": "Level5",
+                        "type": "string"
+                    },
+                    "name": "level5",
+                    "in": "query",
+                }],
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/x-level-4": {"schema": {}}},
+                        "content": {
+                            "application/x-level-4": {
+                                "schema": {}
+                            }
+                        },
                     },
-                    "400": {"description": "Client error level 0"},
-                    "402": {"description": "Client error level 2"},
-                    "404": {"description": "Client error level 4"},
+                    "400": {
+                        "description": "Client error level 0"
+                    },
+                    "402": {
+                        "description": "Client error level 2"
+                    },
+                    "404": {
+                        "description": "Client error level 4"
+                    },
                     "422": {
                         "description": "Validation Error",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                    "$ref":
+                                    "#/components/schemas/HTTPValidationError"
                                 }
                             }
                         },
                     },
-                    "500": {"description": "Server error level 0"},
-                    "502": {"description": "Server error level 2"},
-                    "504": {"description": "Server error level 4"},
+                    "500": {
+                        "description": "Server error level 0"
+                    },
+                    "502": {
+                        "description": "Server error level 2"
+                    },
+                    "504": {
+                        "description": "Server error level 4"
+                    },
                 },
                 "callbacks": {
                     "callback0": {
                         "/": {
                             "get": {
-                                "summary": "Callback0",
-                                "operationId": "callback0__get",
-                                "parameters": [
-                                    {
-                                        "name": "level0",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level0", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback0",
+                                "operationId":
+                                "callback0__get",
+                                "parameters": [{
+                                    "name": "level0",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level0",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -5157,27 +6744,35 @@ openapi_schema = {
                     "callback2": {
                         "/": {
                             "get": {
-                                "summary": "Callback2",
-                                "operationId": "callback2__get",
-                                "parameters": [
-                                    {
-                                        "name": "level2",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level2", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback2",
+                                "operationId":
+                                "callback2__get",
+                                "parameters": [{
+                                    "name": "level2",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level2",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -5189,27 +6784,35 @@ openapi_schema = {
                     "callback4": {
                         "/": {
                             "get": {
-                                "summary": "Callback4",
-                                "operationId": "callback4__get",
-                                "parameters": [
-                                    {
-                                        "name": "level4",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level4", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback4",
+                                "operationId":
+                                "callback4__get",
+                                "parameters": [{
+                                    "name": "level4",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level4",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -5219,69 +6822,98 @@ openapi_schema = {
                         }
                     },
                 },
-                "deprecated": True,
+                "deprecated":
+                True,
             }
         },
         "/level2/override5": {
             "get": {
                 "tags": ["level2a", "level2b", "path5a", "path5b"],
-                "summary": "Path5 Override Router4 Default",
-                "operationId": "path5_override_router4_default_level2_override5_get",
-                "parameters": [
-                    {
-                        "required": True,
-                        "schema": {"title": "Level5", "type": "string"},
-                        "name": "level5",
-                        "in": "query",
-                    }
-                ],
+                "summary":
+                "Path5 Override Router4 Default",
+                "operationId":
+                "path5_override_router4_default_level2_override5_get",
+                "parameters": [{
+                    "required": True,
+                    "schema": {
+                        "title": "Level5",
+                        "type": "string"
+                    },
+                    "name": "level5",
+                    "in": "query",
+                }],
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/x-level-5": {"schema": {}}},
+                        "content": {
+                            "application/x-level-5": {
+                                "schema": {}
+                            }
+                        },
                     },
-                    "400": {"description": "Client error level 0"},
-                    "402": {"description": "Client error level 2"},
-                    "405": {"description": "Client error level 5"},
+                    "400": {
+                        "description": "Client error level 0"
+                    },
+                    "402": {
+                        "description": "Client error level 2"
+                    },
+                    "405": {
+                        "description": "Client error level 5"
+                    },
                     "422": {
                         "description": "Validation Error",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                    "$ref":
+                                    "#/components/schemas/HTTPValidationError"
                                 }
                             }
                         },
                     },
-                    "500": {"description": "Server error level 0"},
-                    "502": {"description": "Server error level 2"},
-                    "505": {"description": "Server error level 5"},
+                    "500": {
+                        "description": "Server error level 0"
+                    },
+                    "502": {
+                        "description": "Server error level 2"
+                    },
+                    "505": {
+                        "description": "Server error level 5"
+                    },
                 },
                 "callbacks": {
                     "callback0": {
                         "/": {
                             "get": {
-                                "summary": "Callback0",
-                                "operationId": "callback0__get",
-                                "parameters": [
-                                    {
-                                        "name": "level0",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level0", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback0",
+                                "operationId":
+                                "callback0__get",
+                                "parameters": [{
+                                    "name": "level0",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level0",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -5293,27 +6925,35 @@ openapi_schema = {
                     "callback2": {
                         "/": {
                             "get": {
-                                "summary": "Callback2",
-                                "operationId": "callback2__get",
-                                "parameters": [
-                                    {
-                                        "name": "level2",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level2", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback2",
+                                "operationId":
+                                "callback2__get",
+                                "parameters": [{
+                                    "name": "level2",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level2",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -5325,27 +6965,35 @@ openapi_schema = {
                     "callback5": {
                         "/": {
                             "get": {
-                                "summary": "Callback5",
-                                "operationId": "callback5__get",
-                                "parameters": [
-                                    {
-                                        "name": "level5",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level5", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback5",
+                                "operationId":
+                                "callback5__get",
+                                "parameters": [{
+                                    "name": "level5",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level5",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -5355,67 +7003,92 @@ openapi_schema = {
                         }
                     },
                 },
-                "deprecated": True,
+                "deprecated":
+                True,
             }
         },
         "/level2/default5": {
             "get": {
                 "tags": ["level2a", "level2b"],
-                "summary": "Path5 Default Router4 Default",
-                "operationId": "path5_default_router4_default_level2_default5_get",
-                "parameters": [
-                    {
-                        "required": True,
-                        "schema": {"title": "Level5", "type": "string"},
-                        "name": "level5",
-                        "in": "query",
-                    }
-                ],
+                "summary":
+                "Path5 Default Router4 Default",
+                "operationId":
+                "path5_default_router4_default_level2_default5_get",
+                "parameters": [{
+                    "required": True,
+                    "schema": {
+                        "title": "Level5",
+                        "type": "string"
+                    },
+                    "name": "level5",
+                    "in": "query",
+                }],
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/x-level-2": {"schema": {}}},
+                        "content": {
+                            "application/x-level-2": {
+                                "schema": {}
+                            }
+                        },
                     },
-                    "400": {"description": "Client error level 0"},
-                    "402": {"description": "Client error level 2"},
+                    "400": {
+                        "description": "Client error level 0"
+                    },
+                    "402": {
+                        "description": "Client error level 2"
+                    },
                     "422": {
                         "description": "Validation Error",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                    "$ref":
+                                    "#/components/schemas/HTTPValidationError"
                                 }
                             }
                         },
                     },
-                    "500": {"description": "Server error level 0"},
-                    "502": {"description": "Server error level 2"},
+                    "500": {
+                        "description": "Server error level 0"
+                    },
+                    "502": {
+                        "description": "Server error level 2"
+                    },
                 },
                 "callbacks": {
                     "callback0": {
                         "/": {
                             "get": {
-                                "summary": "Callback0",
-                                "operationId": "callback0__get",
-                                "parameters": [
-                                    {
-                                        "name": "level0",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level0", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback0",
+                                "operationId":
+                                "callback0__get",
+                                "parameters": [{
+                                    "name": "level0",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level0",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -5427,27 +7100,35 @@ openapi_schema = {
                     "callback2": {
                         "/": {
                             "get": {
-                                "summary": "Callback2",
-                                "operationId": "callback2__get",
-                                "parameters": [
-                                    {
-                                        "name": "level2",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level2", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback2",
+                                "operationId":
+                                "callback2__get",
+                                "parameters": [{
+                                    "name": "level2",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level2",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -5457,67 +7138,92 @@ openapi_schema = {
                         }
                     },
                 },
-                "deprecated": True,
+                "deprecated":
+                True,
             }
         },
         "/override3": {
             "get": {
                 "tags": ["path3a", "path3b"],
-                "summary": "Path3 Override Router2 Default",
-                "operationId": "path3_override_router2_default_override3_get",
-                "parameters": [
-                    {
-                        "required": True,
-                        "schema": {"title": "Level3", "type": "string"},
-                        "name": "level3",
-                        "in": "query",
-                    }
-                ],
+                "summary":
+                "Path3 Override Router2 Default",
+                "operationId":
+                "path3_override_router2_default_override3_get",
+                "parameters": [{
+                    "required": True,
+                    "schema": {
+                        "title": "Level3",
+                        "type": "string"
+                    },
+                    "name": "level3",
+                    "in": "query",
+                }],
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/x-level-3": {"schema": {}}},
+                        "content": {
+                            "application/x-level-3": {
+                                "schema": {}
+                            }
+                        },
                     },
-                    "400": {"description": "Client error level 0"},
-                    "403": {"description": "Client error level 3"},
+                    "400": {
+                        "description": "Client error level 0"
+                    },
+                    "403": {
+                        "description": "Client error level 3"
+                    },
                     "422": {
                         "description": "Validation Error",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                    "$ref":
+                                    "#/components/schemas/HTTPValidationError"
                                 }
                             }
                         },
                     },
-                    "500": {"description": "Server error level 0"},
-                    "503": {"description": "Server error level 3"},
+                    "500": {
+                        "description": "Server error level 0"
+                    },
+                    "503": {
+                        "description": "Server error level 3"
+                    },
                 },
                 "callbacks": {
                     "callback0": {
                         "/": {
                             "get": {
-                                "summary": "Callback0",
-                                "operationId": "callback0__get",
-                                "parameters": [
-                                    {
-                                        "name": "level0",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level0", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback0",
+                                "operationId":
+                                "callback0__get",
+                                "parameters": [{
+                                    "name": "level0",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level0",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -5529,27 +7235,35 @@ openapi_schema = {
                     "callback3": {
                         "/": {
                             "get": {
-                                "summary": "Callback3",
-                                "operationId": "callback3__get",
-                                "parameters": [
-                                    {
-                                        "name": "level3",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level3", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback3",
+                                "operationId":
+                                "callback3__get",
+                                "parameters": [{
+                                    "name": "level3",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level3",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -5559,64 +7273,85 @@ openapi_schema = {
                         }
                     },
                 },
-                "deprecated": True,
+                "deprecated":
+                True,
             }
         },
         "/default3": {
             "get": {
-                "summary": "Path3 Default Router2 Default",
-                "operationId": "path3_default_router2_default_default3_get",
-                "parameters": [
-                    {
-                        "required": True,
-                        "schema": {"title": "Level3", "type": "string"},
-                        "name": "level3",
-                        "in": "query",
-                    }
-                ],
+                "summary":
+                "Path3 Default Router2 Default",
+                "operationId":
+                "path3_default_router2_default_default3_get",
+                "parameters": [{
+                    "required": True,
+                    "schema": {
+                        "title": "Level3",
+                        "type": "string"
+                    },
+                    "name": "level3",
+                    "in": "query",
+                }],
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/x-level-0": {"schema": {}}},
+                        "content": {
+                            "application/x-level-0": {
+                                "schema": {}
+                            }
+                        },
                     },
-                    "400": {"description": "Client error level 0"},
+                    "400": {
+                        "description": "Client error level 0"
+                    },
                     "422": {
                         "description": "Validation Error",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                    "$ref":
+                                    "#/components/schemas/HTTPValidationError"
                                 }
                             }
                         },
                     },
-                    "500": {"description": "Server error level 0"},
+                    "500": {
+                        "description": "Server error level 0"
+                    },
                 },
                 "callbacks": {
                     "callback0": {
                         "/": {
                             "get": {
-                                "summary": "Callback0",
-                                "operationId": "callback0__get",
-                                "parameters": [
-                                    {
-                                        "name": "level0",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level0", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback0",
+                                "operationId":
+                                "callback0__get",
+                                "parameters": [{
+                                    "name": "level0",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level0",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -5638,65 +7373,97 @@ openapi_schema = {
                     "path5a",
                     "path5b",
                 ],
-                "summary": "Path5 Override Router4 Override",
-                "operationId": "path5_override_router4_override_level3_level4_override5_get",
-                "parameters": [
-                    {
-                        "required": True,
-                        "schema": {"title": "Level5", "type": "string"},
-                        "name": "level5",
-                        "in": "query",
-                    }
-                ],
+                "summary":
+                "Path5 Override Router4 Override",
+                "operationId":
+                "path5_override_router4_override_level3_level4_override5_get",
+                "parameters": [{
+                    "required": True,
+                    "schema": {
+                        "title": "Level5",
+                        "type": "string"
+                    },
+                    "name": "level5",
+                    "in": "query",
+                }],
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/x-level-5": {"schema": {}}},
+                        "content": {
+                            "application/x-level-5": {
+                                "schema": {}
+                            }
+                        },
                     },
-                    "400": {"description": "Client error level 0"},
-                    "403": {"description": "Client error level 3"},
-                    "404": {"description": "Client error level 4"},
-                    "405": {"description": "Client error level 5"},
+                    "400": {
+                        "description": "Client error level 0"
+                    },
+                    "403": {
+                        "description": "Client error level 3"
+                    },
+                    "404": {
+                        "description": "Client error level 4"
+                    },
+                    "405": {
+                        "description": "Client error level 5"
+                    },
                     "422": {
                         "description": "Validation Error",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                    "$ref":
+                                    "#/components/schemas/HTTPValidationError"
                                 }
                             }
                         },
                     },
-                    "500": {"description": "Server error level 0"},
-                    "503": {"description": "Server error level 3"},
-                    "504": {"description": "Server error level 4"},
-                    "505": {"description": "Server error level 5"},
+                    "500": {
+                        "description": "Server error level 0"
+                    },
+                    "503": {
+                        "description": "Server error level 3"
+                    },
+                    "504": {
+                        "description": "Server error level 4"
+                    },
+                    "505": {
+                        "description": "Server error level 5"
+                    },
                 },
                 "callbacks": {
                     "callback0": {
                         "/": {
                             "get": {
-                                "summary": "Callback0",
-                                "operationId": "callback0__get",
-                                "parameters": [
-                                    {
-                                        "name": "level0",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level0", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback0",
+                                "operationId":
+                                "callback0__get",
+                                "parameters": [{
+                                    "name": "level0",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level0",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -5708,27 +7475,35 @@ openapi_schema = {
                     "callback3": {
                         "/": {
                             "get": {
-                                "summary": "Callback3",
-                                "operationId": "callback3__get",
-                                "parameters": [
-                                    {
-                                        "name": "level3",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level3", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback3",
+                                "operationId":
+                                "callback3__get",
+                                "parameters": [{
+                                    "name": "level3",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level3",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -5740,27 +7515,35 @@ openapi_schema = {
                     "callback4": {
                         "/": {
                             "get": {
-                                "summary": "Callback4",
-                                "operationId": "callback4__get",
-                                "parameters": [
-                                    {
-                                        "name": "level4",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level4", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback4",
+                                "operationId":
+                                "callback4__get",
+                                "parameters": [{
+                                    "name": "level4",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level4",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -5772,27 +7555,35 @@ openapi_schema = {
                     "callback5": {
                         "/": {
                             "get": {
-                                "summary": "Callback5",
-                                "operationId": "callback5__get",
-                                "parameters": [
-                                    {
-                                        "name": "level5",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level5", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback5",
+                                "operationId":
+                                "callback5__get",
+                                "parameters": [{
+                                    "name": "level5",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level5",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -5802,69 +7593,98 @@ openapi_schema = {
                         }
                     },
                 },
-                "deprecated": True,
+                "deprecated":
+                True,
             }
         },
         "/level3/level4/default5": {
             "get": {
                 "tags": ["level3a", "level3b", "level4a", "level4b"],
-                "summary": "Path5 Default Router4 Override",
-                "operationId": "path5_default_router4_override_level3_level4_default5_get",
-                "parameters": [
-                    {
-                        "required": True,
-                        "schema": {"title": "Level5", "type": "string"},
-                        "name": "level5",
-                        "in": "query",
-                    }
-                ],
+                "summary":
+                "Path5 Default Router4 Override",
+                "operationId":
+                "path5_default_router4_override_level3_level4_default5_get",
+                "parameters": [{
+                    "required": True,
+                    "schema": {
+                        "title": "Level5",
+                        "type": "string"
+                    },
+                    "name": "level5",
+                    "in": "query",
+                }],
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/x-level-4": {"schema": {}}},
+                        "content": {
+                            "application/x-level-4": {
+                                "schema": {}
+                            }
+                        },
                     },
-                    "400": {"description": "Client error level 0"},
-                    "403": {"description": "Client error level 3"},
-                    "404": {"description": "Client error level 4"},
+                    "400": {
+                        "description": "Client error level 0"
+                    },
+                    "403": {
+                        "description": "Client error level 3"
+                    },
+                    "404": {
+                        "description": "Client error level 4"
+                    },
                     "422": {
                         "description": "Validation Error",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                    "$ref":
+                                    "#/components/schemas/HTTPValidationError"
                                 }
                             }
                         },
                     },
-                    "500": {"description": "Server error level 0"},
-                    "503": {"description": "Server error level 3"},
-                    "504": {"description": "Server error level 4"},
+                    "500": {
+                        "description": "Server error level 0"
+                    },
+                    "503": {
+                        "description": "Server error level 3"
+                    },
+                    "504": {
+                        "description": "Server error level 4"
+                    },
                 },
                 "callbacks": {
                     "callback0": {
                         "/": {
                             "get": {
-                                "summary": "Callback0",
-                                "operationId": "callback0__get",
-                                "parameters": [
-                                    {
-                                        "name": "level0",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level0", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback0",
+                                "operationId":
+                                "callback0__get",
+                                "parameters": [{
+                                    "name": "level0",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level0",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -5876,27 +7696,35 @@ openapi_schema = {
                     "callback3": {
                         "/": {
                             "get": {
-                                "summary": "Callback3",
-                                "operationId": "callback3__get",
-                                "parameters": [
-                                    {
-                                        "name": "level3",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level3", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback3",
+                                "operationId":
+                                "callback3__get",
+                                "parameters": [{
+                                    "name": "level3",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level3",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -5908,27 +7736,35 @@ openapi_schema = {
                     "callback4": {
                         "/": {
                             "get": {
-                                "summary": "Callback4",
-                                "operationId": "callback4__get",
-                                "parameters": [
-                                    {
-                                        "name": "level4",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level4", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback4",
+                                "operationId":
+                                "callback4__get",
+                                "parameters": [{
+                                    "name": "level4",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level4",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -5938,69 +7774,98 @@ openapi_schema = {
                         }
                     },
                 },
-                "deprecated": True,
+                "deprecated":
+                True,
             }
         },
         "/level3/override5": {
             "get": {
                 "tags": ["level3a", "level3b", "path5a", "path5b"],
-                "summary": "Path5 Override Router4 Default",
-                "operationId": "path5_override_router4_default_level3_override5_get",
-                "parameters": [
-                    {
-                        "required": True,
-                        "schema": {"title": "Level5", "type": "string"},
-                        "name": "level5",
-                        "in": "query",
-                    }
-                ],
+                "summary":
+                "Path5 Override Router4 Default",
+                "operationId":
+                "path5_override_router4_default_level3_override5_get",
+                "parameters": [{
+                    "required": True,
+                    "schema": {
+                        "title": "Level5",
+                        "type": "string"
+                    },
+                    "name": "level5",
+                    "in": "query",
+                }],
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/x-level-5": {"schema": {}}},
+                        "content": {
+                            "application/x-level-5": {
+                                "schema": {}
+                            }
+                        },
                     },
-                    "400": {"description": "Client error level 0"},
-                    "403": {"description": "Client error level 3"},
-                    "405": {"description": "Client error level 5"},
+                    "400": {
+                        "description": "Client error level 0"
+                    },
+                    "403": {
+                        "description": "Client error level 3"
+                    },
+                    "405": {
+                        "description": "Client error level 5"
+                    },
                     "422": {
                         "description": "Validation Error",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                    "$ref":
+                                    "#/components/schemas/HTTPValidationError"
                                 }
                             }
                         },
                     },
-                    "500": {"description": "Server error level 0"},
-                    "503": {"description": "Server error level 3"},
-                    "505": {"description": "Server error level 5"},
+                    "500": {
+                        "description": "Server error level 0"
+                    },
+                    "503": {
+                        "description": "Server error level 3"
+                    },
+                    "505": {
+                        "description": "Server error level 5"
+                    },
                 },
                 "callbacks": {
                     "callback0": {
                         "/": {
                             "get": {
-                                "summary": "Callback0",
-                                "operationId": "callback0__get",
-                                "parameters": [
-                                    {
-                                        "name": "level0",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level0", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback0",
+                                "operationId":
+                                "callback0__get",
+                                "parameters": [{
+                                    "name": "level0",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level0",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -6012,27 +7877,35 @@ openapi_schema = {
                     "callback3": {
                         "/": {
                             "get": {
-                                "summary": "Callback3",
-                                "operationId": "callback3__get",
-                                "parameters": [
-                                    {
-                                        "name": "level3",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level3", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback3",
+                                "operationId":
+                                "callback3__get",
+                                "parameters": [{
+                                    "name": "level3",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level3",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -6044,27 +7917,35 @@ openapi_schema = {
                     "callback5": {
                         "/": {
                             "get": {
-                                "summary": "Callback5",
-                                "operationId": "callback5__get",
-                                "parameters": [
-                                    {
-                                        "name": "level5",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level5", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback5",
+                                "operationId":
+                                "callback5__get",
+                                "parameters": [{
+                                    "name": "level5",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level5",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -6074,67 +7955,92 @@ openapi_schema = {
                         }
                     },
                 },
-                "deprecated": True,
+                "deprecated":
+                True,
             }
         },
         "/level3/default5": {
             "get": {
                 "tags": ["level3a", "level3b"],
-                "summary": "Path5 Default Router4 Default",
-                "operationId": "path5_default_router4_default_level3_default5_get",
-                "parameters": [
-                    {
-                        "required": True,
-                        "schema": {"title": "Level5", "type": "string"},
-                        "name": "level5",
-                        "in": "query",
-                    }
-                ],
+                "summary":
+                "Path5 Default Router4 Default",
+                "operationId":
+                "path5_default_router4_default_level3_default5_get",
+                "parameters": [{
+                    "required": True,
+                    "schema": {
+                        "title": "Level5",
+                        "type": "string"
+                    },
+                    "name": "level5",
+                    "in": "query",
+                }],
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/x-level-3": {"schema": {}}},
+                        "content": {
+                            "application/x-level-3": {
+                                "schema": {}
+                            }
+                        },
                     },
-                    "400": {"description": "Client error level 0"},
-                    "403": {"description": "Client error level 3"},
+                    "400": {
+                        "description": "Client error level 0"
+                    },
+                    "403": {
+                        "description": "Client error level 3"
+                    },
                     "422": {
                         "description": "Validation Error",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                    "$ref":
+                                    "#/components/schemas/HTTPValidationError"
                                 }
                             }
                         },
                     },
-                    "500": {"description": "Server error level 0"},
-                    "503": {"description": "Server error level 3"},
+                    "500": {
+                        "description": "Server error level 0"
+                    },
+                    "503": {
+                        "description": "Server error level 3"
+                    },
                 },
                 "callbacks": {
                     "callback0": {
                         "/": {
                             "get": {
-                                "summary": "Callback0",
-                                "operationId": "callback0__get",
-                                "parameters": [
-                                    {
-                                        "name": "level0",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level0", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback0",
+                                "operationId":
+                                "callback0__get",
+                                "parameters": [{
+                                    "name": "level0",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level0",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -6146,27 +8052,35 @@ openapi_schema = {
                     "callback3": {
                         "/": {
                             "get": {
-                                "summary": "Callback3",
-                                "operationId": "callback3__get",
-                                "parameters": [
-                                    {
-                                        "name": "level3",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level3", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback3",
+                                "operationId":
+                                "callback3__get",
+                                "parameters": [{
+                                    "name": "level3",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level3",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -6181,63 +8095,91 @@ openapi_schema = {
         "/level4/override5": {
             "get": {
                 "tags": ["level4a", "level4b", "path5a", "path5b"],
-                "summary": "Path5 Override Router4 Override",
-                "operationId": "path5_override_router4_override_level4_override5_get",
-                "parameters": [
-                    {
-                        "required": True,
-                        "schema": {"title": "Level5", "type": "string"},
-                        "name": "level5",
-                        "in": "query",
-                    }
-                ],
+                "summary":
+                "Path5 Override Router4 Override",
+                "operationId":
+                "path5_override_router4_override_level4_override5_get",
+                "parameters": [{
+                    "required": True,
+                    "schema": {
+                        "title": "Level5",
+                        "type": "string"
+                    },
+                    "name": "level5",
+                    "in": "query",
+                }],
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/x-level-5": {"schema": {}}},
+                        "content": {
+                            "application/x-level-5": {
+                                "schema": {}
+                            }
+                        },
                     },
-                    "400": {"description": "Client error level 0"},
-                    "404": {"description": "Client error level 4"},
-                    "405": {"description": "Client error level 5"},
+                    "400": {
+                        "description": "Client error level 0"
+                    },
+                    "404": {
+                        "description": "Client error level 4"
+                    },
+                    "405": {
+                        "description": "Client error level 5"
+                    },
                     "422": {
                         "description": "Validation Error",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                    "$ref":
+                                    "#/components/schemas/HTTPValidationError"
                                 }
                             }
                         },
                     },
-                    "500": {"description": "Server error level 0"},
-                    "504": {"description": "Server error level 4"},
-                    "505": {"description": "Server error level 5"},
+                    "500": {
+                        "description": "Server error level 0"
+                    },
+                    "504": {
+                        "description": "Server error level 4"
+                    },
+                    "505": {
+                        "description": "Server error level 5"
+                    },
                 },
                 "callbacks": {
                     "callback0": {
                         "/": {
                             "get": {
-                                "summary": "Callback0",
-                                "operationId": "callback0__get",
-                                "parameters": [
-                                    {
-                                        "name": "level0",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level0", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback0",
+                                "operationId":
+                                "callback0__get",
+                                "parameters": [{
+                                    "name": "level0",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level0",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -6249,27 +8191,35 @@ openapi_schema = {
                     "callback4": {
                         "/": {
                             "get": {
-                                "summary": "Callback4",
-                                "operationId": "callback4__get",
-                                "parameters": [
-                                    {
-                                        "name": "level4",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level4", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback4",
+                                "operationId":
+                                "callback4__get",
+                                "parameters": [{
+                                    "name": "level4",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level4",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -6281,27 +8231,35 @@ openapi_schema = {
                     "callback5": {
                         "/": {
                             "get": {
-                                "summary": "Callback5",
-                                "operationId": "callback5__get",
-                                "parameters": [
-                                    {
-                                        "name": "level5",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level5", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback5",
+                                "operationId":
+                                "callback5__get",
+                                "parameters": [{
+                                    "name": "level5",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level5",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -6311,67 +8269,92 @@ openapi_schema = {
                         }
                     },
                 },
-                "deprecated": True,
+                "deprecated":
+                True,
             }
         },
         "/level4/default5": {
             "get": {
                 "tags": ["level4a", "level4b"],
-                "summary": "Path5 Default Router4 Override",
-                "operationId": "path5_default_router4_override_level4_default5_get",
-                "parameters": [
-                    {
-                        "required": True,
-                        "schema": {"title": "Level5", "type": "string"},
-                        "name": "level5",
-                        "in": "query",
-                    }
-                ],
+                "summary":
+                "Path5 Default Router4 Override",
+                "operationId":
+                "path5_default_router4_override_level4_default5_get",
+                "parameters": [{
+                    "required": True,
+                    "schema": {
+                        "title": "Level5",
+                        "type": "string"
+                    },
+                    "name": "level5",
+                    "in": "query",
+                }],
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/x-level-4": {"schema": {}}},
+                        "content": {
+                            "application/x-level-4": {
+                                "schema": {}
+                            }
+                        },
                     },
-                    "400": {"description": "Client error level 0"},
-                    "404": {"description": "Client error level 4"},
+                    "400": {
+                        "description": "Client error level 0"
+                    },
+                    "404": {
+                        "description": "Client error level 4"
+                    },
                     "422": {
                         "description": "Validation Error",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                    "$ref":
+                                    "#/components/schemas/HTTPValidationError"
                                 }
                             }
                         },
                     },
-                    "500": {"description": "Server error level 0"},
-                    "504": {"description": "Server error level 4"},
+                    "500": {
+                        "description": "Server error level 0"
+                    },
+                    "504": {
+                        "description": "Server error level 4"
+                    },
                 },
                 "callbacks": {
                     "callback0": {
                         "/": {
                             "get": {
-                                "summary": "Callback0",
-                                "operationId": "callback0__get",
-                                "parameters": [
-                                    {
-                                        "name": "level0",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level0", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback0",
+                                "operationId":
+                                "callback0__get",
+                                "parameters": [{
+                                    "name": "level0",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level0",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -6383,27 +8366,35 @@ openapi_schema = {
                     "callback4": {
                         "/": {
                             "get": {
-                                "summary": "Callback4",
-                                "operationId": "callback4__get",
-                                "parameters": [
-                                    {
-                                        "name": "level4",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level4", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback4",
+                                "operationId":
+                                "callback4__get",
+                                "parameters": [{
+                                    "name": "level4",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level4",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -6413,67 +8404,92 @@ openapi_schema = {
                         }
                     },
                 },
-                "deprecated": True,
+                "deprecated":
+                True,
             }
         },
         "/override5": {
             "get": {
                 "tags": ["path5a", "path5b"],
-                "summary": "Path5 Override Router4 Default",
-                "operationId": "path5_override_router4_default_override5_get",
-                "parameters": [
-                    {
-                        "required": True,
-                        "schema": {"title": "Level5", "type": "string"},
-                        "name": "level5",
-                        "in": "query",
-                    }
-                ],
+                "summary":
+                "Path5 Override Router4 Default",
+                "operationId":
+                "path5_override_router4_default_override5_get",
+                "parameters": [{
+                    "required": True,
+                    "schema": {
+                        "title": "Level5",
+                        "type": "string"
+                    },
+                    "name": "level5",
+                    "in": "query",
+                }],
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/x-level-5": {"schema": {}}},
+                        "content": {
+                            "application/x-level-5": {
+                                "schema": {}
+                            }
+                        },
                     },
-                    "400": {"description": "Client error level 0"},
-                    "405": {"description": "Client error level 5"},
+                    "400": {
+                        "description": "Client error level 0"
+                    },
+                    "405": {
+                        "description": "Client error level 5"
+                    },
                     "422": {
                         "description": "Validation Error",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                    "$ref":
+                                    "#/components/schemas/HTTPValidationError"
                                 }
                             }
                         },
                     },
-                    "500": {"description": "Server error level 0"},
-                    "505": {"description": "Server error level 5"},
+                    "500": {
+                        "description": "Server error level 0"
+                    },
+                    "505": {
+                        "description": "Server error level 5"
+                    },
                 },
                 "callbacks": {
                     "callback0": {
                         "/": {
                             "get": {
-                                "summary": "Callback0",
-                                "operationId": "callback0__get",
-                                "parameters": [
-                                    {
-                                        "name": "level0",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level0", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback0",
+                                "operationId":
+                                "callback0__get",
+                                "parameters": [{
+                                    "name": "level0",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level0",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -6485,27 +8501,35 @@ openapi_schema = {
                     "callback5": {
                         "/": {
                             "get": {
-                                "summary": "Callback5",
-                                "operationId": "callback5__get",
-                                "parameters": [
-                                    {
-                                        "name": "level5",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level5", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback5",
+                                "operationId":
+                                "callback5__get",
+                                "parameters": [{
+                                    "name": "level5",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level5",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -6515,64 +8539,85 @@ openapi_schema = {
                         }
                     },
                 },
-                "deprecated": True,
+                "deprecated":
+                True,
             }
         },
         "/default5": {
             "get": {
-                "summary": "Path5 Default Router4 Default",
-                "operationId": "path5_default_router4_default_default5_get",
-                "parameters": [
-                    {
-                        "required": True,
-                        "schema": {"title": "Level5", "type": "string"},
-                        "name": "level5",
-                        "in": "query",
-                    }
-                ],
+                "summary":
+                "Path5 Default Router4 Default",
+                "operationId":
+                "path5_default_router4_default_default5_get",
+                "parameters": [{
+                    "required": True,
+                    "schema": {
+                        "title": "Level5",
+                        "type": "string"
+                    },
+                    "name": "level5",
+                    "in": "query",
+                }],
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/x-level-0": {"schema": {}}},
+                        "content": {
+                            "application/x-level-0": {
+                                "schema": {}
+                            }
+                        },
                     },
-                    "400": {"description": "Client error level 0"},
+                    "400": {
+                        "description": "Client error level 0"
+                    },
                     "422": {
                         "description": "Validation Error",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                    "$ref":
+                                    "#/components/schemas/HTTPValidationError"
                                 }
                             }
                         },
                     },
-                    "500": {"description": "Server error level 0"},
+                    "500": {
+                        "description": "Server error level 0"
+                    },
                 },
                 "callbacks": {
                     "callback0": {
                         "/": {
                             "get": {
-                                "summary": "Callback0",
-                                "operationId": "callback0__get",
-                                "parameters": [
-                                    {
-                                        "name": "level0",
-                                        "in": "query",
-                                        "required": True,
-                                        "schema": {"title": "Level0", "type": "string"},
-                                    }
-                                ],
+                                "summary":
+                                "Callback0",
+                                "operationId":
+                                "callback0__get",
+                                "parameters": [{
+                                    "name": "level0",
+                                    "in": "query",
+                                    "required": True,
+                                    "schema": {
+                                        "title": "Level0",
+                                        "type": "string"
+                                    },
+                                }],
                                 "responses": {
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                     "422": {
                                         "description": "Validation Error",
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -6594,7 +8639,9 @@ openapi_schema = {
                     "detail": {
                         "title": "Detail",
                         "type": "array",
-                        "items": {"$ref": "#/components/schemas/ValidationError"},
+                        "items": {
+                            "$ref": "#/components/schemas/ValidationError"
+                        },
                     }
                 },
             },
@@ -6606,10 +8653,18 @@ openapi_schema = {
                     "loc": {
                         "title": "Location",
                         "type": "array",
-                        "items": {"type": "string"},
+                        "items": {
+                            "type": "string"
+                        },
                     },
-                    "msg": {"title": "Message", "type": "string"},
-                    "type": {"title": "Error Type", "type": "string"},
+                    "msg": {
+                        "title": "Message",
+                        "type": "string"
+                    },
+                    "type": {
+                        "title": "Error Type",
+                        "type": "string"
+                    },
                 },
             },
         }

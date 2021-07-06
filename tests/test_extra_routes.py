@@ -54,68 +54,89 @@ client = TestClient(app)
 
 openapi_schema = {
     "openapi": "3.0.2",
-    "info": {"title": "FastAPI", "version": "0.1.0"},
+    "info": {
+        "title": "FastAPI",
+        "version": "0.1.0"
+    },
     "paths": {
         "/items/{item_id}": {
             "get": {
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/json": {"schema": {}}},
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        },
                     },
                     "422": {
                         "description": "Validation Error",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                    "$ref":
+                                    "#/components/schemas/HTTPValidationError"
                                 }
                             }
                         },
                     },
                 },
-                "summary": "Get Items",
-                "operationId": "get_items_items__item_id__get",
-                "parameters": [
-                    {
-                        "required": True,
-                        "schema": {"title": "Item Id", "type": "string"},
-                        "name": "item_id",
-                        "in": "path",
-                    }
-                ],
+                "summary":
+                "Get Items",
+                "operationId":
+                "get_items_items__item_id__get",
+                "parameters": [{
+                    "required": True,
+                    "schema": {
+                        "title": "Item Id",
+                        "type": "string"
+                    },
+                    "name": "item_id",
+                    "in": "path",
+                }],
             },
             "delete": {
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/json": {"schema": {}}},
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        },
                     },
                     "422": {
                         "description": "Validation Error",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                    "$ref":
+                                    "#/components/schemas/HTTPValidationError"
                                 }
                             }
                         },
                     },
                 },
-                "summary": "Delete Item",
-                "operationId": "delete_item_items__item_id__delete",
-                "parameters": [
-                    {
-                        "required": True,
-                        "schema": {"title": "Item Id", "type": "string"},
-                        "name": "item_id",
-                        "in": "path",
-                    }
-                ],
+                "summary":
+                "Delete Item",
+                "operationId":
+                "delete_item_items__item_id__delete",
+                "parameters": [{
+                    "required": True,
+                    "schema": {
+                        "title": "Item Id",
+                        "type": "string"
+                    },
+                    "name": "item_id",
+                    "in": "path",
+                }],
                 "requestBody": {
                     "content": {
                         "application/json": {
-                            "schema": {"$ref": "#/components/schemas/Item"}
+                            "schema": {
+                                "$ref": "#/components/schemas/Item"
+                            }
                         }
                     },
                     "required": True,
@@ -125,89 +146,115 @@ openapi_schema = {
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/json": {"schema": {}}},
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        },
                     },
                     "422": {
                         "description": "Validation Error",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                    "$ref":
+                                    "#/components/schemas/HTTPValidationError"
                                 }
                             }
                         },
                     },
                 },
-                "summary": "Options Item",
-                "operationId": "options_item_items__item_id__options",
-                "parameters": [
-                    {
-                        "required": True,
-                        "schema": {"title": "Item Id", "type": "string"},
-                        "name": "item_id",
-                        "in": "path",
-                    }
-                ],
+                "summary":
+                "Options Item",
+                "operationId":
+                "options_item_items__item_id__options",
+                "parameters": [{
+                    "required": True,
+                    "schema": {
+                        "title": "Item Id",
+                        "type": "string"
+                    },
+                    "name": "item_id",
+                    "in": "path",
+                }],
             },
             "head": {
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/json": {"schema": {}}},
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        },
                     },
                     "422": {
                         "description": "Validation Error",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                    "$ref":
+                                    "#/components/schemas/HTTPValidationError"
                                 }
                             }
                         },
                     },
                 },
-                "summary": "Head Item",
-                "operationId": "head_item_items__item_id__head",
-                "parameters": [
-                    {
-                        "required": True,
-                        "schema": {"title": "Item Id", "type": "string"},
-                        "name": "item_id",
-                        "in": "path",
-                    }
-                ],
+                "summary":
+                "Head Item",
+                "operationId":
+                "head_item_items__item_id__head",
+                "parameters": [{
+                    "required": True,
+                    "schema": {
+                        "title": "Item Id",
+                        "type": "string"
+                    },
+                    "name": "item_id",
+                    "in": "path",
+                }],
             },
             "patch": {
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/json": {"schema": {}}},
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        },
                     },
                     "422": {
                         "description": "Validation Error",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                    "$ref":
+                                    "#/components/schemas/HTTPValidationError"
                                 }
                             }
                         },
                     },
                 },
-                "summary": "Patch Item",
-                "operationId": "patch_item_items__item_id__patch",
-                "parameters": [
-                    {
-                        "required": True,
-                        "schema": {"title": "Item Id", "type": "string"},
-                        "name": "item_id",
-                        "in": "path",
-                    }
-                ],
+                "summary":
+                "Patch Item",
+                "operationId":
+                "patch_item_items__item_id__patch",
+                "parameters": [{
+                    "required": True,
+                    "schema": {
+                        "title": "Item Id",
+                        "type": "string"
+                    },
+                    "name": "item_id",
+                    "in": "path",
+                }],
                 "requestBody": {
                     "content": {
                         "application/json": {
-                            "schema": {"$ref": "#/components/schemas/Item"}
+                            "schema": {
+                                "$ref": "#/components/schemas/Item"
+                            }
                         }
                     },
                     "required": True,
@@ -217,29 +264,37 @@ openapi_schema = {
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/json": {"schema": {}}},
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        },
                     },
                     "422": {
                         "description": "Validation Error",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                    "$ref":
+                                    "#/components/schemas/HTTPValidationError"
                                 }
                             }
                         },
                     },
                 },
-                "summary": "Trace Item",
-                "operationId": "trace_item_items__item_id__trace",
-                "parameters": [
-                    {
-                        "required": True,
-                        "schema": {"title": "Item Id", "type": "string"},
-                        "name": "item_id",
-                        "in": "path",
-                    }
-                ],
+                "summary":
+                "Trace Item",
+                "operationId":
+                "trace_item_items__item_id__trace",
+                "parameters": [{
+                    "required": True,
+                    "schema": {
+                        "title": "Item Id",
+                        "type": "string"
+                    },
+                    "name": "item_id",
+                    "in": "path",
+                }],
             },
         },
         "/items-not-decorated/{item_id}": {
@@ -247,29 +302,37 @@ openapi_schema = {
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/json": {"schema": {}}},
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        },
                     },
                     "422": {
                         "description": "Validation Error",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                    "$ref":
+                                    "#/components/schemas/HTTPValidationError"
                                 }
                             }
                         },
                     },
                 },
-                "summary": "Get Not Decorated",
-                "operationId": "get_not_decorated_items_not_decorated__item_id__get",
-                "parameters": [
-                    {
-                        "required": True,
-                        "schema": {"title": "Item Id", "type": "string"},
-                        "name": "item_id",
-                        "in": "path",
-                    }
-                ],
+                "summary":
+                "Get Not Decorated",
+                "operationId":
+                "get_not_decorated_items_not_decorated__item_id__get",
+                "parameters": [{
+                    "required": True,
+                    "schema": {
+                        "title": "Item Id",
+                        "type": "string"
+                    },
+                    "name": "item_id",
+                    "in": "path",
+                }],
             }
         },
     },
@@ -280,8 +343,14 @@ openapi_schema = {
                 "required": ["name"],
                 "type": "object",
                 "properties": {
-                    "name": {"title": "Name", "type": "string"},
-                    "price": {"title": "Price", "type": "number"},
+                    "name": {
+                        "title": "Name",
+                        "type": "string"
+                    },
+                    "price": {
+                        "title": "Price",
+                        "type": "number"
+                    },
                 },
             },
             "ValidationError": {
@@ -292,10 +361,18 @@ openapi_schema = {
                     "loc": {
                         "title": "Location",
                         "type": "array",
-                        "items": {"type": "string"},
+                        "items": {
+                            "type": "string"
+                        },
                     },
-                    "msg": {"title": "Message", "type": "string"},
-                    "type": {"title": "Error Type", "type": "string"},
+                    "msg": {
+                        "title": "Message",
+                        "type": "string"
+                    },
+                    "type": {
+                        "title": "Error Type",
+                        "type": "string"
+                    },
                 },
             },
             "HTTPValidationError": {
@@ -305,7 +382,9 @@ openapi_schema = {
                     "detail": {
                         "title": "Detail",
                         "type": "array",
-                        "items": {"$ref": "#/components/schemas/ValidationError"},
+                        "items": {
+                            "$ref": "#/components/schemas/ValidationError"
+                        },
                     }
                 },
             },
@@ -335,7 +414,13 @@ def test_get_api_route_not_decorated():
 def test_delete():
     response = client.delete("/items/foo", json={"name": "Foo"})
     assert response.status_code == 200, response.text
-    assert response.json() == {"item_id": "foo", "item": {"name": "Foo", "price": None}}
+    assert response.json() == {
+        "item_id": "foo",
+        "item": {
+            "name": "Foo",
+            "price": None
+        }
+    }
 
 
 def test_head():
@@ -353,7 +438,13 @@ def test_options():
 def test_patch():
     response = client.patch("/items/foo", json={"name": "Foo"})
     assert response.status_code == 200, response.text
-    assert response.json() == {"item_id": "foo", "item": {"name": "Foo", "price": None}}
+    assert response.json() == {
+        "item_id": "foo",
+        "item": {
+            "name": "Foo",
+            "price": None
+        }
+    }
 
 
 def test_trace():

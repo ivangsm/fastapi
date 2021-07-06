@@ -7,44 +7,65 @@ client = TestClient(app)
 
 openapi_schema = {
     "openapi": "3.0.2",
-    "info": {"title": "FastAPI", "version": "0.1.0"},
+    "info": {
+        "title": "FastAPI",
+        "version": "0.1.0"
+    },
     "paths": {
         "/items/": {
             "get": {
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/json": {"schema": {}}},
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        },
                     },
                     "422": {
                         "description": "Validation Error",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                    "$ref":
+                                    "#/components/schemas/HTTPValidationError"
                                 }
                             }
                         },
                     },
                 },
-                "summary": "Read Items",
-                "operationId": "read_items_items__get",
+                "summary":
+                "Read Items",
+                "operationId":
+                "read_items_items__get",
                 "parameters": [
                     {
                         "required": False,
-                        "schema": {"title": "Q", "type": "string"},
+                        "schema": {
+                            "title": "Q",
+                            "type": "string"
+                        },
                         "name": "q",
                         "in": "query",
                     },
                     {
                         "required": False,
-                        "schema": {"title": "Skip", "type": "integer", "default": 0},
+                        "schema": {
+                            "title": "Skip",
+                            "type": "integer",
+                            "default": 0
+                        },
                         "name": "skip",
                         "in": "query",
                     },
                     {
                         "required": False,
-                        "schema": {"title": "Limit", "type": "integer", "default": 100},
+                        "schema": {
+                            "title": "Limit",
+                            "type": "integer",
+                            "default": 100
+                        },
                         "name": "limit",
                         "in": "query",
                     },
@@ -62,10 +83,18 @@ openapi_schema = {
                     "loc": {
                         "title": "Location",
                         "type": "array",
-                        "items": {"type": "string"},
+                        "items": {
+                            "type": "string"
+                        },
                     },
-                    "msg": {"title": "Message", "type": "string"},
-                    "type": {"title": "Error Type", "type": "string"},
+                    "msg": {
+                        "title": "Message",
+                        "type": "string"
+                    },
+                    "type": {
+                        "title": "Error Type",
+                        "type": "string"
+                    },
                 },
             },
             "HTTPValidationError": {
@@ -75,7 +104,9 @@ openapi_schema = {
                     "detail": {
                         "title": "Detail",
                         "type": "array",
-                        "items": {"$ref": "#/components/schemas/ValidationError"},
+                        "items": {
+                            "$ref": "#/components/schemas/ValidationError"
+                        },
                     }
                 },
             },
@@ -98,9 +129,15 @@ def test_openapi_schema():
             200,
             {
                 "items": [
-                    {"item_name": "Foo"},
-                    {"item_name": "Bar"},
-                    {"item_name": "Baz"},
+                    {
+                        "item_name": "Foo"
+                    },
+                    {
+                        "item_name": "Bar"
+                    },
+                    {
+                        "item_name": "Baz"
+                    },
                 ]
             },
         ),
@@ -109,32 +146,63 @@ def test_openapi_schema():
             200,
             {
                 "items": [
-                    {"item_name": "Foo"},
-                    {"item_name": "Bar"},
-                    {"item_name": "Baz"},
+                    {
+                        "item_name": "Foo"
+                    },
+                    {
+                        "item_name": "Bar"
+                    },
+                    {
+                        "item_name": "Baz"
+                    },
                 ],
-                "q": "foo",
+                "q":
+                "foo",
             },
         ),
         (
             "/items?q=foo&skip=1",
             200,
-            {"items": [{"item_name": "Bar"}, {"item_name": "Baz"}], "q": "foo"},
+            {
+                "items": [{
+                    "item_name": "Bar"
+                }, {
+                    "item_name": "Baz"
+                }],
+                "q": "foo"
+            },
         ),
         (
             "/items?q=bar&limit=2",
             200,
-            {"items": [{"item_name": "Foo"}, {"item_name": "Bar"}], "q": "bar"},
+            {
+                "items": [{
+                    "item_name": "Foo"
+                }, {
+                    "item_name": "Bar"
+                }],
+                "q": "bar"
+            },
         ),
         (
             "/items?q=bar&skip=1&limit=1",
             200,
-            {"items": [{"item_name": "Bar"}], "q": "bar"},
+            {
+                "items": [{
+                    "item_name": "Bar"
+                }],
+                "q": "bar"
+            },
         ),
         (
             "/items?limit=1&q=bar&skip=1",
             200,
-            {"items": [{"item_name": "Bar"}], "q": "bar"},
+            {
+                "items": [{
+                    "item_name": "Bar"
+                }],
+                "q": "bar"
+            },
         ),
     ],
 )

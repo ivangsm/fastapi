@@ -11,11 +11,16 @@ class Item(BaseModel):
 
 
 responses = {
-    404: {"description": "Item not found"},
-    302: {"description": "The item was moved"},
-    403: {"description": "Not enough privileges"},
+    404: {
+        "description": "Item not found"
+    },
+    302: {
+        "description": "The item was moved"
+    },
+    403: {
+        "description": "Not enough privileges"
+    },
 }
-
 
 app = FastAPI()
 
@@ -23,7 +28,13 @@ app = FastAPI()
 @app.get(
     "/items/{item_id}",
     response_model=Item,
-    responses={**responses, 200: {"content": {"image/png": {}}}},
+    responses={
+        **responses, 200: {
+            "content": {
+                "image/png": {}
+            }
+        }
+    },
 )
 async def read_item(item_id: str, img: Optional[bool] = None):
     if img:

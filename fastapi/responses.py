@@ -13,7 +13,6 @@ try:
 except ImportError:  # pragma: nocover
     ujson = None  # type: ignore
 
-
 try:
     import orjson
 except ImportError:  # pragma: nocover

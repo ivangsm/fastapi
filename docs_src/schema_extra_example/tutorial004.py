@@ -32,7 +32,8 @@ async def update_item(
             },
             "converted": {
                 "summary": "An example with converted data",
-                "description": "FastAPI can convert price `strings` to actual `numbers` automatically",
+                "description":
+                "FastAPI can convert price `strings` to actual `numbers` automatically",
                 "value": {
                     "name": "Bar",
                     "price": "35.4",

@@ -13,8 +13,12 @@ async def a():
 @router.get(
     "/b",
     responses={
-        502: {"description": "Error 2"},
-        "4XX": {"description": "Error with range, upper"},
+        502: {
+            "description": "Error 2"
+        },
+        "4XX": {
+            "description": "Error with range, upper"
+        },
     },
 )
 async def b():
@@ -24,9 +28,15 @@ async def b():
 @router.get(
     "/c",
     responses={
-        "400": {"description": "Error with str"},
-        "5xx": {"description": "Error with range, lower"},
-        "default": {"description": "A default response"},
+        "400": {
+            "description": "Error with str"
+        },
+        "5xx": {
+            "description": "Error with range, lower"
+        },
+        "default": {
+            "description": "A default response"
+        },
     },
 )
 async def c():
@@ -37,15 +47,24 @@ app.include_router(router)
 
 openapi_schema = {
     "openapi": "3.0.2",
-    "info": {"title": "FastAPI", "version": "0.1.0"},
+    "info": {
+        "title": "FastAPI",
+        "version": "0.1.0"
+    },
     "paths": {
         "/a": {
             "get": {
                 "responses": {
-                    "501": {"description": "Error 1"},
+                    "501": {
+                        "description": "Error 1"
+                    },
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/json": {"schema": {}}},
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        },
                     },
                 },
                 "summary": "A",
@@ -55,11 +74,19 @@ openapi_schema = {
         "/b": {
             "get": {
                 "responses": {
-                    "502": {"description": "Error 2"},
-                    "4XX": {"description": "Error with range, upper"},
+                    "502": {
+                        "description": "Error 2"
+                    },
+                    "4XX": {
+                        "description": "Error with range, upper"
+                    },
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/json": {"schema": {}}},
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        },
                     },
                 },
                 "summary": "B",
@@ -69,13 +96,23 @@ openapi_schema = {
         "/c": {
             "get": {
                 "responses": {
-                    "400": {"description": "Error with str"},
-                    "5XX": {"description": "Error with range, lower"},
+                    "400": {
+                        "description": "Error with str"
+                    },
+                    "5XX": {
+                        "description": "Error with range, lower"
+                    },
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/json": {"schema": {}}},
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        },
                     },
-                    "default": {"description": "A default response"},
+                    "default": {
+                        "description": "A default response"
+                    },
                 },
                 "summary": "C",
                 "operationId": "c_c_get",
