@@ -70,7 +70,7 @@ def _prepare_response_content(
             exclude_defaults=exclude_defaults,
             exclude_none=exclude_none,
         )
-    elif isinstance(res, list):
+    if isinstance(res, list):
         return [
             _prepare_response_content(
                 item,
@@ -80,7 +80,7 @@ def _prepare_response_content(
             )
             for item in res
         ]
-    elif isinstance(res, dict):
+    if isinstance(res, dict):
         return {
             k: _prepare_response_content(
                 v,
@@ -134,8 +134,7 @@ async def serialize_response(
             exclude_defaults=exclude_defaults,
             exclude_none=exclude_none,
         )
-    else:
-        return jsonable_encoder(response_content)
+    return jsonable_encoder(response_content)
 
 
 async def run_endpoint_function(
@@ -147,8 +146,7 @@ async def run_endpoint_function(
 
     if is_coroutine:
         return await dependant.call(**values)
-    else:
-        return await run_in_threadpool(dependant.call, **values)
+    return await run_in_threadpool(dependant.call, **values)
 
 
 def get_request_handler(
