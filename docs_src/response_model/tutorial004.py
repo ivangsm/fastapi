@@ -15,12 +15,28 @@ class Item(BaseModel):
 
 
 items = {
-    "foo": {"name": "Foo", "price": 50.2},
-    "bar": {"name": "Bar", "description": "The bartenders", "price": 62, "tax": 20.2},
-    "baz": {"name": "Baz", "description": None, "price": 50.2, "tax": 10.5, "tags": []},
+    "foo": {
+        "name": "Foo",
+        "price": 50.2
+    },
+    "bar": {
+        "name": "Bar",
+        "description": "The bartenders",
+        "price": 62,
+        "tax": 20.2
+    },
+    "baz": {
+        "name": "Baz",
+        "description": None,
+        "price": 50.2,
+        "tax": 10.5,
+        "tags": []
+    },
 }
 
 
-@app.get("/items/{item_id}", response_model=Item, response_model_exclude_unset=True)
+@app.get("/items/{item_id}",
+         response_model=Item,
+         response_model_exclude_unset=True)
 async def read_item(item_id: str):
     return items[item_id]

@@ -16,4 +16,5 @@ def test():
     assert response.status_code == 200, response.text
     assert response.json() == {"message": "Message sent"}
     with open("./log.txt") as f:
-        assert "found query: some-query\nmessage to foo@example.com" in f.read()
+        assert "found query: some-query\nmessage to foo@example.com" in f.read(
+        )

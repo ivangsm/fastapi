@@ -25,7 +25,10 @@ def f():
 
 openapi_schema = {
     "openapi": "3.0.2",
-    "info": {"title": "FastAPI", "version": "0.1.0"},
+    "info": {
+        "title": "FastAPI",
+        "version": "0.1.0"
+    },
     "paths": {
         "/": {
             "get": {
@@ -36,7 +39,9 @@ openapi_schema = {
                         "description": "Successful Response",
                         "content": {
                             "application/json": {
-                                "schema": {"$ref": "#/components/schemas/Model3"}
+                                "schema": {
+                                    "$ref": "#/components/schemas/Model3"
+                                }
                             }
                         },
                     }
@@ -46,26 +51,37 @@ openapi_schema = {
     },
     "components": {
         "schemas": {
-            "Model": {"title": "Model", "type": "object", "properties": {}},
+            "Model": {
+                "title": "Model",
+                "type": "object",
+                "properties": {}
+            },
             "Model2": {
                 "title": "Model2",
                 "required": ["a"],
                 "type": "object",
-                "properties": {"a": {"$ref": "#/components/schemas/Model"}},
+                "properties": {
+                    "a": {
+                        "$ref": "#/components/schemas/Model"
+                    }
+                },
             },
             "Model3": {
                 "title": "Model3",
                 "required": ["c", "d"],
                 "type": "object",
                 "properties": {
-                    "c": {"$ref": "#/components/schemas/Model"},
-                    "d": {"$ref": "#/components/schemas/Model2"},
+                    "c": {
+                        "$ref": "#/components/schemas/Model"
+                    },
+                    "d": {
+                        "$ref": "#/components/schemas/Model2"
+                    },
                 },
             },
         }
     },
 }
-
 
 client = TestClient(app)
 

@@ -15,7 +15,6 @@ app = FastAPI()
 
 app.get("/")(endpoint)
 
-
 client = TestClient(app)
 
 

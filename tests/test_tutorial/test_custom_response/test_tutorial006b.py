@@ -4,16 +4,22 @@ from docs_src.custom_response.tutorial006b import app
 
 client = TestClient(app)
 
-
 openapi_schema = {
     "openapi": "3.0.2",
-    "info": {"title": "FastAPI", "version": "0.1.0"},
+    "info": {
+        "title": "FastAPI",
+        "version": "0.1.0"
+    },
     "paths": {
         "/fastapi": {
             "get": {
                 "summary": "Redirect Fastapi",
                 "operationId": "redirect_fastapi_fastapi_get",
-                "responses": {"307": {"description": "Successful Response"}},
+                "responses": {
+                    "307": {
+                        "description": "Successful Response"
+                    }
+                },
             }
         }
     },

@@ -96,19 +96,18 @@ def get_b_a_c_path_override():
     return {"msg": "Hello B A C"}
 
 
-router_b_a.include_router(
-    router_b_a_c_override, prefix="/c", default_response_class=HTMLResponse
-)
+router_b_a.include_router(router_b_a_c_override,
+                          prefix="/c",
+                          default_response_class=HTMLResponse)
 router_b_override.include_router(router_b_a, prefix="/a")
 router_a.include_router(router_a_a, prefix="/a")
-router_a.include_router(
-    router_a_b_override, prefix="/b", default_response_class=PlainTextResponse
-)
+router_a.include_router(router_a_b_override,
+                        prefix="/b",
+                        default_response_class=PlainTextResponse)
 app.include_router(router_a, prefix="/a")
-app.include_router(
-    router_b_override, prefix="/b", default_response_class=PlainTextResponse
-)
-
+app.include_router(router_b_override,
+                   prefix="/b",
+                   default_response_class=PlainTextResponse)
 
 client = TestClient(app)
 

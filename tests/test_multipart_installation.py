@@ -7,7 +7,8 @@ from fastapi.dependencies.utils import (
 
 
 def test_incorrect_multipart_installed_form(monkeypatch):
-    monkeypatch.delattr("multipart.multipart.parse_options_header", raising=False)
+    monkeypatch.delattr("multipart.multipart.parse_options_header",
+                        raising=False)
     with pytest.raises(RuntimeError, match=multipart_incorrect_install_error):
         app = FastAPI()
 
@@ -17,7 +18,8 @@ def test_incorrect_multipart_installed_form(monkeypatch):
 
 
 def test_incorrect_multipart_installed_file_upload(monkeypatch):
-    monkeypatch.delattr("multipart.multipart.parse_options_header", raising=False)
+    monkeypatch.delattr("multipart.multipart.parse_options_header",
+                        raising=False)
     with pytest.raises(RuntimeError, match=multipart_incorrect_install_error):
         app = FastAPI()
 
@@ -27,7 +29,8 @@ def test_incorrect_multipart_installed_file_upload(monkeypatch):
 
 
 def test_incorrect_multipart_installed_file_bytes(monkeypatch):
-    monkeypatch.delattr("multipart.multipart.parse_options_header", raising=False)
+    monkeypatch.delattr("multipart.multipart.parse_options_header",
+                        raising=False)
     with pytest.raises(RuntimeError, match=multipart_incorrect_install_error):
         app = FastAPI()
 
@@ -37,7 +40,8 @@ def test_incorrect_multipart_installed_file_bytes(monkeypatch):
 
 
 def test_incorrect_multipart_installed_multi_form(monkeypatch):
-    monkeypatch.delattr("multipart.multipart.parse_options_header", raising=False)
+    monkeypatch.delattr("multipart.multipart.parse_options_header",
+                        raising=False)
     with pytest.raises(RuntimeError, match=multipart_incorrect_install_error):
         app = FastAPI()
 
@@ -47,7 +51,8 @@ def test_incorrect_multipart_installed_multi_form(monkeypatch):
 
 
 def test_incorrect_multipart_installed_form_file(monkeypatch):
-    monkeypatch.delattr("multipart.multipart.parse_options_header", raising=False)
+    monkeypatch.delattr("multipart.multipart.parse_options_header",
+                        raising=False)
     with pytest.raises(RuntimeError, match=multipart_incorrect_install_error):
         app = FastAPI()
 

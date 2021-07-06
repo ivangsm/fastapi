@@ -6,22 +6,33 @@ client = TestClient(app)
 
 openapi_schema = {
     "openapi": "3.0.2",
-    "info": {"title": "FastAPI", "version": "0.1.0"},
+    "info": {
+        "title": "FastAPI",
+        "version": "0.1.0"
+    },
     "paths": {
         "/items/": {
             "get": {
-                "summary": "Read Items",
-                "operationId": "read_items_items__get",
+                "summary":
+                "Read Items",
+                "operationId":
+                "read_items_items__get",
                 "parameters": [
                     {
                         "required": True,
-                        "schema": {"title": "X-Token", "type": "string"},
+                        "schema": {
+                            "title": "X-Token",
+                            "type": "string"
+                        },
                         "name": "x-token",
                         "in": "header",
                     },
                     {
                         "required": True,
-                        "schema": {"title": "X-Key", "type": "string"},
+                        "schema": {
+                            "title": "X-Key",
+                            "type": "string"
+                        },
                         "name": "x-key",
                         "in": "header",
                     },
@@ -29,14 +40,19 @@ openapi_schema = {
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/json": {"schema": {}}},
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        },
                     },
                     "422": {
                         "description": "Validation Error",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                    "$ref":
+                                    "#/components/schemas/HTTPValidationError"
                                 }
                             }
                         },
@@ -46,18 +62,26 @@ openapi_schema = {
         },
         "/users/": {
             "get": {
-                "summary": "Read Users",
-                "operationId": "read_users_users__get",
+                "summary":
+                "Read Users",
+                "operationId":
+                "read_users_users__get",
                 "parameters": [
                     {
                         "required": True,
-                        "schema": {"title": "X-Token", "type": "string"},
+                        "schema": {
+                            "title": "X-Token",
+                            "type": "string"
+                        },
                         "name": "x-token",
                         "in": "header",
                     },
                     {
                         "required": True,
-                        "schema": {"title": "X-Key", "type": "string"},
+                        "schema": {
+                            "title": "X-Key",
+                            "type": "string"
+                        },
                         "name": "x-key",
                         "in": "header",
                     },
@@ -65,14 +89,19 @@ openapi_schema = {
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/json": {"schema": {}}},
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        },
                     },
                     "422": {
                         "description": "Validation Error",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                    "$ref":
+                                    "#/components/schemas/HTTPValidationError"
                                 }
                             }
                         },
@@ -90,7 +119,9 @@ openapi_schema = {
                     "detail": {
                         "title": "Detail",
                         "type": "array",
-                        "items": {"$ref": "#/components/schemas/ValidationError"},
+                        "items": {
+                            "$ref": "#/components/schemas/ValidationError"
+                        },
                     }
                 },
             },
@@ -102,10 +133,18 @@ openapi_schema = {
                     "loc": {
                         "title": "Location",
                         "type": "array",
-                        "items": {"type": "string"},
+                        "items": {
+                            "type": "string"
+                        },
                     },
-                    "msg": {"title": "Message", "type": "string"},
-                    "type": {"title": "Error Type", "type": "string"},
+                    "msg": {
+                        "title": "Message",
+                        "type": "string"
+                    },
+                    "type": {
+                        "title": "Error Type",
+                        "type": "string"
+                    },
                 },
             },
         }
@@ -170,17 +209,21 @@ def test_get_invalid_one_users():
 
 
 def test_get_invalid_second_header_items():
-    response = client.get(
-        "/items/", headers={"X-Token": "fake-super-secret-token", "X-Key": "invalid"}
-    )
+    response = client.get("/items/",
+                          headers={
+                              "X-Token": "fake-super-secret-token",
+                              "X-Key": "invalid"
+                          })
     assert response.status_code == 400, response.text
     assert response.json() == {"detail": "X-Key header invalid"}
 
 
 def test_get_invalid_second_header_users():
-    response = client.get(
-        "/users/", headers={"X-Token": "fake-super-secret-token", "X-Key": "invalid"}
-    )
+    response = client.get("/users/",
+                          headers={
+                              "X-Token": "fake-super-secret-token",
+                              "X-Key": "invalid"
+                          })
     assert response.status_code == 400, response.text
     assert response.json() == {"detail": "X-Key header invalid"}
 

@@ -7,7 +7,10 @@ client = TestClient(app)
 
 openapi_schema = {
     "openapi": "3.0.2",
-    "info": {"title": "FastAPI", "version": "0.1.0"},
+    "info": {
+        "title": "FastAPI",
+        "version": "0.1.0"
+    },
     "paths": {
         "/items/{item_id}": {
             "get": {
@@ -16,7 +19,9 @@ openapi_schema = {
                         "description": "Successful Response",
                         "content": {
                             "application/json": {
-                                "schema": {"$ref": "#/components/schemas/Item"}
+                                "schema": {
+                                    "$ref": "#/components/schemas/Item"
+                                }
                             }
                         },
                     },
@@ -25,22 +30,26 @@ openapi_schema = {
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                    "$ref":
+                                    "#/components/schemas/HTTPValidationError"
                                 }
                             }
                         },
                     },
                 },
-                "summary": "Read Item",
-                "operationId": "read_item_items__item_id__get",
-                "parameters": [
-                    {
-                        "required": True,
-                        "schema": {"title": "Item Id", "type": "string"},
-                        "name": "item_id",
-                        "in": "path",
-                    }
-                ],
+                "summary":
+                "Read Item",
+                "operationId":
+                "read_item_items__item_id__get",
+                "parameters": [{
+                    "required": True,
+                    "schema": {
+                        "title": "Item Id",
+                        "type": "string"
+                    },
+                    "name": "item_id",
+                    "in": "path",
+                }],
             }
         }
     },
@@ -51,14 +60,29 @@ openapi_schema = {
                 "required": ["name", "price"],
                 "type": "object",
                 "properties": {
-                    "name": {"title": "Name", "type": "string"},
-                    "price": {"title": "Price", "type": "number"},
-                    "description": {"title": "Description", "type": "string"},
-                    "tax": {"title": "Tax", "type": "number", "default": 10.5},
+                    "name": {
+                        "title": "Name",
+                        "type": "string"
+                    },
+                    "price": {
+                        "title": "Price",
+                        "type": "number"
+                    },
+                    "description": {
+                        "title": "Description",
+                        "type": "string"
+                    },
+                    "tax": {
+                        "title": "Tax",
+                        "type": "number",
+                        "default": 10.5
+                    },
                     "tags": {
                         "title": "Tags",
                         "type": "array",
-                        "items": {"type": "string"},
+                        "items": {
+                            "type": "string"
+                        },
                         "default": [],
                     },
                 },
@@ -71,10 +95,18 @@ openapi_schema = {
                     "loc": {
                         "title": "Location",
                         "type": "array",
-                        "items": {"type": "string"},
+                        "items": {
+                            "type": "string"
+                        },
                     },
-                    "msg": {"title": "Message", "type": "string"},
-                    "type": {"title": "Error Type", "type": "string"},
+                    "msg": {
+                        "title": "Message",
+                        "type": "string"
+                    },
+                    "type": {
+                        "title": "Error Type",
+                        "type": "string"
+                    },
                 },
             },
             "HTTPValidationError": {
@@ -84,7 +116,9 @@ openapi_schema = {
                     "detail": {
                         "title": "Detail",
                         "type": "array",
-                        "items": {"$ref": "#/components/schemas/ValidationError"},
+                        "items": {
+                            "$ref": "#/components/schemas/ValidationError"
+                        },
                     }
                 },
             },
@@ -102,10 +136,18 @@ def test_openapi_schema():
 @pytest.mark.parametrize(
     "url,data",
     [
-        ("/items/foo", {"name": "Foo", "price": 50.2}),
+        ("/items/foo", {
+            "name": "Foo",
+            "price": 50.2
+        }),
         (
             "/items/bar",
-            {"name": "Bar", "description": "The bartenders", "price": 62, "tax": 20.2},
+            {
+                "name": "Bar",
+                "description": "The bartenders",
+                "price": 62,
+                "tax": 20.2
+            },
         ),
         (
             "/items/baz",

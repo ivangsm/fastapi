@@ -15,9 +15,9 @@ def test_main():
 
 def test_websocket_with_cookie():
     with pytest.raises(WebSocketDisconnect):
-        with client.websocket_connect(
-            "/items/foo/ws", cookies={"session": "fakesession"}
-        ) as websocket:
+        with client.websocket_connect("/items/foo/ws",
+                                      cookies={"session":
+                                               "fakesession"}) as websocket:
             message = "Message one"
             websocket.send_text(message)
             data = websocket.receive_text()
@@ -34,7 +34,8 @@ def test_websocket_with_cookie():
 
 def test_websocket_with_header():
     with pytest.raises(WebSocketDisconnect):
-        with client.websocket_connect("/items/bar/ws?token=some-token") as websocket:
+        with client.websocket_connect(
+                "/items/bar/ws?token=some-token") as websocket:
             message = "Message one"
             websocket.send_text(message)
             data = websocket.receive_text()
@@ -51,7 +52,8 @@ def test_websocket_with_header():
 
 def test_websocket_with_header_and_query():
     with pytest.raises(WebSocketDisconnect):
-        with client.websocket_connect("/items/2/ws?q=3&token=some-token") as websocket:
+        with client.websocket_connect(
+                "/items/2/ws?q=3&token=some-token") as websocket:
             message = "Message one"
             websocket.send_text(message)
             data = websocket.receive_text()

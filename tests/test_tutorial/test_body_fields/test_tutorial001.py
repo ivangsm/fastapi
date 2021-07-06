@@ -5,44 +5,55 @@ from docs_src.body_fields.tutorial001 import app
 
 client = TestClient(app)
 
-
 openapi_schema = {
     "openapi": "3.0.2",
-    "info": {"title": "FastAPI", "version": "0.1.0"},
+    "info": {
+        "title": "FastAPI",
+        "version": "0.1.0"
+    },
     "paths": {
         "/items/{item_id}": {
             "put": {
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/json": {"schema": {}}},
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        },
                     },
                     "422": {
                         "description": "Validation Error",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                    "$ref":
+                                    "#/components/schemas/HTTPValidationError"
                                 }
                             }
                         },
                     },
                 },
-                "summary": "Update Item",
-                "operationId": "update_item_items__item_id__put",
-                "parameters": [
-                    {
-                        "required": True,
-                        "schema": {"title": "Item Id", "type": "integer"},
-                        "name": "item_id",
-                        "in": "path",
-                    }
-                ],
+                "summary":
+                "Update Item",
+                "operationId":
+                "update_item_items__item_id__put",
+                "parameters": [{
+                    "required": True,
+                    "schema": {
+                        "title": "Item Id",
+                        "type": "integer"
+                    },
+                    "name": "item_id",
+                    "in": "path",
+                }],
                 "requestBody": {
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/Body_update_item_items__item_id__put"
+                                "$ref":
+                                "#/components/schemas/Body_update_item_items__item_id__put"
                             }
                         }
                     },
@@ -58,7 +69,10 @@ openapi_schema = {
                 "required": ["name", "price"],
                 "type": "object",
                 "properties": {
-                    "name": {"title": "Name", "type": "string"},
+                    "name": {
+                        "title": "Name",
+                        "type": "string"
+                    },
                     "description": {
                         "title": "The description of the item",
                         "maxLength": 300,
@@ -70,14 +84,21 @@ openapi_schema = {
                         "type": "number",
                         "description": "The price must be greater than zero",
                     },
-                    "tax": {"title": "Tax", "type": "number"},
+                    "tax": {
+                        "title": "Tax",
+                        "type": "number"
+                    },
                 },
             },
             "Body_update_item_items__item_id__put": {
                 "title": "Body_update_item_items__item_id__put",
                 "required": ["item"],
                 "type": "object",
-                "properties": {"item": {"$ref": "#/components/schemas/Item"}},
+                "properties": {
+                    "item": {
+                        "$ref": "#/components/schemas/Item"
+                    }
+                },
             },
             "ValidationError": {
                 "title": "ValidationError",
@@ -87,10 +108,18 @@ openapi_schema = {
                     "loc": {
                         "title": "Location",
                         "type": "array",
-                        "items": {"type": "string"},
+                        "items": {
+                            "type": "string"
+                        },
                     },
-                    "msg": {"title": "Message", "type": "string"},
-                    "type": {"title": "Error Type", "type": "string"},
+                    "msg": {
+                        "title": "Message",
+                        "type": "string"
+                    },
+                    "type": {
+                        "title": "Error Type",
+                        "type": "string"
+                    },
                 },
             },
             "HTTPValidationError": {
@@ -100,7 +129,9 @@ openapi_schema = {
                     "detail": {
                         "title": "Detail",
                         "type": "array",
-                        "items": {"$ref": "#/components/schemas/ValidationError"},
+                        "items": {
+                            "$ref": "#/components/schemas/ValidationError"
+                        },
                     }
                 },
             },
@@ -116,14 +147,14 @@ def test_openapi_schema():
 
 
 price_not_greater = {
-    "detail": [
-        {
-            "ctx": {"limit_value": 0},
-            "loc": ["body", "item", "price"],
-            "msg": "ensure this value is greater than 0",
-            "type": "value_error.number.not_gt",
-        }
-    ]
+    "detail": [{
+        "ctx": {
+            "limit_value": 0
+        },
+        "loc": ["body", "item", "price"],
+        "msg": "ensure this value is greater than 0",
+        "type": "value_error.number.not_gt",
+    }]
 }
 
 
@@ -132,11 +163,21 @@ price_not_greater = {
     [
         (
             "/items/5",
-            {"item": {"name": "Foo", "price": 3.0}},
+            {
+                "item": {
+                    "name": "Foo",
+                    "price": 3.0
+                }
+            },
             200,
             {
                 "item_id": 5,
-                "item": {"name": "Foo", "price": 3.0, "description": None, "tax": None},
+                "item": {
+                    "name": "Foo",
+                    "price": 3.0,
+                    "description": None,
+                    "tax": None
+                },
             },
         ),
         (
@@ -160,7 +201,12 @@ price_not_greater = {
                 },
             },
         ),
-        ("/items/5", {"item": {"name": "Foo", "price": -3.0}}, 422, price_not_greater),
+        ("/items/5", {
+            "item": {
+                "name": "Foo",
+                "price": -3.0
+            }
+        }, 422, price_not_greater),
     ],
 )
 def test(path, body, expected_status, expected_response):

@@ -6,7 +6,10 @@ client = TestClient(app)
 
 openapi_schema = {
     "openapi": "3.0.2",
-    "info": {"title": "FastAPI", "version": "0.1.0"},
+    "info": {
+        "title": "FastAPI",
+        "version": "0.1.0"
+    },
     "paths": {
         "/items/{item_id}": {
             "get": {
@@ -16,10 +19,17 @@ openapi_schema = {
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "title": "Response Read Item Items  Item Id  Get",
+                                    "title":
+                                    "Response Read Item Items  Item Id  Get",
                                     "anyOf": [
-                                        {"$ref": "#/components/schemas/PlaneItem"},
-                                        {"$ref": "#/components/schemas/CarItem"},
+                                        {
+                                            "$ref":
+                                            "#/components/schemas/PlaneItem"
+                                        },
+                                        {
+                                            "$ref":
+                                            "#/components/schemas/CarItem"
+                                        },
                                     ],
                                 }
                             }
@@ -30,22 +40,26 @@ openapi_schema = {
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                    "$ref":
+                                    "#/components/schemas/HTTPValidationError"
                                 }
                             }
                         },
                     },
                 },
-                "summary": "Read Item",
-                "operationId": "read_item_items__item_id__get",
-                "parameters": [
-                    {
-                        "required": True,
-                        "schema": {"title": "Item Id", "type": "string"},
-                        "name": "item_id",
-                        "in": "path",
-                    }
-                ],
+                "summary":
+                "Read Item",
+                "operationId":
+                "read_item_items__item_id__get",
+                "parameters": [{
+                    "required": True,
+                    "schema": {
+                        "title": "Item Id",
+                        "type": "string"
+                    },
+                    "name": "item_id",
+                    "in": "path",
+                }],
             }
         }
     },
@@ -56,9 +70,19 @@ openapi_schema = {
                 "required": ["description", "size"],
                 "type": "object",
                 "properties": {
-                    "description": {"title": "Description", "type": "string"},
-                    "type": {"title": "Type", "type": "string", "default": "plane"},
-                    "size": {"title": "Size", "type": "integer"},
+                    "description": {
+                        "title": "Description",
+                        "type": "string"
+                    },
+                    "type": {
+                        "title": "Type",
+                        "type": "string",
+                        "default": "plane"
+                    },
+                    "size": {
+                        "title": "Size",
+                        "type": "integer"
+                    },
                 },
             },
             "CarItem": {
@@ -66,8 +90,15 @@ openapi_schema = {
                 "required": ["description"],
                 "type": "object",
                 "properties": {
-                    "description": {"title": "Description", "type": "string"},
-                    "type": {"title": "Type", "type": "string", "default": "car"},
+                    "description": {
+                        "title": "Description",
+                        "type": "string"
+                    },
+                    "type": {
+                        "title": "Type",
+                        "type": "string",
+                        "default": "car"
+                    },
                 },
             },
             "ValidationError": {
@@ -78,10 +109,18 @@ openapi_schema = {
                     "loc": {
                         "title": "Location",
                         "type": "array",
-                        "items": {"type": "string"},
+                        "items": {
+                            "type": "string"
+                        },
                     },
-                    "msg": {"title": "Message", "type": "string"},
-                    "type": {"title": "Error Type", "type": "string"},
+                    "msg": {
+                        "title": "Message",
+                        "type": "string"
+                    },
+                    "type": {
+                        "title": "Error Type",
+                        "type": "string"
+                    },
                 },
             },
             "HTTPValidationError": {
@@ -91,7 +130,9 @@ openapi_schema = {
                     "detail": {
                         "title": "Detail",
                         "type": "array",
-                        "items": {"$ref": "#/components/schemas/ValidationError"},
+                        "items": {
+                            "$ref": "#/components/schemas/ValidationError"
+                        },
                     }
                 },
             },

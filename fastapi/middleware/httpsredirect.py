@@ -1,3 +1,1 @@
-from starlette.middleware.httpsredirect import (  # noqa
-    HTTPSRedirectMiddleware,
-)
+from starlette.middleware.httpsredirect import HTTPSRedirectMiddleware  # noqa

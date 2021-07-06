@@ -3,7 +3,12 @@ from contextvars import ContextVar
 import peewee
 
 DATABASE_NAME = "test.db"
-db_state_default = {"closed": None, "conn": None, "ctx": None, "transactions": None}
+db_state_default = {
+    "closed": None,
+    "conn": None,
+    "ctx": None,
+    "transactions": None
+}
 db_state = ContextVar("db_state", default=db_state_default.copy())
 
 
