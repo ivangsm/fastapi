@@ -24,7 +24,10 @@ class JsonApiError(BaseModel):
 @app.get(
     "/a/{id}",
     response_class=JsonApiResponse,
-    responses={422: {"description": "Error", "model": JsonApiError}},
+    responses={422: {
+        "description": "Error",
+        "model": JsonApiError
+    }},
 )
 async def a(id):
     pass  # pragma: no cover
@@ -32,7 +35,10 @@ async def a(id):
 
 openapi_schema = {
     "openapi": "3.0.2",
-    "info": {"title": "FastAPI", "version": "0.1.0"},
+    "info": {
+        "title": "FastAPI",
+        "version": "0.1.0"
+    },
     "paths": {
         "/a/{id}": {
             "get": {
@@ -41,25 +47,33 @@ openapi_schema = {
                         "description": "Error",
                         "content": {
                             "application/vnd.api+json": {
-                                "schema": {"$ref": "#/components/schemas/JsonApiError"}
+                                "schema": {
+                                    "$ref": "#/components/schemas/JsonApiError"
+                                }
                             }
                         },
                     },
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/vnd.api+json": {"schema": {}}},
+                        "content": {
+                            "application/vnd.api+json": {
+                                "schema": {}
+                            }
+                        },
                     },
                 },
-                "summary": "A",
-                "operationId": "a_a__id__get",
-                "parameters": [
-                    {
-                        "required": True,
-                        "schema": {"title": "Id"},
-                        "name": "id",
-                        "in": "path",
-                    }
-                ],
+                "summary":
+                "A",
+                "operationId":
+                "a_a__id__get",
+                "parameters": [{
+                    "required": True,
+                    "schema": {
+                        "title": "Id"
+                    },
+                    "name": "id",
+                    "in": "path",
+                }],
             }
         }
     },
@@ -70,8 +84,14 @@ openapi_schema = {
                 "required": ["status", "title"],
                 "type": "object",
                 "properties": {
-                    "status": {"title": "Status", "type": "string"},
-                    "title": {"title": "Title", "type": "string"},
+                    "status": {
+                        "title": "Status",
+                        "type": "string"
+                    },
+                    "title": {
+                        "title": "Title",
+                        "type": "string"
+                    },
                 },
             },
             "JsonApiError": {
@@ -82,14 +102,15 @@ openapi_schema = {
                     "errors": {
                         "title": "Errors",
                         "type": "array",
-                        "items": {"$ref": "#/components/schemas/Error"},
+                        "items": {
+                            "$ref": "#/components/schemas/Error"
+                        },
                     }
                 },
             },
         }
     },
 }
-
 
 client = TestClient(app)
 

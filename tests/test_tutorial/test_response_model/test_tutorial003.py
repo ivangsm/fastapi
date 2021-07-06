@@ -6,7 +6,10 @@ client = TestClient(app)
 
 openapi_schema = {
     "openapi": "3.0.2",
-    "info": {"title": "FastAPI", "version": "0.1.0"},
+    "info": {
+        "title": "FastAPI",
+        "version": "0.1.0"
+    },
     "paths": {
         "/user/": {
             "post": {
@@ -15,7 +18,9 @@ openapi_schema = {
                         "description": "Successful Response",
                         "content": {
                             "application/json": {
-                                "schema": {"$ref": "#/components/schemas/UserOut"}
+                                "schema": {
+                                    "$ref": "#/components/schemas/UserOut"
+                                }
                             }
                         },
                     },
@@ -24,7 +29,8 @@ openapi_schema = {
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                    "$ref":
+                                    "#/components/schemas/HTTPValidationError"
                                 }
                             }
                         },
@@ -35,7 +41,9 @@ openapi_schema = {
                 "requestBody": {
                     "content": {
                         "application/json": {
-                            "schema": {"$ref": "#/components/schemas/UserIn"}
+                            "schema": {
+                                "$ref": "#/components/schemas/UserIn"
+                            }
                         }
                     },
                     "required": True,
@@ -50,9 +58,19 @@ openapi_schema = {
                 "required": ["username", "email"],
                 "type": "object",
                 "properties": {
-                    "username": {"title": "Username", "type": "string"},
-                    "email": {"title": "Email", "type": "string", "format": "email"},
-                    "full_name": {"title": "Full Name", "type": "string"},
+                    "username": {
+                        "title": "Username",
+                        "type": "string"
+                    },
+                    "email": {
+                        "title": "Email",
+                        "type": "string",
+                        "format": "email"
+                    },
+                    "full_name": {
+                        "title": "Full Name",
+                        "type": "string"
+                    },
                 },
             },
             "UserIn": {
@@ -60,10 +78,23 @@ openapi_schema = {
                 "required": ["username", "password", "email"],
                 "type": "object",
                 "properties": {
-                    "username": {"title": "Username", "type": "string"},
-                    "password": {"title": "Password", "type": "string"},
-                    "email": {"title": "Email", "type": "string", "format": "email"},
-                    "full_name": {"title": "Full Name", "type": "string"},
+                    "username": {
+                        "title": "Username",
+                        "type": "string"
+                    },
+                    "password": {
+                        "title": "Password",
+                        "type": "string"
+                    },
+                    "email": {
+                        "title": "Email",
+                        "type": "string",
+                        "format": "email"
+                    },
+                    "full_name": {
+                        "title": "Full Name",
+                        "type": "string"
+                    },
                 },
             },
             "ValidationError": {
@@ -74,10 +105,18 @@ openapi_schema = {
                     "loc": {
                         "title": "Location",
                         "type": "array",
-                        "items": {"type": "string"},
+                        "items": {
+                            "type": "string"
+                        },
                     },
-                    "msg": {"title": "Message", "type": "string"},
-                    "type": {"title": "Error Type", "type": "string"},
+                    "msg": {
+                        "title": "Message",
+                        "type": "string"
+                    },
+                    "type": {
+                        "title": "Error Type",
+                        "type": "string"
+                    },
                 },
             },
             "HTTPValidationError": {
@@ -87,7 +126,9 @@ openapi_schema = {
                     "detail": {
                         "title": "Detail",
                         "type": "array",
-                        "items": {"$ref": "#/components/schemas/ValidationError"},
+                        "items": {
+                            "$ref": "#/components/schemas/ValidationError"
+                        },
                     }
                 },
             },

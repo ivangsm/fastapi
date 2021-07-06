@@ -13,7 +13,6 @@ def read_user(segment: str, id: str):
 
 app.include_router(router, prefix="/{segment}")
 
-
 client = TestClient(app)
 
 

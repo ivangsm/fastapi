@@ -2,7 +2,9 @@ import inspect
 
 from fastapi import APIRouter, FastAPI
 
-method_names = ["get", "put", "post", "delete", "options", "head", "patch", "trace"]
+method_names = [
+    "get", "put", "post", "delete", "options", "head", "patch", "trace"
+]
 
 
 def test_signatures_consistency():

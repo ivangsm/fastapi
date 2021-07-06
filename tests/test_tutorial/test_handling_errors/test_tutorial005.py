@@ -6,7 +6,10 @@ client = TestClient(app)
 
 openapi_schema = {
     "openapi": "3.0.2",
-    "info": {"title": "FastAPI", "version": "0.1.0"},
+    "info": {
+        "title": "FastAPI",
+        "version": "0.1.0"
+    },
     "paths": {
         "/items/": {
             "post": {
@@ -15,7 +18,9 @@ openapi_schema = {
                 "requestBody": {
                     "content": {
                         "application/json": {
-                            "schema": {"$ref": "#/components/schemas/Item"}
+                            "schema": {
+                                "$ref": "#/components/schemas/Item"
+                            }
                         }
                     },
                     "required": True,
@@ -23,14 +28,19 @@ openapi_schema = {
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/json": {"schema": {}}},
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        },
                     },
                     "422": {
                         "description": "Validation Error",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                    "$ref":
+                                    "#/components/schemas/HTTPValidationError"
                                 }
                             }
                         },
@@ -48,7 +58,9 @@ openapi_schema = {
                     "detail": {
                         "title": "Detail",
                         "type": "array",
-                        "items": {"$ref": "#/components/schemas/ValidationError"},
+                        "items": {
+                            "$ref": "#/components/schemas/ValidationError"
+                        },
                     }
                 },
             },
@@ -57,8 +69,14 @@ openapi_schema = {
                 "required": ["title", "size"],
                 "type": "object",
                 "properties": {
-                    "title": {"title": "Title", "type": "string"},
-                    "size": {"title": "Size", "type": "integer"},
+                    "title": {
+                        "title": "Title",
+                        "type": "string"
+                    },
+                    "size": {
+                        "title": "Size",
+                        "type": "integer"
+                    },
                 },
             },
             "ValidationError": {
@@ -69,10 +87,18 @@ openapi_schema = {
                     "loc": {
                         "title": "Location",
                         "type": "array",
-                        "items": {"type": "string"},
+                        "items": {
+                            "type": "string"
+                        },
                     },
-                    "msg": {"title": "Message", "type": "string"},
-                    "type": {"title": "Error Type", "type": "string"},
+                    "msg": {
+                        "title": "Message",
+                        "type": "string"
+                    },
+                    "type": {
+                        "title": "Error Type",
+                        "type": "string"
+                    },
                 },
             },
         }
@@ -90,14 +116,15 @@ def test_post_validation_error():
     response = client.post("/items/", json={"title": "towel", "size": "XL"})
     assert response.status_code == 422, response.text
     assert response.json() == {
-        "detail": [
-            {
-                "loc": ["body", "size"],
-                "msg": "value is not a valid integer",
-                "type": "type_error.integer",
-            }
-        ],
-        "body": {"title": "towel", "size": "XL"},
+        "detail": [{
+            "loc": ["body", "size"],
+            "msg": "value is not a valid integer",
+            "type": "type_error.integer",
+        }],
+        "body": {
+            "title": "towel",
+            "size": "XL"
+        },
     }
 
 

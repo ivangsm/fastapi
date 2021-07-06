@@ -21,10 +21,8 @@ notes = sqlalchemy.Table(
     sqlalchemy.Column("completed", sqlalchemy.Boolean),
 )
 
-
-engine = sqlalchemy.create_engine(
-    DATABASE_URL, connect_args={"check_same_thread": False}
-)
+engine = sqlalchemy.create_engine(DATABASE_URL,
+                                  connect_args={"check_same_thread": False})
 metadata.create_all(engine)
 
 

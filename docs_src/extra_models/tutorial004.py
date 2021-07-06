@@ -12,8 +12,14 @@ class Item(BaseModel):
 
 
 items = [
-    {"name": "Foo", "description": "There comes my hero"},
-    {"name": "Red", "description": "It's my aeroplane"},
+    {
+        "name": "Foo",
+        "description": "There comes my hero"
+    },
+    {
+        "name": "Red",
+        "description": "It's my aeroplane"
+    },
 ]
 
 

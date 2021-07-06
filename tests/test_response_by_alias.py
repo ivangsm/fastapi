@@ -16,10 +16,9 @@ class ModelNoAlias(BaseModel):
 
     class Config:
         schema_extra = {
-            "description": (
-                "response_model_by_alias=False is basically a quick hack, to support "
-                "proper OpenAPI use another model with the correct field names"
-            )
+            "description":
+            ("response_model_by_alias=False is basically a quick hack, to support "
+             "proper OpenAPI use another model with the correct field names")
         }
 
 
@@ -70,7 +69,10 @@ def no_alias_list():
 
 openapi_schema = {
     "openapi": "3.0.2",
-    "info": {"title": "FastAPI", "version": "0.1.0"},
+    "info": {
+        "title": "FastAPI",
+        "version": "0.1.0"
+    },
     "paths": {
         "/dict": {
             "get": {
@@ -81,7 +83,9 @@ openapi_schema = {
                         "description": "Successful Response",
                         "content": {
                             "application/json": {
-                                "schema": {"$ref": "#/components/schemas/Model"}
+                                "schema": {
+                                    "$ref": "#/components/schemas/Model"
+                                }
                             }
                         },
                     }
@@ -97,7 +101,9 @@ openapi_schema = {
                         "description": "Successful Response",
                         "content": {
                             "application/json": {
-                                "schema": {"$ref": "#/components/schemas/Model"}
+                                "schema": {
+                                    "$ref": "#/components/schemas/Model"
+                                }
                             }
                         },
                     }
@@ -116,7 +122,9 @@ openapi_schema = {
                                 "schema": {
                                     "title": "Response Read List List Get",
                                     "type": "array",
-                                    "items": {"$ref": "#/components/schemas/Model"},
+                                    "items": {
+                                        "$ref": "#/components/schemas/Model"
+                                    },
                                 }
                             }
                         },
@@ -133,7 +141,9 @@ openapi_schema = {
                         "description": "Successful Response",
                         "content": {
                             "application/json": {
-                                "schema": {"$ref": "#/components/schemas/Model"}
+                                "schema": {
+                                    "$ref": "#/components/schemas/Model"
+                                }
                             }
                         },
                     }
@@ -149,7 +159,9 @@ openapi_schema = {
                         "description": "Successful Response",
                         "content": {
                             "application/json": {
-                                "schema": {"$ref": "#/components/schemas/Model"}
+                                "schema": {
+                                    "$ref": "#/components/schemas/Model"
+                                }
                             }
                         },
                     }
@@ -166,9 +178,12 @@ openapi_schema = {
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "title": "Response By Alias List By Alias List Get",
+                                    "title":
+                                    "Response By Alias List By Alias List Get",
                                     "type": "array",
-                                    "items": {"$ref": "#/components/schemas/Model"},
+                                    "items": {
+                                        "$ref": "#/components/schemas/Model"
+                                    },
                                 }
                             }
                         },
@@ -185,7 +200,9 @@ openapi_schema = {
                         "description": "Successful Response",
                         "content": {
                             "application/json": {
-                                "schema": {"$ref": "#/components/schemas/ModelNoAlias"}
+                                "schema": {
+                                    "$ref": "#/components/schemas/ModelNoAlias"
+                                }
                             }
                         },
                     }
@@ -201,7 +218,9 @@ openapi_schema = {
                         "description": "Successful Response",
                         "content": {
                             "application/json": {
-                                "schema": {"$ref": "#/components/schemas/ModelNoAlias"}
+                                "schema": {
+                                    "$ref": "#/components/schemas/ModelNoAlias"
+                                }
                             }
                         },
                     }
@@ -218,10 +237,12 @@ openapi_schema = {
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "title": "Response No Alias List No Alias List Get",
+                                    "title":
+                                    "Response No Alias List No Alias List Get",
                                     "type": "array",
                                     "items": {
-                                        "$ref": "#/components/schemas/ModelNoAlias"
+                                        "$ref":
+                                        "#/components/schemas/ModelNoAlias"
                                     },
                                 }
                             }
@@ -237,19 +258,31 @@ openapi_schema = {
                 "title": "Model",
                 "required": ["alias"],
                 "type": "object",
-                "properties": {"alias": {"title": "Alias", "type": "string"}},
+                "properties": {
+                    "alias": {
+                        "title": "Alias",
+                        "type": "string"
+                    }
+                },
             },
             "ModelNoAlias": {
-                "title": "ModelNoAlias",
+                "title":
+                "ModelNoAlias",
                 "required": ["name"],
-                "type": "object",
-                "properties": {"name": {"title": "Name", "type": "string"}},
-                "description": "response_model_by_alias=False is basically a quick hack, to support proper OpenAPI use another model with the correct field names",
+                "type":
+                "object",
+                "properties": {
+                    "name": {
+                        "title": "Name",
+                        "type": "string"
+                    }
+                },
+                "description":
+                "response_model_by_alias=False is basically a quick hack, to support proper OpenAPI use another model with the correct field names",
             },
         }
     },
 }
-
 
 client = TestClient(app)
 
@@ -276,8 +309,12 @@ def test_read_list():
     response = client.get("/list")
     assert response.status_code == 200, response.text
     assert response.json() == [
-        {"name": "Foo"},
-        {"name": "Bar"},
+        {
+            "name": "Foo"
+        },
+        {
+            "name": "Bar"
+        },
     ]
 
 
@@ -297,8 +334,12 @@ def test_read_list_by_alias():
     response = client.get("/by-alias/list")
     assert response.status_code == 200, response.text
     assert response.json() == [
-        {"alias": "Foo"},
-        {"alias": "Bar"},
+        {
+            "alias": "Foo"
+        },
+        {
+            "alias": "Bar"
+        },
     ]
 
 
@@ -318,6 +359,10 @@ def test_read_list_no_alias():
     response = client.get("/no-alias/list")
     assert response.status_code == 200, response.text
     assert response.json() == [
-        {"name": "Foo"},
-        {"name": "Bar"},
+        {
+            "name": "Foo"
+        },
+        {
+            "name": "Bar"
+        },
     ]

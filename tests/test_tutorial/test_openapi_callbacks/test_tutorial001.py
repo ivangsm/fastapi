@@ -6,31 +6,37 @@ client = TestClient(app)
 
 openapi_schema = {
     "openapi": "3.0.2",
-    "info": {"title": "FastAPI", "version": "0.1.0"},
+    "info": {
+        "title": "FastAPI",
+        "version": "0.1.0"
+    },
     "paths": {
         "/invoices/": {
             "post": {
-                "summary": "Create Invoice",
-                "description": 'Create an invoice.\n\nThis will (let\'s imagine) let the API user (some external developer) create an\ninvoice.\n\nAnd this path operation will:\n\n* Send the invoice to the client.\n* Collect the money from the client.\n* Send a notification back to the API user (the external developer), as a callback.\n    * At this point is that the API will somehow send a POST request to the\n        external API with the notification of the invoice event\n        (e.g. "payment successful").',
-                "operationId": "create_invoice_invoices__post",
-                "parameters": [
-                    {
-                        "required": False,
-                        "schema": {
-                            "title": "Callback Url",
-                            "maxLength": 2083,
-                            "minLength": 1,
-                            "type": "string",
-                            "format": "uri",
-                        },
-                        "name": "callback_url",
-                        "in": "query",
-                    }
-                ],
+                "summary":
+                "Create Invoice",
+                "description":
+                'Create an invoice.\n\nThis will (let\'s imagine) let the API user (some external developer) create an\ninvoice.\n\nAnd this path operation will:\n\n* Send the invoice to the client.\n* Collect the money from the client.\n* Send a notification back to the API user (the external developer), as a callback.\n    * At this point is that the API will somehow send a POST request to the\n        external API with the notification of the invoice event\n        (e.g. "payment successful").',
+                "operationId":
+                "create_invoice_invoices__post",
+                "parameters": [{
+                    "required": False,
+                    "schema": {
+                        "title": "Callback Url",
+                        "maxLength": 2083,
+                        "minLength": 1,
+                        "type": "string",
+                        "format": "uri",
+                    },
+                    "name": "callback_url",
+                    "in": "query",
+                }],
                 "requestBody": {
                     "content": {
                         "application/json": {
-                            "schema": {"$ref": "#/components/schemas/Invoice"}
+                            "schema": {
+                                "$ref": "#/components/schemas/Invoice"
+                            }
                         }
                     },
                     "required": True,
@@ -38,14 +44,19 @@ openapi_schema = {
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/json": {"schema": {}}},
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        },
                     },
                     "422": {
                         "description": "Validation Error",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                    "$ref":
+                                    "#/components/schemas/HTTPValidationError"
                                 }
                             }
                         },
@@ -56,13 +67,15 @@ openapi_schema = {
                         "{$callback_url}/invoices/{$request.body.id}": {
                             "post": {
                                 "summary": "Invoice Notification",
-                                "operationId": "invoice_notification__callback_url__invoices___request_body_id__post",
+                                "operationId":
+                                "invoice_notification__callback_url__invoices___request_body_id__post",
                                 "requestBody": {
                                     "required": True,
                                     "content": {
                                         "application/json": {
                                             "schema": {
-                                                "$ref": "#/components/schemas/InvoiceEvent"
+                                                "$ref":
+                                                "#/components/schemas/InvoiceEvent"
                                             }
                                         }
                                     },
@@ -73,7 +86,8 @@ openapi_schema = {
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/InvoiceEventReceived"
+                                                    "$ref":
+                                                    "#/components/schemas/InvoiceEventReceived"
                                                 }
                                             }
                                         },
@@ -83,7 +97,8 @@ openapi_schema = {
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                                    "$ref":
+                                                    "#/components/schemas/HTTPValidationError"
                                                 }
                                             }
                                         },
@@ -105,7 +120,9 @@ openapi_schema = {
                     "detail": {
                         "title": "Detail",
                         "type": "array",
-                        "items": {"$ref": "#/components/schemas/ValidationError"},
+                        "items": {
+                            "$ref": "#/components/schemas/ValidationError"
+                        },
                     }
                 },
             },
@@ -114,10 +131,22 @@ openapi_schema = {
                 "required": ["id", "customer", "total"],
                 "type": "object",
                 "properties": {
-                    "id": {"title": "Id", "type": "string"},
-                    "title": {"title": "Title", "type": "string"},
-                    "customer": {"title": "Customer", "type": "string"},
-                    "total": {"title": "Total", "type": "number"},
+                    "id": {
+                        "title": "Id",
+                        "type": "string"
+                    },
+                    "title": {
+                        "title": "Title",
+                        "type": "string"
+                    },
+                    "customer": {
+                        "title": "Customer",
+                        "type": "string"
+                    },
+                    "total": {
+                        "title": "Total",
+                        "type": "number"
+                    },
                 },
             },
             "InvoiceEvent": {
@@ -125,15 +154,26 @@ openapi_schema = {
                 "required": ["description", "paid"],
                 "type": "object",
                 "properties": {
-                    "description": {"title": "Description", "type": "string"},
-                    "paid": {"title": "Paid", "type": "boolean"},
+                    "description": {
+                        "title": "Description",
+                        "type": "string"
+                    },
+                    "paid": {
+                        "title": "Paid",
+                        "type": "boolean"
+                    },
                 },
             },
             "InvoiceEventReceived": {
                 "title": "InvoiceEventReceived",
                 "required": ["ok"],
                 "type": "object",
-                "properties": {"ok": {"title": "Ok", "type": "boolean"}},
+                "properties": {
+                    "ok": {
+                        "title": "Ok",
+                        "type": "boolean"
+                    }
+                },
             },
             "ValidationError": {
                 "title": "ValidationError",
@@ -143,10 +183,18 @@ openapi_schema = {
                     "loc": {
                         "title": "Location",
                         "type": "array",
-                        "items": {"type": "string"},
+                        "items": {
+                            "type": "string"
+                        },
                     },
-                    "msg": {"title": "Message", "type": "string"},
-                    "type": {"title": "Error Type", "type": "string"},
+                    "msg": {
+                        "title": "Message",
+                        "type": "string"
+                    },
+                    "type": {
+                        "title": "Error Type",
+                        "type": "string"
+                    },
                 },
             },
         }
@@ -162,9 +210,12 @@ def test_openapi():
 
 
 def test_get():
-    response = client.post(
-        "/invoices/", json={"id": "fooinvoice", "customer": "John", "total": 5.3}
-    )
+    response = client.post("/invoices/",
+                           json={
+                               "id": "fooinvoice",
+                               "customer": "John",
+                               "total": 5.3
+                           })
     assert response.status_code == 200, response.text
     assert response.json() == {"msg": "Invoice received"}
 

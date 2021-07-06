@@ -6,23 +6,19 @@ from .main import app
 client = TestClient(app)
 
 response_missing = {
-    "detail": [
-        {
-            "loc": ["query", "query"],
-            "msg": "field required",
-            "type": "value_error.missing",
-        }
-    ]
+    "detail": [{
+        "loc": ["query", "query"],
+        "msg": "field required",
+        "type": "value_error.missing",
+    }]
 }
 
 response_not_valid_int = {
-    "detail": [
-        {
-            "loc": ["query", "query"],
-            "msg": "value is not a valid integer",
-            "type": "type_error.integer",
-        }
-    ]
+    "detail": [{
+        "loc": ["query", "query"],
+        "msg": "value is not a valid integer",
+        "type": "type_error.integer",
+    }]
 }
 
 

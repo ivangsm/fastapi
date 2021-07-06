@@ -1,16 +1,19 @@
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 
-app = FastAPI(
-    servers=[
-        {"url": "/", "description": "Default, relative server"},
-        {
-            "url": "http://staging.localhost.tiangolo.com:8000",
-            "description": "Staging but actually localhost still",
-        },
-        {"url": "https://prod.example.com"},
-    ]
-)
+app = FastAPI(servers=[
+    {
+        "url": "/",
+        "description": "Default, relative server"
+    },
+    {
+        "url": "http://staging.localhost.tiangolo.com:8000",
+        "description": "Staging but actually localhost still",
+    },
+    {
+        "url": "https://prod.example.com"
+    },
+])
 
 
 @app.get("/foo")
@@ -20,17 +23,25 @@ def foo():
 
 client = TestClient(app)
 
-
 openapi_schema = {
-    "openapi": "3.0.2",
-    "info": {"title": "FastAPI", "version": "0.1.0"},
+    "openapi":
+    "3.0.2",
+    "info": {
+        "title": "FastAPI",
+        "version": "0.1.0"
+    },
     "servers": [
-        {"url": "/", "description": "Default, relative server"},
+        {
+            "url": "/",
+            "description": "Default, relative server"
+        },
         {
             "url": "http://staging.localhost.tiangolo.com:8000",
             "description": "Staging but actually localhost still",
         },
-        {"url": "https://prod.example.com"},
+        {
+            "url": "https://prod.example.com"
+        },
     ],
     "paths": {
         "/foo": {
@@ -40,7 +51,11 @@ openapi_schema = {
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/json": {"schema": {}}},
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        },
                     }
                 },
             }

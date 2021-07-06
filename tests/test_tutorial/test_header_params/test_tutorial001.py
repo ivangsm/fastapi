@@ -5,39 +5,49 @@ from docs_src.header_params.tutorial001 import app
 
 client = TestClient(app)
 
-
 openapi_schema = {
     "openapi": "3.0.2",
-    "info": {"title": "FastAPI", "version": "0.1.0"},
+    "info": {
+        "title": "FastAPI",
+        "version": "0.1.0"
+    },
     "paths": {
         "/items/": {
             "get": {
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/json": {"schema": {}}},
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        },
                     },
                     "422": {
                         "description": "Validation Error",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                    "$ref":
+                                    "#/components/schemas/HTTPValidationError"
                                 }
                             }
                         },
                     },
                 },
-                "summary": "Read Items",
-                "operationId": "read_items_items__get",
-                "parameters": [
-                    {
-                        "required": False,
-                        "schema": {"title": "User-Agent", "type": "string"},
-                        "name": "user-agent",
-                        "in": "header",
-                    }
-                ],
+                "summary":
+                "Read Items",
+                "operationId":
+                "read_items_items__get",
+                "parameters": [{
+                    "required": False,
+                    "schema": {
+                        "title": "User-Agent",
+                        "type": "string"
+                    },
+                    "name": "user-agent",
+                    "in": "header",
+                }],
             }
         }
     },
@@ -51,10 +61,18 @@ openapi_schema = {
                     "loc": {
                         "title": "Location",
                         "type": "array",
-                        "items": {"type": "string"},
+                        "items": {
+                            "type": "string"
+                        },
                     },
-                    "msg": {"title": "Message", "type": "string"},
-                    "type": {"title": "Error Type", "type": "string"},
+                    "msg": {
+                        "title": "Message",
+                        "type": "string"
+                    },
+                    "type": {
+                        "title": "Error Type",
+                        "type": "string"
+                    },
                 },
             },
             "HTTPValidationError": {
@@ -64,7 +82,9 @@ openapi_schema = {
                     "detail": {
                         "title": "Detail",
                         "type": "array",
-                        "items": {"$ref": "#/components/schemas/ValidationError"},
+                        "items": {
+                            "$ref": "#/components/schemas/ValidationError"
+                        },
                     }
                 },
             },
@@ -77,9 +97,19 @@ openapi_schema = {
     "path,headers,expected_status,expected_response",
     [
         ("/openapi.json", None, 200, openapi_schema),
-        ("/items", None, 200, {"User-Agent": "testclient"}),
-        ("/items", {"X-Header": "notvalid"}, 200, {"User-Agent": "testclient"}),
-        ("/items", {"User-Agent": "FastAPI test"}, 200, {"User-Agent": "FastAPI test"}),
+        ("/items", None, 200, {
+            "User-Agent": "testclient"
+        }),
+        ("/items", {
+            "X-Header": "notvalid"
+        }, 200, {
+            "User-Agent": "testclient"
+        }),
+        ("/items", {
+            "User-Agent": "FastAPI test"
+        }, 200, {
+            "User-Agent": "FastAPI test"
+        }),
     ],
 )
 def test(path, headers, expected_status, expected_response):

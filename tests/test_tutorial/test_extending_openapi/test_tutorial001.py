@@ -10,7 +10,9 @@ openapi_schema = {
         "title": "Custom title",
         "version": "2.5.0",
         "description": "This is a very custom OpenAPI schema",
-        "x-logo": {"url": "https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png"},
+        "x-logo": {
+            "url": "https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png"
+        },
     },
     "paths": {
         "/items/": {
@@ -18,7 +20,11 @@ openapi_schema = {
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/json": {"schema": {}}},
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        },
                     }
                 },
                 "summary": "Read Items",

@@ -8,21 +8,29 @@ client = TestClient(app)
 
 openapi_schema = {
     "openapi": "3.0.2",
-    "info": {"title": "FastAPI", "version": "0.1.0"},
+    "info": {
+        "title": "FastAPI",
+        "version": "0.1.0"
+    },
     "paths": {
         "/files/": {
             "post": {
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/json": {"schema": {}}},
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        },
                     },
                     "422": {
                         "description": "Validation Error",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                    "$ref":
+                                    "#/components/schemas/HTTPValidationError"
                                 }
                             }
                         },
@@ -34,7 +42,8 @@ openapi_schema = {
                     "content": {
                         "multipart/form-data": {
                             "schema": {
-                                "$ref": "#/components/schemas/Body_create_file_files__post"
+                                "$ref":
+                                "#/components/schemas/Body_create_file_files__post"
                             }
                         }
                     },
@@ -47,14 +56,19 @@ openapi_schema = {
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/json": {"schema": {}}},
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        },
                     },
                     "422": {
                         "description": "Validation Error",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                    "$ref":
+                                    "#/components/schemas/HTTPValidationError"
                                 }
                             }
                         },
@@ -66,7 +80,8 @@ openapi_schema = {
                     "content": {
                         "multipart/form-data": {
                             "schema": {
-                                "$ref": "#/components/schemas/Body_create_upload_file_uploadfile__post"
+                                "$ref":
+                                "#/components/schemas/Body_create_upload_file_uploadfile__post"
                             }
                         }
                     },
@@ -82,7 +97,11 @@ openapi_schema = {
                 "required": ["file"],
                 "type": "object",
                 "properties": {
-                    "file": {"title": "File", "type": "string", "format": "binary"}
+                    "file": {
+                        "title": "File",
+                        "type": "string",
+                        "format": "binary"
+                    }
                 },
             },
             "Body_create_file_files__post": {
@@ -90,7 +109,11 @@ openapi_schema = {
                 "required": ["file"],
                 "type": "object",
                 "properties": {
-                    "file": {"title": "File", "type": "string", "format": "binary"}
+                    "file": {
+                        "title": "File",
+                        "type": "string",
+                        "format": "binary"
+                    }
                 },
             },
             "ValidationError": {
@@ -101,10 +124,18 @@ openapi_schema = {
                     "loc": {
                         "title": "Location",
                         "type": "array",
-                        "items": {"type": "string"},
+                        "items": {
+                            "type": "string"
+                        },
                     },
-                    "msg": {"title": "Message", "type": "string"},
-                    "type": {"title": "Error Type", "type": "string"},
+                    "msg": {
+                        "title": "Message",
+                        "type": "string"
+                    },
+                    "type": {
+                        "title": "Error Type",
+                        "type": "string"
+                    },
                 },
             },
             "HTTPValidationError": {
@@ -114,7 +145,9 @@ openapi_schema = {
                     "detail": {
                         "title": "Detail",
                         "type": "array",
-                        "items": {"$ref": "#/components/schemas/ValidationError"},
+                        "items": {
+                            "$ref": "#/components/schemas/ValidationError"
+                        },
                     }
                 },
             },
@@ -130,13 +163,11 @@ def test_openapi_schema():
 
 
 file_required = {
-    "detail": [
-        {
-            "loc": ["body", "file"],
-            "msg": "field required",
-            "type": "value_error.missing",
-        }
-    ]
+    "detail": [{
+        "loc": ["body", "file"],
+        "msg": "field required",
+        "type": "value_error.missing",
+    }]
 }
 
 
@@ -164,7 +195,7 @@ def test_post_file(tmpdir):
 
 
 def test_post_large_file(tmpdir):
-    default_pydantic_max_size = 2 ** 16
+    default_pydantic_max_size = 2**16
     path = os.path.join(tmpdir, "test.txt")
     with open(path, "wb") as file:
         file.write(b"x" * (default_pydantic_max_size + 1))

@@ -9,21 +9,29 @@ client = TestClient(app)
 
 openapi_schema = {
     "openapi": "3.0.2",
-    "info": {"title": "FastAPI", "version": "0.1.0"},
+    "info": {
+        "title": "FastAPI",
+        "version": "0.1.0"
+    },
     "paths": {
         "/files/": {
             "post": {
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/json": {"schema": {}}},
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        },
                     },
                     "422": {
                         "description": "Validation Error",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                    "$ref":
+                                    "#/components/schemas/HTTPValidationError"
                                 }
                             }
                         },
@@ -35,7 +43,8 @@ openapi_schema = {
                     "content": {
                         "multipart/form-data": {
                             "schema": {
-                                "$ref": "#/components/schemas/Body_create_file_files__post"
+                                "$ref":
+                                "#/components/schemas/Body_create_file_files__post"
                             }
                         }
                     },
@@ -51,9 +60,20 @@ openapi_schema = {
                 "required": ["file", "fileb", "token"],
                 "type": "object",
                 "properties": {
-                    "file": {"title": "File", "type": "string", "format": "binary"},
-                    "fileb": {"title": "Fileb", "type": "string", "format": "binary"},
-                    "token": {"title": "Token", "type": "string"},
+                    "file": {
+                        "title": "File",
+                        "type": "string",
+                        "format": "binary"
+                    },
+                    "fileb": {
+                        "title": "Fileb",
+                        "type": "string",
+                        "format": "binary"
+                    },
+                    "token": {
+                        "title": "Token",
+                        "type": "string"
+                    },
                 },
             },
             "ValidationError": {
@@ -64,10 +84,18 @@ openapi_schema = {
                     "loc": {
                         "title": "Location",
                         "type": "array",
-                        "items": {"type": "string"},
+                        "items": {
+                            "type": "string"
+                        },
                     },
-                    "msg": {"title": "Message", "type": "string"},
-                    "type": {"title": "Error Type", "type": "string"},
+                    "msg": {
+                        "title": "Message",
+                        "type": "string"
+                    },
+                    "type": {
+                        "title": "Error Type",
+                        "type": "string"
+                    },
                 },
             },
             "HTTPValidationError": {
@@ -77,7 +105,9 @@ openapi_schema = {
                     "detail": {
                         "title": "Detail",
                         "type": "array",
-                        "items": {"$ref": "#/components/schemas/ValidationError"},
+                        "items": {
+                            "$ref": "#/components/schemas/ValidationError"
+                        },
                     }
                 },
             },

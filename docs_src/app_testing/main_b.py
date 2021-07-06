@@ -6,8 +6,16 @@ from pydantic import BaseModel
 fake_secret_token = "coneofsilence"
 
 fake_db = {
-    "foo": {"id": "foo", "title": "Foo", "description": "There goes my hero"},
-    "bar": {"id": "bar", "title": "Bar", "description": "The bartenders"},
+    "foo": {
+        "id": "foo",
+        "title": "Foo",
+        "description": "There goes my hero"
+    },
+    "bar": {
+        "id": "bar",
+        "title": "Bar",
+        "description": "The bartenders"
+    },
 }
 
 app = FastAPI()

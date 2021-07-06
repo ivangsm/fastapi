@@ -17,20 +17,21 @@ SECRET_KEY = "09d25e094faa6ca2556c818166b7a9563b93f7099f6f0f4caa6cf63b88e8d3e7"
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
 
-
 fake_users_db = {
     "johndoe": {
         "username": "johndoe",
         "full_name": "John Doe",
         "email": "johndoe@example.com",
-        "hashed_password": "$2b$12$EixZaYVK1fsbw1ZfbX3OXePaWxn96p36WQoeG6Lruj3vjPGga31lW",
+        "hashed_password":
+        "$2b$12$EixZaYVK1fsbw1ZfbX3OXePaWxn96p36WQoeG6Lruj3vjPGga31lW",
         "disabled": False,
     },
     "alice": {
         "username": "alice",
         "full_name": "Alice Chains",
         "email": "alicechains@example.com",
-        "hashed_password": "$2b$12$gSvqqUPvlXP2tfVFaWK1Be7DlH.PKZbv5H8KnzzVgXXbVxpva.pFm",
+        "hashed_password":
+        "$2b$12$gSvqqUPvlXP2tfVFaWK1Be7DlH.PKZbv5H8KnzzVgXXbVxpva.pFm",
         "disabled": True,
     },
 }
@@ -61,7 +62,10 @@ pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 oauth2_scheme = OAuth2PasswordBearer(
     tokenUrl="token",
-    scopes={"me": "Read information about the current user.", "items": "Read items."},
+    scopes={
+        "me": "Read information about the current user.",
+        "items": "Read items."
+    },
 )
 
 app = FastAPI()
@@ -101,9 +105,8 @@ def create_access_token(data: dict, expires_delta: Optional[timedelta] = None):
     return encoded_jwt
 
 
-async def get_current_user(
-    security_scopes: SecurityScopes, token: str = Depends(oauth2_scheme)
-):
+async def get_current_user(security_scopes: SecurityScopes,
+                           token: str = Depends(oauth2_scheme)):
     if security_scopes.scopes:
         authenticate_value = f'Bearer scope="{security_scopes.scope_str}"'
     else:
@@ -135,22 +138,27 @@ async def get_current_user(
     return user
 
 
-async def get_current_active_user(
-    current_user: User = Security(get_current_user, scopes=["me"])
-):
+async def get_current_active_user(current_user: User = Security(
+    get_current_user, scopes=["me"])):
     if current_user.disabled:
         raise HTTPException(status_code=400, detail="Inactive user")
     return current_user
 
 
 @app.post("/token", response_model=Token)
-async def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends()):
-    user = authenticate_user(fake_users_db, form_data.username, form_data.password)
+async def login_for_access_token(
+        form_data: OAuth2PasswordRequestForm = Depends()):
+    user = authenticate_user(fake_users_db, form_data.username,
+                             form_data.password)
     if not user:
-        raise HTTPException(status_code=400, detail="Incorrect username or password")
+        raise HTTPException(status_code=400,
+                            detail="Incorrect username or password")
     access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
     access_token = create_access_token(
-        data={"sub": user.username, "scopes": form_data.scopes},
+        data={
+            "sub": user.username,
+            "scopes": form_data.scopes
+        },
         expires_delta=access_token_expires,
     )
     return {"access_token": access_token, "token_type": "bearer"}
@@ -162,9 +170,8 @@ async def read_users_me(current_user: User = Depends(get_current_active_user)):
 
 
 @app.get("/users/me/items/")
-async def read_own_items(
-    current_user: User = Security(get_current_active_user, scopes=["items"])
-):
+async def read_own_items(current_user: User = Security(get_current_active_user,
+                                                       scopes=["items"])):
     return [{"item_id": "Foo", "owner": current_user.username}]
 
 

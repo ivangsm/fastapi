@@ -54,49 +54,44 @@ async def get_callable_dependency(value: str = Depends(callable_dependency)):
 
 
 @app.get("/callable-gen-dependency")
-async def get_callable_gen_dependency(value: str = Depends(callable_gen_dependency)):
+async def get_callable_gen_dependency(
+        value: str = Depends(callable_gen_dependency)):
     return value
 
 
 @app.get("/async-callable-dependency")
 async def get_async_callable_dependency(
-    value: str = Depends(async_callable_dependency),
-):
+        value: str = Depends(async_callable_dependency), ):
     return value
 
 
 @app.get("/async-callable-gen-dependency")
 async def get_async_callable_gen_dependency(
-    value: str = Depends(async_callable_gen_dependency),
-):
+        value: str = Depends(async_callable_gen_dependency), ):
     return value
 
 
 @app.get("/synchronous-method-dependency")
 async def get_synchronous_method_dependency(
-    value: str = Depends(methods_dependency.synchronous),
-):
+        value: str = Depends(methods_dependency.synchronous), ):
     return value
 
 
 @app.get("/synchronous-method-gen-dependency")
 async def get_synchronous_method_gen_dependency(
-    value: str = Depends(methods_dependency.synchronous_gen),
-):
+        value: str = Depends(methods_dependency.synchronous_gen), ):
     return value
 
 
 @app.get("/asynchronous-method-dependency")
 async def get_asynchronous_method_dependency(
-    value: str = Depends(methods_dependency.asynchronous),
-):
+        value: str = Depends(methods_dependency.asynchronous), ):
     return value
 
 
 @app.get("/asynchronous-method-gen-dependency")
 async def get_asynchronous_method_gen_dependency(
-    value: str = Depends(methods_dependency.asynchronous_gen),
-):
+        value: str = Depends(methods_dependency.asynchronous_gen), ):
     return value
 
 
@@ -111,9 +106,11 @@ client = TestClient(app)
         ("/async-callable-dependency", "async-callable-dependency"),
         ("/async-callable-gen-dependency", "async-callable-gen-dependency"),
         ("/synchronous-method-dependency", "synchronous-method-dependency"),
-        ("/synchronous-method-gen-dependency", "synchronous-method-gen-dependency"),
+        ("/synchronous-method-gen-dependency",
+         "synchronous-method-gen-dependency"),
         ("/asynchronous-method-dependency", "asynchronous-method-dependency"),
-        ("/asynchronous-method-gen-dependency", "asynchronous-method-gen-dependency"),
+        ("/asynchronous-method-gen-dependency",
+         "asynchronous-method-gen-dependency"),
     ],
 )
 def test_class_dependency(route, value):
