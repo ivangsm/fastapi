@@ -297,10 +297,8 @@ def get_openapi_path(
                     openapi_response["description"] = description
             http422 = str(HTTP_422_UNPROCESSABLE_ENTITY)
             if (all_route_params or route.body_field) and not any(
-                [
-                    status in operation["responses"]
+                status in operation["responses"]
                     for status in [http422, "4XX", "default"]
-                ]
             ):
                 operation["responses"][http422] = {
                     "description": "Validation Error",
@@ -396,4 +394,5 @@ def get_openapi(
     output["paths"] = paths
     if tags:
         output["tags"] = tags
-    return jsonable_encoder(OpenAPI(**output), by_alias=True, exclude_none=True)  # type: ignore
+    # type: ignore
+    return jsonable_encoder(OpenAPI(**output), by_alias=True, exclude_none=True)
