@@ -114,5 +114,5 @@ def test_path_operation_img():
     response = client.get("/items/foo?img=1")
     assert response.status_code == 200, response.text
     assert response.headers["Content-Type"] == "image/png"
-    assert len(response.content)
+    assert response.content
     os.remove("./image.png")
