@@ -21,14 +21,16 @@ class Shop(BaseModel):
 
 
 @app.post("/products")
-async def create_product(data: Product = Body(..., media_type=media_type, embed=True)):
+async def create_product(data: Product = Body(...,
+                                              media_type=media_type,
+                                              embed=True)):
     pass  # pragma: no cover
 
 
 @app.post("/shops")
 async def create_shop(
-    data: Shop = Body(..., media_type=media_type),
-    included: typing.List[Product] = Body([], media_type=media_type),
+        data: Shop = Body(..., media_type=media_type),
+        included: typing.List[Product] = Body([], media_type=media_type),
 ):
     pass  # pragma: no cover
 
@@ -36,7 +38,10 @@ async def create_shop(
 create_product_request_body = {
     "content": {
         "application/vnd.api+json": {
-            "schema": {"$ref": "#/components/schemas/Body_create_product_products_post"}
+            "schema": {
+                "$ref":
+                "#/components/schemas/Body_create_product_products_post"
+            }
         }
     },
     "required": True,
@@ -45,7 +50,9 @@ create_product_request_body = {
 create_shop_request_body = {
     "content": {
         "application/vnd.api+json": {
-            "schema": {"$ref": "#/components/schemas/Body_create_shop_shops_post"}
+            "schema": {
+                "$ref": "#/components/schemas/Body_create_shop_shops_post"
+            }
         }
     },
     "required": True,
@@ -58,11 +65,7 @@ def test_openapi_schema():
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
     openapi_schema = response.json()
-    assert (
-        openapi_schema["paths"]["/products"]["post"]["requestBody"]
-        == create_product_request_body
-    )
-    assert (
-        openapi_schema["paths"]["/shops"]["post"]["requestBody"]
-        == create_shop_request_body
-    )
+    assert (openapi_schema["paths"]["/products"]["post"]["requestBody"]
+            == create_product_request_body)
+    assert (openapi_schema["paths"]["/shops"]["post"]["requestBody"]
+            == create_shop_request_body)

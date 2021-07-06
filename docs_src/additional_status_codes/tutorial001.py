@@ -5,13 +5,22 @@ from fastapi.responses import JSONResponse
 
 app = FastAPI()
 
-items = {"foo": {"name": "Fighters", "size": 6}, "bar": {"name": "Tenders", "size": 3}}
+items = {
+    "foo": {
+        "name": "Fighters",
+        "size": 6
+    },
+    "bar": {
+        "name": "Tenders",
+        "size": 3
+    }
+}
 
 
 @app.put("/items/{item_id}")
-async def upsert_item(
-    item_id: str, name: Optional[str] = Body(None), size: Optional[int] = Body(None)
-):
+async def upsert_item(item_id: str,
+                      name: Optional[str] = Body(None),
+                      size: Optional[int] = Body(None)):
     if item_id in items:
         item = items[item_id]
         item["name"] = name

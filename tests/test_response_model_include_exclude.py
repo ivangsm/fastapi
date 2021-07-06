@@ -25,11 +25,15 @@ app = FastAPI()
 @app.get(
     "/simple_include",
     response_model=Test2,
-    response_model_include={"baz": ..., "test": {"foo"}},
+    response_model_include={
+        "baz": ...,
+        "test": {"foo"}
+    },
 )
 def simple_include():
     return Test2(
-        test=Test(foo="simple_include test foo", bar="simple_include test bar"),
+        test=Test(foo="simple_include test foo",
+                  bar="simple_include test bar"),
         baz="simple_include test2 baz",
     )
 
@@ -37,7 +41,10 @@ def simple_include():
 @app.get(
     "/simple_include_dict",
     response_model=Test2,
-    response_model_include={"baz": ..., "test": {"foo"}},
+    response_model_include={
+        "baz": ...,
+        "test": {"foo"}
+    },
 )
 def simple_include_dict():
     return {
@@ -56,7 +63,8 @@ def simple_include_dict():
 )
 def simple_exclude():
     return Test2(
-        test=Test(foo="simple_exclude test foo", bar="simple_exclude test bar"),
+        test=Test(foo="simple_exclude test foo",
+                  bar="simple_exclude test bar"),
         baz="simple_exclude test2 baz",
     )
 
@@ -86,9 +94,8 @@ def mixed():
     return Test3(
         name="mixed test3 name",
         age=3,
-        test2=Test2(
-            test=Test(foo="mixed test foo", bar="mixed test bar"), baz="mixed test2 baz"
-        ),
+        test2=Test2(test=Test(foo="mixed test foo", bar="mixed test bar"),
+                    baz="mixed test2 baz"),
     )
 
 
@@ -103,7 +110,10 @@ def mixed_dict():
         "name": "mixed_dict test3 name",
         "age": 3,
         "test2": {
-            "test": {"foo": "mixed_dict test foo", "bar": "mixed_dict test bar"},
+            "test": {
+                "foo": "mixed_dict test foo",
+                "bar": "mixed_dict test bar"
+            },
             "baz": "mixed_dict test2 baz",
         },
     }
@@ -119,7 +129,9 @@ def test_nested_include_simple():
 
     assert response.json() == {
         "baz": "simple_include test2 baz",
-        "test": {"foo": "simple_include test foo"},
+        "test": {
+            "foo": "simple_include test foo"
+        },
     }
 
 
@@ -130,7 +142,9 @@ def test_nested_include_simple_dict():
 
     assert response.json() == {
         "baz": "simple_include_dict test2 baz",
-        "test": {"foo": "simple_include_dict test foo"},
+        "test": {
+            "foo": "simple_include_dict test foo"
+        },
     }
 
 
@@ -139,7 +153,9 @@ def test_nested_exclude_simple():
     assert response.status_code == 200, response.text
     assert response.json() == {
         "baz": "simple_exclude test2 baz",
-        "test": {"foo": "simple_exclude test foo"},
+        "test": {
+            "foo": "simple_exclude test foo"
+        },
     }
 
 
@@ -148,7 +164,9 @@ def test_nested_exclude_simple_dict():
     assert response.status_code == 200, response.text
     assert response.json() == {
         "baz": "simple_exclude_dict test2 baz",
-        "test": {"foo": "simple_exclude_dict test foo"},
+        "test": {
+            "foo": "simple_exclude_dict test foo"
+        },
     }
 
 
@@ -158,7 +176,10 @@ def test_nested_include_mixed():
     assert response.json() == {
         "name": "mixed test3 name",
         "test2": {
-            "test": {"foo": "mixed test foo", "bar": "mixed test bar"},
+            "test": {
+                "foo": "mixed test foo",
+                "bar": "mixed test bar"
+            },
         },
     }
 
@@ -169,6 +190,9 @@ def test_nested_include_mixed_dict():
     assert response.json() == {
         "name": "mixed_dict test3 name",
         "test2": {
-            "test": {"foo": "mixed_dict test foo", "bar": "mixed_dict test bar"},
+            "test": {
+                "foo": "mixed_dict test foo",
+                "bar": "mixed_dict test bar"
+            },
         },
     }

@@ -9,22 +9,35 @@ from ...utils import skip_py36
 
 openapi_schema = {
     "openapi": "3.0.2",
-    "info": {"title": "FastAPI", "version": "0.1.0"},
+    "info": {
+        "title": "FastAPI",
+        "version": "0.1.0"
+    },
     "paths": {
         "/users/": {
             "get": {
-                "summary": "Read Users",
-                "operationId": "read_users_users__get",
+                "summary":
+                "Read Users",
+                "operationId":
+                "read_users_users__get",
                 "parameters": [
                     {
                         "required": False,
-                        "schema": {"title": "Skip", "type": "integer", "default": 0},
+                        "schema": {
+                            "title": "Skip",
+                            "type": "integer",
+                            "default": 0
+                        },
                         "name": "skip",
                         "in": "query",
                     },
                     {
                         "required": False,
-                        "schema": {"title": "Limit", "type": "integer", "default": 100},
+                        "schema": {
+                            "title": "Limit",
+                            "type": "integer",
+                            "default": 100
+                        },
                         "name": "limit",
                         "in": "query",
                     },
@@ -37,7 +50,9 @@ openapi_schema = {
                                 "schema": {
                                     "title": "Response Read Users Users  Get",
                                     "type": "array",
-                                    "items": {"$ref": "#/components/schemas/User"},
+                                    "items": {
+                                        "$ref": "#/components/schemas/User"
+                                    },
                                 }
                             }
                         },
@@ -47,7 +62,8 @@ openapi_schema = {
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                    "$ref":
+                                    "#/components/schemas/HTTPValidationError"
                                 }
                             }
                         },
@@ -60,7 +76,9 @@ openapi_schema = {
                 "requestBody": {
                     "content": {
                         "application/json": {
-                            "schema": {"$ref": "#/components/schemas/UserCreate"}
+                            "schema": {
+                                "$ref": "#/components/schemas/UserCreate"
+                            }
                         }
                     },
                     "required": True,
@@ -70,7 +88,9 @@ openapi_schema = {
                         "description": "Successful Response",
                         "content": {
                             "application/json": {
-                                "schema": {"$ref": "#/components/schemas/User"}
+                                "schema": {
+                                    "$ref": "#/components/schemas/User"
+                                }
                             }
                         },
                     },
@@ -79,7 +99,8 @@ openapi_schema = {
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                    "$ref":
+                                    "#/components/schemas/HTTPValidationError"
                                 }
                             }
                         },
@@ -89,22 +110,27 @@ openapi_schema = {
         },
         "/users/{user_id}": {
             "get": {
-                "summary": "Read User",
-                "operationId": "read_user_users__user_id__get",
-                "parameters": [
-                    {
-                        "required": True,
-                        "schema": {"title": "User Id", "type": "integer"},
-                        "name": "user_id",
-                        "in": "path",
-                    }
-                ],
+                "summary":
+                "Read User",
+                "operationId":
+                "read_user_users__user_id__get",
+                "parameters": [{
+                    "required": True,
+                    "schema": {
+                        "title": "User Id",
+                        "type": "integer"
+                    },
+                    "name": "user_id",
+                    "in": "path",
+                }],
                 "responses": {
                     "200": {
                         "description": "Successful Response",
                         "content": {
                             "application/json": {
-                                "schema": {"$ref": "#/components/schemas/User"}
+                                "schema": {
+                                    "$ref": "#/components/schemas/User"
+                                }
                             }
                         },
                     },
@@ -113,7 +139,8 @@ openapi_schema = {
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                    "$ref":
+                                    "#/components/schemas/HTTPValidationError"
                                 }
                             }
                         },
@@ -123,20 +150,25 @@ openapi_schema = {
         },
         "/users/{user_id}/items/": {
             "post": {
-                "summary": "Create Item For User",
-                "operationId": "create_item_for_user_users__user_id__items__post",
-                "parameters": [
-                    {
-                        "required": True,
-                        "schema": {"title": "User Id", "type": "integer"},
-                        "name": "user_id",
-                        "in": "path",
-                    }
-                ],
+                "summary":
+                "Create Item For User",
+                "operationId":
+                "create_item_for_user_users__user_id__items__post",
+                "parameters": [{
+                    "required": True,
+                    "schema": {
+                        "title": "User Id",
+                        "type": "integer"
+                    },
+                    "name": "user_id",
+                    "in": "path",
+                }],
                 "requestBody": {
                     "content": {
                         "application/json": {
-                            "schema": {"$ref": "#/components/schemas/ItemCreate"}
+                            "schema": {
+                                "$ref": "#/components/schemas/ItemCreate"
+                            }
                         }
                     },
                     "required": True,
@@ -146,7 +178,9 @@ openapi_schema = {
                         "description": "Successful Response",
                         "content": {
                             "application/json": {
-                                "schema": {"$ref": "#/components/schemas/Item"}
+                                "schema": {
+                                    "$ref": "#/components/schemas/Item"
+                                }
                             }
                         },
                     },
@@ -155,7 +189,8 @@ openapi_schema = {
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                    "$ref":
+                                    "#/components/schemas/HTTPValidationError"
                                 }
                             }
                         },
@@ -165,18 +200,28 @@ openapi_schema = {
         },
         "/items/": {
             "get": {
-                "summary": "Read Items",
-                "operationId": "read_items_items__get",
+                "summary":
+                "Read Items",
+                "operationId":
+                "read_items_items__get",
                 "parameters": [
                     {
                         "required": False,
-                        "schema": {"title": "Skip", "type": "integer", "default": 0},
+                        "schema": {
+                            "title": "Skip",
+                            "type": "integer",
+                            "default": 0
+                        },
                         "name": "skip",
                         "in": "query",
                     },
                     {
                         "required": False,
-                        "schema": {"title": "Limit", "type": "integer", "default": 100},
+                        "schema": {
+                            "title": "Limit",
+                            "type": "integer",
+                            "default": 100
+                        },
                         "name": "limit",
                         "in": "query",
                     },
@@ -189,7 +234,9 @@ openapi_schema = {
                                 "schema": {
                                     "title": "Response Read Items Items  Get",
                                     "type": "array",
-                                    "items": {"$ref": "#/components/schemas/Item"},
+                                    "items": {
+                                        "$ref": "#/components/schemas/Item"
+                                    },
                                 }
                             }
                         },
@@ -199,7 +246,8 @@ openapi_schema = {
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                    "$ref":
+                                    "#/components/schemas/HTTPValidationError"
                                 }
                             }
                         },
@@ -209,18 +257,28 @@ openapi_schema = {
         },
         "/slowusers/": {
             "get": {
-                "summary": "Read Slow Users",
-                "operationId": "read_slow_users_slowusers__get",
+                "summary":
+                "Read Slow Users",
+                "operationId":
+                "read_slow_users_slowusers__get",
                 "parameters": [
                     {
                         "required": False,
-                        "schema": {"title": "Skip", "type": "integer", "default": 0},
+                        "schema": {
+                            "title": "Skip",
+                            "type": "integer",
+                            "default": 0
+                        },
                         "name": "skip",
                         "in": "query",
                     },
                     {
                         "required": False,
-                        "schema": {"title": "Limit", "type": "integer", "default": 100},
+                        "schema": {
+                            "title": "Limit",
+                            "type": "integer",
+                            "default": 100
+                        },
                         "name": "limit",
                         "in": "query",
                     },
@@ -231,9 +289,12 @@ openapi_schema = {
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "title": "Response Read Slow Users Slowusers  Get",
+                                    "title":
+                                    "Response Read Slow Users Slowusers  Get",
                                     "type": "array",
-                                    "items": {"$ref": "#/components/schemas/User"},
+                                    "items": {
+                                        "$ref": "#/components/schemas/User"
+                                    },
                                 }
                             }
                         },
@@ -243,7 +304,8 @@ openapi_schema = {
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                    "$ref":
+                                    "#/components/schemas/HTTPValidationError"
                                 }
                             }
                         },
@@ -261,7 +323,9 @@ openapi_schema = {
                     "detail": {
                         "title": "Detail",
                         "type": "array",
-                        "items": {"$ref": "#/components/schemas/ValidationError"},
+                        "items": {
+                            "$ref": "#/components/schemas/ValidationError"
+                        },
                     }
                 },
             },
@@ -270,10 +334,22 @@ openapi_schema = {
                 "required": ["title", "id", "owner_id"],
                 "type": "object",
                 "properties": {
-                    "title": {"title": "Title", "type": "string"},
-                    "description": {"title": "Description", "type": "string"},
-                    "id": {"title": "Id", "type": "integer"},
-                    "owner_id": {"title": "Owner Id", "type": "integer"},
+                    "title": {
+                        "title": "Title",
+                        "type": "string"
+                    },
+                    "description": {
+                        "title": "Description",
+                        "type": "string"
+                    },
+                    "id": {
+                        "title": "Id",
+                        "type": "integer"
+                    },
+                    "owner_id": {
+                        "title": "Owner Id",
+                        "type": "integer"
+                    },
                 },
             },
             "ItemCreate": {
@@ -281,8 +357,14 @@ openapi_schema = {
                 "required": ["title"],
                 "type": "object",
                 "properties": {
-                    "title": {"title": "Title", "type": "string"},
-                    "description": {"title": "Description", "type": "string"},
+                    "title": {
+                        "title": "Title",
+                        "type": "string"
+                    },
+                    "description": {
+                        "title": "Description",
+                        "type": "string"
+                    },
                 },
             },
             "User": {
@@ -290,13 +372,24 @@ openapi_schema = {
                 "required": ["email", "id", "is_active"],
                 "type": "object",
                 "properties": {
-                    "email": {"title": "Email", "type": "string"},
-                    "id": {"title": "Id", "type": "integer"},
-                    "is_active": {"title": "Is Active", "type": "boolean"},
+                    "email": {
+                        "title": "Email",
+                        "type": "string"
+                    },
+                    "id": {
+                        "title": "Id",
+                        "type": "integer"
+                    },
+                    "is_active": {
+                        "title": "Is Active",
+                        "type": "boolean"
+                    },
                     "items": {
                         "title": "Items",
                         "type": "array",
-                        "items": {"$ref": "#/components/schemas/Item"},
+                        "items": {
+                            "$ref": "#/components/schemas/Item"
+                        },
                         "default": [],
                     },
                 },
@@ -306,8 +399,14 @@ openapi_schema = {
                 "required": ["email", "password"],
                 "type": "object",
                 "properties": {
-                    "email": {"title": "Email", "type": "string"},
-                    "password": {"title": "Password", "type": "string"},
+                    "email": {
+                        "title": "Email",
+                        "type": "string"
+                    },
+                    "password": {
+                        "title": "Password",
+                        "type": "string"
+                    },
                 },
             },
             "ValidationError": {
@@ -318,10 +417,18 @@ openapi_schema = {
                     "loc": {
                         "title": "Location",
                         "type": "array",
-                        "items": {"type": "string"},
+                        "items": {
+                            "type": "string"
+                        },
                     },
-                    "msg": {"title": "Message", "type": "string"},
-                    "type": {"title": "Error Type", "type": "string"},
+                    "msg": {
+                        "title": "Message",
+                        "type": "string"
+                    },
+                    "type": {
+                        "title": "Error Type",
+                        "type": "string"
+                    },
                 },
             },
         }
@@ -408,13 +515,17 @@ def test_create_item(client):
     response = client.get("/users/1")
     assert response.status_code == 200, response.text
     user_data = response.json()
-    item_to_check = [it for it in user_data["items"] if it["id"] == item_data["id"]][0]
+    item_to_check = [
+        it for it in user_data["items"] if it["id"] == item_data["id"]
+    ][0]
     assert item_to_check["title"] == item["title"]
     assert item_to_check["description"] == item["description"]
     response = client.get("/users/1")
     assert response.status_code == 200, response.text
     user_data = response.json()
-    item_to_check = [it for it in user_data["items"] if it["id"] == item_data["id"]][0]
+    item_to_check = [
+        it for it in user_data["items"] if it["id"] == item_data["id"]
+    ][0]
     assert item_to_check["title"] == item["title"]
     assert item_to_check["description"] == item["description"]
 

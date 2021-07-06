@@ -21,16 +21,15 @@ async def get_counter(count: int = Depends(dep_counter)):
 
 
 @app.get("/sub-counter/")
-async def get_sub_counter(
-    subcount: int = Depends(super_dep), count: int = Depends(dep_counter)
-):
+async def get_sub_counter(subcount: int = Depends(super_dep),
+                          count: int = Depends(dep_counter)):
     return {"counter": count, "subcounter": subcount}
 
 
 @app.get("/sub-counter-no-cache/")
 async def get_sub_counter_no_cache(
-    subcount: int = Depends(super_dep),
-    count: int = Depends(dep_counter, use_cache=False),
+        subcount: int = Depends(super_dep),
+        count: int = Depends(dep_counter, use_cache=False),
 ):
     return {"counter": count, "subcounter": subcount}
 

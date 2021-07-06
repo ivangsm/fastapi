@@ -7,44 +7,65 @@ client = TestClient(app)
 
 openapi_schema = {
     "openapi": "3.0.2",
-    "info": {"title": "FastAPI", "version": "0.1.0"},
+    "info": {
+        "title": "FastAPI",
+        "version": "0.1.0"
+    },
     "paths": {
         "/items/": {
             "get": {
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/json": {"schema": {}}},
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        },
                     },
                     "422": {
                         "description": "Validation Error",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                    "$ref":
+                                    "#/components/schemas/HTTPValidationError"
                                 }
                             }
                         },
                     },
                 },
-                "summary": "Read Items",
-                "operationId": "read_items_items__get",
+                "summary":
+                "Read Items",
+                "operationId":
+                "read_items_items__get",
                 "parameters": [
                     {
                         "required": False,
-                        "schema": {"title": "Q", "type": "string"},
+                        "schema": {
+                            "title": "Q",
+                            "type": "string"
+                        },
                         "name": "q",
                         "in": "query",
                     },
                     {
                         "required": False,
-                        "schema": {"title": "Skip", "type": "integer", "default": 0},
+                        "schema": {
+                            "title": "Skip",
+                            "type": "integer",
+                            "default": 0
+                        },
                         "name": "skip",
                         "in": "query",
                     },
                     {
                         "required": False,
-                        "schema": {"title": "Limit", "type": "integer", "default": 100},
+                        "schema": {
+                            "title": "Limit",
+                            "type": "integer",
+                            "default": 100
+                        },
                         "name": "limit",
                         "in": "query",
                     },
@@ -56,37 +77,55 @@ openapi_schema = {
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/json": {"schema": {}}},
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        },
                     },
                     "422": {
                         "description": "Validation Error",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                    "$ref":
+                                    "#/components/schemas/HTTPValidationError"
                                 }
                             }
                         },
                     },
                 },
-                "summary": "Read Users",
-                "operationId": "read_users_users__get",
+                "summary":
+                "Read Users",
+                "operationId":
+                "read_users_users__get",
                 "parameters": [
                     {
                         "required": False,
-                        "schema": {"title": "Q", "type": "string"},
+                        "schema": {
+                            "title": "Q",
+                            "type": "string"
+                        },
                         "name": "q",
                         "in": "query",
                     },
                     {
                         "required": False,
-                        "schema": {"title": "Skip", "type": "integer", "default": 0},
+                        "schema": {
+                            "title": "Skip",
+                            "type": "integer",
+                            "default": 0
+                        },
                         "name": "skip",
                         "in": "query",
                     },
                     {
                         "required": False,
-                        "schema": {"title": "Limit", "type": "integer", "default": 100},
+                        "schema": {
+                            "title": "Limit",
+                            "type": "integer",
+                            "default": 100
+                        },
                         "name": "limit",
                         "in": "query",
                     },
@@ -104,10 +143,18 @@ openapi_schema = {
                     "loc": {
                         "title": "Location",
                         "type": "array",
-                        "items": {"type": "string"},
+                        "items": {
+                            "type": "string"
+                        },
                     },
-                    "msg": {"title": "Message", "type": "string"},
-                    "type": {"title": "Error Type", "type": "string"},
+                    "msg": {
+                        "title": "Message",
+                        "type": "string"
+                    },
+                    "type": {
+                        "title": "Error Type",
+                        "type": "string"
+                    },
                 },
             },
             "HTTPValidationError": {
@@ -117,7 +164,9 @@ openapi_schema = {
                     "detail": {
                         "title": "Detail",
                         "type": "array",
-                        "items": {"$ref": "#/components/schemas/ValidationError"},
+                        "items": {
+                            "$ref": "#/components/schemas/ValidationError"
+                        },
                     }
                 },
             },
@@ -135,11 +184,31 @@ def test_openapi_schema():
 @pytest.mark.parametrize(
     "path,expected_status,expected_response",
     [
-        ("/items", 200, {"q": None, "skip": 0, "limit": 100}),
-        ("/items?q=foo", 200, {"q": "foo", "skip": 0, "limit": 100}),
-        ("/items?q=foo&skip=5", 200, {"q": "foo", "skip": 5, "limit": 100}),
-        ("/items?q=foo&skip=5&limit=30", 200, {"q": "foo", "skip": 5, "limit": 30}),
-        ("/users", 200, {"q": None, "skip": 0, "limit": 100}),
+        ("/items", 200, {
+            "q": None,
+            "skip": 0,
+            "limit": 100
+        }),
+        ("/items?q=foo", 200, {
+            "q": "foo",
+            "skip": 0,
+            "limit": 100
+        }),
+        ("/items?q=foo&skip=5", 200, {
+            "q": "foo",
+            "skip": 5,
+            "limit": 100
+        }),
+        ("/items?q=foo&skip=5&limit=30", 200, {
+            "q": "foo",
+            "skip": 5,
+            "limit": 30
+        }),
+        ("/users", 200, {
+            "q": None,
+            "skip": 0,
+            "limit": 100
+        }),
         ("/openapi.json", 200, openapi_schema),
     ],
 )

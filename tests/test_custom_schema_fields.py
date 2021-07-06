@@ -10,7 +10,9 @@ class Item(BaseModel):
 
     class Config:
         schema_extra = {
-            "x-something-internal": {"level": 4},
+            "x-something-internal": {
+                "level": 4
+            },
         }
 
 
@@ -20,7 +22,6 @@ def foo():
 
 
 client = TestClient(app)
-
 
 item_schema = {
     "title": "Item",

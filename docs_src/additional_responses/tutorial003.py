@@ -19,12 +19,18 @@ app = FastAPI()
     "/items/{item_id}",
     response_model=Item,
     responses={
-        404: {"model": Message, "description": "The item was not found"},
+        404: {
+            "model": Message,
+            "description": "The item was not found"
+        },
         200: {
             "description": "Item requested by ID",
             "content": {
                 "application/json": {
-                    "example": {"id": "bar", "value": "The bar tenders"}
+                    "example": {
+                        "id": "bar",
+                        "value": "The bar tenders"
+                    }
                 }
             },
         },

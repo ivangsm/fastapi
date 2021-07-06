@@ -14,8 +14,16 @@ class Item(BaseModel):
 
 
 items = {
-    "foo": {"name": "Foo", "price": 50.2},
-    "bar": {"name": "Bar", "description": "The Bar fighters", "price": 62, "tax": 20.2},
+    "foo": {
+        "name": "Foo",
+        "price": 50.2
+    },
+    "bar": {
+        "name": "Bar",
+        "description": "The Bar fighters",
+        "price": 62,
+        "tax": 20.2
+    },
     "baz": {
         "name": "Baz",
         "description": "There goes my baz",
@@ -34,6 +42,8 @@ async def read_item_name(item_id: str):
     return items[item_id]
 
 
-@app.get("/items/{item_id}/public", response_model=Item, response_model_exclude={"tax"})
+@app.get("/items/{item_id}/public",
+         response_model=Item,
+         response_model_exclude={"tax"})
 async def read_item_public_data(item_id: str):
     return items[item_id]

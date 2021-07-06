@@ -7,9 +7,12 @@ client = TestClient(app)
 openapi_schema = {
     "openapi": "3.0.2",
     "info": {
-        "title": "My Super Project",
-        "version": "2.5.0",
-        "description": "This is a very fancy project, with auto docs for the API and everything",
+        "title":
+        "My Super Project",
+        "version":
+        "2.5.0",
+        "description":
+        "This is a very fancy project, with auto docs for the API and everything",
     },
     "paths": {
         "/items/": {
@@ -17,7 +20,11 @@ openapi_schema = {
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/json": {"schema": {}}},
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        },
                     }
                 },
                 "summary": "Read Items",

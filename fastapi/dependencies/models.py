@@ -5,9 +5,9 @@ from pydantic.fields import ModelField
 
 
 class SecurityRequirement:
-    def __init__(
-        self, security_scheme: SecurityBase, scopes: Optional[Sequence[str]] = None
-    ):
+    def __init__(self,
+                 security_scheme: SecurityBase,
+                 scopes: Optional[Sequence[str]] = None):
         self.security_scheme = security_scheme
         self.scopes = scopes
 
@@ -55,4 +55,5 @@ class Dependant:
         # Store the path to be able to re-generate a dependable from it in overrides
         self.path = path
         # Save the cache key at creation to optimize performance
-        self.cache_key = (self.call, tuple(sorted(set(self.security_scopes or []))))
+        self.cache_key = (self.call,
+                          tuple(sorted(set(self.security_scopes or []))))

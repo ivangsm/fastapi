@@ -12,7 +12,10 @@ client = TestClient(app)
 
 openapi_schema = {
     "openapi": "3.0.2",
-    "info": {"title": "FastAPI", "version": "0.1.0"},
+    "info": {
+        "title": "FastAPI",
+        "version": "0.1.0"
+    },
     "paths": {
         "/token": {
             "post": {
@@ -21,7 +24,9 @@ openapi_schema = {
                         "description": "Successful Response",
                         "content": {
                             "application/json": {
-                                "schema": {"$ref": "#/components/schemas/Token"}
+                                "schema": {
+                                    "$ref": "#/components/schemas/Token"
+                                }
                             }
                         },
                     },
@@ -30,7 +35,8 @@ openapi_schema = {
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                    "$ref":
+                                    "#/components/schemas/HTTPValidationError"
                                 }
                             }
                         },
@@ -42,7 +48,8 @@ openapi_schema = {
                     "content": {
                         "application/x-www-form-urlencoded": {
                             "schema": {
-                                "$ref": "#/components/schemas/Body_login_for_access_token_token_post"
+                                "$ref":
+                                "#/components/schemas/Body_login_for_access_token_token_post"
                             }
                         }
                     },
@@ -57,14 +64,18 @@ openapi_schema = {
                         "description": "Successful Response",
                         "content": {
                             "application/json": {
-                                "schema": {"$ref": "#/components/schemas/User"}
+                                "schema": {
+                                    "$ref": "#/components/schemas/User"
+                                }
                             }
                         },
                     }
                 },
                 "summary": "Read Users Me",
                 "operationId": "read_users_me_users_me__get",
-                "security": [{"OAuth2PasswordBearer": ["me"]}],
+                "security": [{
+                    "OAuth2PasswordBearer": ["me"]
+                }],
             }
         },
         "/users/me/items/": {
@@ -72,12 +83,18 @@ openapi_schema = {
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/json": {"schema": {}}},
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        },
                     }
                 },
                 "summary": "Read Own Items",
                 "operationId": "read_own_items_users_me_items__get",
-                "security": [{"OAuth2PasswordBearer": ["items", "me"]}],
+                "security": [{
+                    "OAuth2PasswordBearer": ["items", "me"]
+                }],
             }
         },
         "/status/": {
@@ -85,12 +102,18 @@ openapi_schema = {
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/json": {"schema": {}}},
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        },
                     }
                 },
                 "summary": "Read System Status",
                 "operationId": "read_system_status_status__get",
-                "security": [{"OAuth2PasswordBearer": []}],
+                "security": [{
+                    "OAuth2PasswordBearer": []
+                }],
             }
         },
     },
@@ -101,10 +124,22 @@ openapi_schema = {
                 "required": ["username"],
                 "type": "object",
                 "properties": {
-                    "username": {"title": "Username", "type": "string"},
-                    "email": {"title": "Email", "type": "string"},
-                    "full_name": {"title": "Full Name", "type": "string"},
-                    "disabled": {"title": "Disabled", "type": "boolean"},
+                    "username": {
+                        "title": "Username",
+                        "type": "string"
+                    },
+                    "email": {
+                        "title": "Email",
+                        "type": "string"
+                    },
+                    "full_name": {
+                        "title": "Full Name",
+                        "type": "string"
+                    },
+                    "disabled": {
+                        "title": "Disabled",
+                        "type": "boolean"
+                    },
                 },
             },
             "Token": {
@@ -112,8 +147,14 @@ openapi_schema = {
                 "required": ["access_token", "token_type"],
                 "type": "object",
                 "properties": {
-                    "access_token": {"title": "Access Token", "type": "string"},
-                    "token_type": {"title": "Token Type", "type": "string"},
+                    "access_token": {
+                        "title": "Access Token",
+                        "type": "string"
+                    },
+                    "token_type": {
+                        "title": "Token Type",
+                        "type": "string"
+                    },
                 },
             },
             "Body_login_for_access_token_token_post": {
@@ -126,11 +167,27 @@ openapi_schema = {
                         "pattern": "password",
                         "type": "string",
                     },
-                    "username": {"title": "Username", "type": "string"},
-                    "password": {"title": "Password", "type": "string"},
-                    "scope": {"title": "Scope", "type": "string", "default": ""},
-                    "client_id": {"title": "Client Id", "type": "string"},
-                    "client_secret": {"title": "Client Secret", "type": "string"},
+                    "username": {
+                        "title": "Username",
+                        "type": "string"
+                    },
+                    "password": {
+                        "title": "Password",
+                        "type": "string"
+                    },
+                    "scope": {
+                        "title": "Scope",
+                        "type": "string",
+                        "default": ""
+                    },
+                    "client_id": {
+                        "title": "Client Id",
+                        "type": "string"
+                    },
+                    "client_secret": {
+                        "title": "Client Secret",
+                        "type": "string"
+                    },
                 },
             },
             "ValidationError": {
@@ -141,10 +198,18 @@ openapi_schema = {
                     "loc": {
                         "title": "Location",
                         "type": "array",
-                        "items": {"type": "string"},
+                        "items": {
+                            "type": "string"
+                        },
                     },
-                    "msg": {"title": "Message", "type": "string"},
-                    "type": {"title": "Error Type", "type": "string"},
+                    "msg": {
+                        "title": "Message",
+                        "type": "string"
+                    },
+                    "type": {
+                        "title": "Error Type",
+                        "type": "string"
+                    },
                 },
             },
             "HTTPValidationError": {
@@ -154,7 +219,9 @@ openapi_schema = {
                     "detail": {
                         "title": "Detail",
                         "type": "array",
-                        "items": {"$ref": "#/components/schemas/ValidationError"},
+                        "items": {
+                            "$ref": "#/components/schemas/ValidationError"
+                        },
                     }
                 },
             },
@@ -194,7 +261,11 @@ def get_access_token(username="johndoe", password="secret", scope=None):
 
 
 def test_login():
-    response = client.post("/token", data={"username": "johndoe", "password": "secret"})
+    response = client.post("/token",
+                           data={
+                               "username": "johndoe",
+                               "password": "secret"
+                           })
     assert response.status_code == 200, response.text
     content = response.json()
     assert "access_token" in content
@@ -202,15 +273,21 @@ def test_login():
 
 
 def test_login_incorrect_password():
-    response = client.post(
-        "/token", data={"username": "johndoe", "password": "incorrect"}
-    )
+    response = client.post("/token",
+                           data={
+                               "username": "johndoe",
+                               "password": "incorrect"
+                           })
     assert response.status_code == 400, response.text
     assert response.json() == {"detail": "Incorrect username or password"}
 
 
 def test_login_incorrect_username():
-    response = client.post("/token", data={"username": "foo", "password": "secret"})
+    response = client.post("/token",
+                           data={
+                               "username": "foo",
+                               "password": "secret"
+                           })
     assert response.status_code == 400, response.text
     assert response.json() == {"detail": "Incorrect username or password"}
 
@@ -224,9 +301,8 @@ def test_no_token():
 
 def test_token():
     access_token = get_access_token(scope="me")
-    response = client.get(
-        "/users/me", headers={"Authorization": f"Bearer {access_token}"}
-    )
+    response = client.get("/users/me",
+                          headers={"Authorization": f"Bearer {access_token}"})
     assert response.status_code == 200, response.text
     assert response.json() == {
         "username": "johndoe",
@@ -237,23 +313,24 @@ def test_token():
 
 
 def test_incorrect_token():
-    response = client.get("/users/me", headers={"Authorization": "Bearer nonexistent"})
+    response = client.get("/users/me",
+                          headers={"Authorization": "Bearer nonexistent"})
     assert response.status_code == 401, response.text
     assert response.json() == {"detail": "Could not validate credentials"}
     assert response.headers["WWW-Authenticate"] == 'Bearer scope="me"'
 
 
 def test_incorrect_token_type():
-    response = client.get(
-        "/users/me", headers={"Authorization": "Notexistent testtoken"}
-    )
+    response = client.get("/users/me",
+                          headers={"Authorization": "Notexistent testtoken"})
     assert response.status_code == 401, response.text
     assert response.json() == {"detail": "Not authenticated"}
     assert response.headers["WWW-Authenticate"] == "Bearer"
 
 
 def test_verify_password():
-    assert verify_password("secret", fake_users_db["johndoe"]["hashed_password"])
+    assert verify_password("secret",
+                           fake_users_db["johndoe"]["hashed_password"])
 
 
 def test_get_password_hash():
@@ -269,7 +346,8 @@ def test_token_no_sub():
     response = client.get(
         "/users/me",
         headers={
-            "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiZm9vIn0.9ynBhuYb4e6aW3oJr_K_TBgwcMTDpRToQIE25L57rOE"
+            "Authorization":
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiZm9vIn0.9ynBhuYb4e6aW3oJr_K_TBgwcMTDpRToQIE25L57rOE"
         },
     )
     assert response.status_code == 401, response.text
@@ -281,7 +359,8 @@ def test_token_no_username():
     response = client.get(
         "/users/me",
         headers={
-            "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJmb28ifQ.NnExK_dlNAYyzACrXtXDrcWOgGY2JuPbI4eDaHdfK5Y"
+            "Authorization":
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJmb28ifQ.NnExK_dlNAYyzACrXtXDrcWOgGY2JuPbI4eDaHdfK5Y"
         },
     )
     assert response.status_code == 401, response.text
@@ -291,9 +370,8 @@ def test_token_no_username():
 
 def test_token_no_scope():
     access_token = get_access_token()
-    response = client.get(
-        "/users/me", headers={"Authorization": f"Bearer {access_token}"}
-    )
+    response = client.get("/users/me",
+                          headers={"Authorization": f"Bearer {access_token}"})
     assert response.status_code == 401, response.text
     assert response.json() == {"detail": "Not enough permissions"}
     assert response.headers["WWW-Authenticate"] == 'Bearer scope="me"'
@@ -303,7 +381,8 @@ def test_token_inexistent_user():
     response = client.get(
         "/users/me",
         headers={
-            "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VybmFtZTpib2IifQ.HcfCW67Uda-0gz54ZWTqmtgJnZeNem0Q757eTa9EZuw"
+            "Authorization":
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VybmFtZTpib2IifQ.HcfCW67Uda-0gz54ZWTqmtgJnZeNem0Q757eTa9EZuw"
         },
     )
     assert response.status_code == 401, response.text
@@ -312,30 +391,27 @@ def test_token_inexistent_user():
 
 
 def test_token_inactive_user():
-    access_token = get_access_token(
-        username="alice", password="secretalice", scope="me"
-    )
-    response = client.get(
-        "/users/me", headers={"Authorization": f"Bearer {access_token}"}
-    )
+    access_token = get_access_token(username="alice",
+                                    password="secretalice",
+                                    scope="me")
+    response = client.get("/users/me",
+                          headers={"Authorization": f"Bearer {access_token}"})
     assert response.status_code == 400, response.text
     assert response.json() == {"detail": "Inactive user"}
 
 
 def test_read_items():
     access_token = get_access_token(scope="me items")
-    response = client.get(
-        "/users/me/items/", headers={"Authorization": f"Bearer {access_token}"}
-    )
+    response = client.get("/users/me/items/",
+                          headers={"Authorization": f"Bearer {access_token}"})
     assert response.status_code == 200, response.text
     assert response.json() == [{"item_id": "Foo", "owner": "johndoe"}]
 
 
 def test_read_system_status():
     access_token = get_access_token()
-    response = client.get(
-        "/status/", headers={"Authorization": f"Bearer {access_token}"}
-    )
+    response = client.get("/status/",
+                          headers={"Authorization": f"Bearer {access_token}"})
     assert response.status_code == 200, response.text
     assert response.json() == {"status": "ok"}
 

@@ -130,9 +130,11 @@ async def get_context_b_raise(state: dict = Depends(context_b)):
 
 
 @app.get("/context_b_bg")
-async def get_context_b_bg(tasks: BackgroundTasks, state: dict = Depends(context_b)):
+async def get_context_b_bg(tasks: BackgroundTasks,
+                           state: dict = Depends(context_b)):
     async def bg(state: dict):
-        state["bg"] = f"bg set - b: {state['context_b']} - a: {state['context_a']}"
+        state[
+            "bg"] = f"bg set - b: {state['context_b']} - a: {state['context_a']}"
 
     tasks.add_task(bg, state)
     return state
@@ -188,13 +190,11 @@ def get_sync_context_b_raise(state: dict = Depends(context_b)):
 
 
 @app.get("/sync_context_b_bg")
-async def get_sync_context_b_bg(
-    tasks: BackgroundTasks, state: dict = Depends(context_b)
-):
+async def get_sync_context_b_bg(tasks: BackgroundTasks,
+                                state: dict = Depends(context_b)):
     async def bg(state: dict):
         state[
-            "sync_bg"
-        ] = f"sync_bg set - b: {state['context_b']} - a: {state['context_a']}"
+            "sync_bg"] = f"sync_bg set - b: {state['context_b']} - a: {state['context_a']}"
 
     tasks.add_task(bg, state)
     return state

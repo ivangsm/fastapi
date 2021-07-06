@@ -21,14 +21,14 @@ def dependency(item2: Item):
     return item2
 
 
-def sub_duplicate_dependency(
-    item: Item, sub_item: Item = Depends(duplicate_dependency)
-):
+def sub_duplicate_dependency(item: Item,
+                             sub_item: Item = Depends(duplicate_dependency)):
     return [item, sub_item]
 
 
 @app.post("/with-duplicates")
-async def with_duplicates(item: Item, item2: Item = Depends(duplicate_dependency)):
+async def with_duplicates(item: Item,
+                          item2: Item = Depends(duplicate_dependency)):
     return [item, item2]
 
 
@@ -39,14 +39,16 @@ async def no_duplicates(item: Item, item2: Item = Depends(dependency)):
 
 @app.post("/with-duplicates-sub")
 async def no_duplicates_sub(
-    item: Item, sub_items: List[Item] = Depends(sub_duplicate_dependency)
-):
+        item: Item, sub_items: List[Item] = Depends(sub_duplicate_dependency)):
     return [item, sub_items]
 
 
 openapi_schema = {
     "openapi": "3.0.2",
-    "info": {"title": "FastAPI", "version": "0.1.0"},
+    "info": {
+        "title": "FastAPI",
+        "version": "0.1.0"
+    },
     "paths": {
         "/with-duplicates": {
             "post": {
@@ -55,7 +57,9 @@ openapi_schema = {
                 "requestBody": {
                     "content": {
                         "application/json": {
-                            "schema": {"$ref": "#/components/schemas/Item"}
+                            "schema": {
+                                "$ref": "#/components/schemas/Item"
+                            }
                         }
                     },
                     "required": True,
@@ -63,14 +67,19 @@ openapi_schema = {
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/json": {"schema": {}}},
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        },
                     },
                     "422": {
                         "description": "Validation Error",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                    "$ref":
+                                    "#/components/schemas/HTTPValidationError"
                                 }
                             }
                         },
@@ -86,7 +95,8 @@ openapi_schema = {
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/Body_no_duplicates_no_duplicates_post"
+                                "$ref":
+                                "#/components/schemas/Body_no_duplicates_no_duplicates_post"
                             }
                         }
                     },
@@ -95,14 +105,19 @@ openapi_schema = {
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/json": {"schema": {}}},
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        },
                     },
                     "422": {
                         "description": "Validation Error",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                    "$ref":
+                                    "#/components/schemas/HTTPValidationError"
                                 }
                             }
                         },
@@ -117,7 +132,9 @@ openapi_schema = {
                 "requestBody": {
                     "content": {
                         "application/json": {
-                            "schema": {"$ref": "#/components/schemas/Item"}
+                            "schema": {
+                                "$ref": "#/components/schemas/Item"
+                            }
                         }
                     },
                     "required": True,
@@ -125,14 +142,19 @@ openapi_schema = {
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/json": {"schema": {}}},
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        },
                     },
                     "422": {
                         "description": "Validation Error",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                    "$ref":
+                                    "#/components/schemas/HTTPValidationError"
                                 }
                             }
                         },
@@ -148,8 +170,12 @@ openapi_schema = {
                 "required": ["item", "item2"],
                 "type": "object",
                 "properties": {
-                    "item": {"$ref": "#/components/schemas/Item"},
-                    "item2": {"$ref": "#/components/schemas/Item"},
+                    "item": {
+                        "$ref": "#/components/schemas/Item"
+                    },
+                    "item2": {
+                        "$ref": "#/components/schemas/Item"
+                    },
                 },
             },
             "HTTPValidationError": {
@@ -159,7 +185,9 @@ openapi_schema = {
                     "detail": {
                         "title": "Detail",
                         "type": "array",
-                        "items": {"$ref": "#/components/schemas/ValidationError"},
+                        "items": {
+                            "$ref": "#/components/schemas/ValidationError"
+                        },
                     }
                 },
             },
@@ -167,7 +195,12 @@ openapi_schema = {
                 "title": "Item",
                 "required": ["data"],
                 "type": "object",
-                "properties": {"data": {"title": "Data", "type": "string"}},
+                "properties": {
+                    "data": {
+                        "title": "Data",
+                        "type": "string"
+                    }
+                },
             },
             "ValidationError": {
                 "title": "ValidationError",
@@ -177,10 +210,18 @@ openapi_schema = {
                     "loc": {
                         "title": "Location",
                         "type": "array",
-                        "items": {"type": "string"},
+                        "items": {
+                            "type": "string"
+                        },
                     },
-                    "msg": {"title": "Message", "type": "string"},
-                    "type": {"title": "Error Type", "type": "string"},
+                    "msg": {
+                        "title": "Message",
+                        "type": "string"
+                    },
+                    "type": {
+                        "title": "Error Type",
+                        "type": "string"
+                    },
                 },
             },
         }
@@ -198,20 +239,25 @@ def test_no_duplicates_invalid():
     response = client.post("/no-duplicates", json={"item": {"data": "myitem"}})
     assert response.status_code == 422, response.text
     assert response.json() == {
-        "detail": [
-            {
-                "loc": ["body", "item2"],
-                "msg": "field required",
-                "type": "value_error.missing",
-            }
-        ]
+        "detail": [{
+            "loc": ["body", "item2"],
+            "msg": "field required",
+            "type": "value_error.missing",
+        }]
     }
 
 
 def test_no_duplicates():
     response = client.post(
         "/no-duplicates",
-        json={"item": {"data": "myitem"}, "item2": {"data": "myitem2"}},
+        json={
+            "item": {
+                "data": "myitem"
+            },
+            "item2": {
+                "data": "myitem2"
+            }
+        },
     )
     assert response.status_code == 200, response.text
     assert response.json() == [{"data": "myitem"}, {"data": "myitem2"}]
@@ -227,6 +273,12 @@ def test_sub_duplicates():
     response = client.post("/with-duplicates-sub", json={"data": "myitem"})
     assert response.status_code == 200, response.text
     assert response.json() == [
-        {"data": "myitem"},
-        [{"data": "myitem"}, {"data": "myitem"}],
+        {
+            "data": "myitem"
+        },
+        [{
+            "data": "myitem"
+        }, {
+            "data": "myitem"
+        }],
     ]

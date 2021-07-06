@@ -27,7 +27,10 @@ class FastAPIError(RuntimeError):
 
 
 class RequestValidationError(ValidationError):
-    def __init__(self, errors: Sequence[ErrorList], *, body: Any = None) -> None:
+    def __init__(self,
+                 errors: Sequence[ErrorList],
+                 *,
+                 body: Any = None) -> None:
         self.body = body
         super().__init__(errors, RequestErrorModel)
 

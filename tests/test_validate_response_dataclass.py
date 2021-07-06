@@ -23,15 +23,27 @@ def get_invalid():
 
 @app.get("/items/innerinvalid", response_model=Item)
 def get_innerinvalid():
-    return {"name": "double invalid", "price": "foo", "owner_ids": ["foo", "bar"]}
+    return {
+        "name": "double invalid",
+        "price": "foo",
+        "owner_ids": ["foo", "bar"]
+    }
 
 
 @app.get("/items/invalidlist", response_model=List[Item])
 def get_invalidlist():
     return [
-        {"name": "foo"},
-        {"name": "bar", "price": "bar"},
-        {"name": "baz", "price": "baz"},
+        {
+            "name": "foo"
+        },
+        {
+            "name": "bar",
+            "price": "bar"
+        },
+        {
+            "name": "baz",
+            "price": "baz"
+        },
     ]
 
 

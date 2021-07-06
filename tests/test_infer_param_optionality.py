@@ -5,7 +5,6 @@ from fastapi.testclient import TestClient
 
 app = FastAPI()
 
-
 user_router = APIRouter()
 item_router = APIRouter()
 
@@ -23,7 +22,13 @@ def get_user(user_id: str):
 @item_router.get("/")
 def get_items(user_id: Optional[str] = None):
     if user_id is None:
-        return [{"item_id": "i1", "user_id": "u1"}, {"item_id": "i2", "user_id": "u2"}]
+        return [{
+            "item_id": "i1",
+            "user_id": "u1"
+        }, {
+            "item_id": "i2",
+            "user_id": "u2"
+        }]
     return [{"item_id": "i2", "user_id": user_id}]
 
 
@@ -38,7 +43,6 @@ app.include_router(user_router, prefix="/users")
 app.include_router(item_router, prefix="/items")
 
 app.include_router(item_router, prefix="/users/{user_id}/items")
-
 
 client = TestClient(app)
 
@@ -62,8 +66,14 @@ def test_get_items_1():
     response = client.get("/items")
     assert response.status_code == 200, response.text
     assert response.json() == [
-        {"item_id": "i1", "user_id": "u1"},
-        {"item_id": "i2", "user_id": "u2"},
+        {
+            "item_id": "i1",
+            "user_id": "u1"
+        },
+        {
+            "item_id": "i2",
+            "user_id": "u2"
+        },
     ]
 
 
@@ -110,7 +120,10 @@ def test_schema_1():
 
     d = {
         "required": True,
-        "schema": {"title": "User Id", "type": "string"},
+        "schema": {
+            "title": "User Id",
+            "type": "string"
+        },
         "name": "user_id",
         "in": "path",
     }
@@ -127,7 +140,10 @@ def test_schema_2():
 
     d = {
         "required": False,
-        "schema": {"title": "User Id", "type": "string"},
+        "schema": {
+            "title": "User Id",
+            "type": "string"
+        },
         "name": "user_id",
         "in": "query",
     }
