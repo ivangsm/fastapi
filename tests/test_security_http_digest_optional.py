@@ -11,35 +11,52 @@ security = HTTPDigest(auto_error=False)
 
 @app.get("/users/me")
 def read_current_user(
-    credentials: Optional[HTTPAuthorizationCredentials] = Security(security),
-):
+    credentials: Optional[HTTPAuthorizationCredentials] = Security(
+        security), ):
     if credentials is None:
         return {"msg": "Create an account first"}
-    return {"scheme": credentials.scheme, "credentials": credentials.credentials}
+    return {
+        "scheme": credentials.scheme,
+        "credentials": credentials.credentials
+    }
 
 
 client = TestClient(app)
 
 openapi_schema = {
     "openapi": "3.0.2",
-    "info": {"title": "FastAPI", "version": "0.1.0"},
+    "info": {
+        "title": "FastAPI",
+        "version": "0.1.0"
+    },
     "paths": {
         "/users/me": {
             "get": {
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/json": {"schema": {}}},
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        },
                     }
                 },
                 "summary": "Read Current User",
                 "operationId": "read_current_user_users_me_get",
-                "security": [{"HTTPDigest": []}],
+                "security": [{
+                    "HTTPDigest": []
+                }],
             }
         }
     },
     "components": {
-        "securitySchemes": {"HTTPDigest": {"type": "http", "scheme": "digest"}}
+        "securitySchemes": {
+            "HTTPDigest": {
+                "type": "http",
+                "scheme": "digest"
+            }
+        }
     },
 }
 
@@ -51,7 +68,8 @@ def test_openapi_schema():
 
 
 def test_security_http_digest():
-    response = client.get("/users/me", headers={"Authorization": "Digest foobar"})
+    response = client.get("/users/me",
+                          headers={"Authorization": "Digest foobar"})
     assert response.status_code == 200, response.text
     assert response.json() == {"scheme": "Digest", "credentials": "foobar"}
 
@@ -64,7 +82,6 @@ def test_security_http_digest_no_credentials():
 
 def test_security_http_digest_incorrect_scheme_credentials():
     response = client.get(
-        "/users/me", headers={"Authorization": "Other invalidauthorization"}
-    )
+        "/users/me", headers={"Authorization": "Other invalidauthorization"})
     assert response.status_code == 403, response.text
     assert response.json() == {"detail": "Invalid authentication credentials"}

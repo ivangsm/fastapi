@@ -9,21 +9,29 @@ client = TestClient(app)
 
 openapi_schema = {
     "openapi": "3.0.2",
-    "info": {"title": "FastAPI", "version": "0.1.0"},
+    "info": {
+        "title": "FastAPI",
+        "version": "0.1.0"
+    },
     "paths": {
         "/items/": {
             "post": {
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/json": {"schema": {}}},
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        },
                     },
                     "422": {
                         "description": "Validation Error",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                    "$ref":
+                                    "#/components/schemas/HTTPValidationError"
                                 }
                             }
                         },
@@ -34,7 +42,9 @@ openapi_schema = {
                 "requestBody": {
                     "content": {
                         "application/json": {
-                            "schema": {"$ref": "#/components/schemas/Item"}
+                            "schema": {
+                                "$ref": "#/components/schemas/Item"
+                            }
                         }
                     },
                     "required": True,
@@ -49,10 +59,22 @@ openapi_schema = {
                 "required": ["name", "price"],
                 "type": "object",
                 "properties": {
-                    "name": {"title": "Name", "type": "string"},
-                    "price": {"title": "Price", "type": "number"},
-                    "description": {"title": "Description", "type": "string"},
-                    "tax": {"title": "Tax", "type": "number"},
+                    "name": {
+                        "title": "Name",
+                        "type": "string"
+                    },
+                    "price": {
+                        "title": "Price",
+                        "type": "number"
+                    },
+                    "description": {
+                        "title": "Description",
+                        "type": "string"
+                    },
+                    "tax": {
+                        "title": "Tax",
+                        "type": "number"
+                    },
                 },
             },
             "ValidationError": {
@@ -63,10 +85,18 @@ openapi_schema = {
                     "loc": {
                         "title": "Location",
                         "type": "array",
-                        "items": {"type": "string"},
+                        "items": {
+                            "type": "string"
+                        },
                     },
-                    "msg": {"title": "Message", "type": "string"},
-                    "type": {"title": "Error Type", "type": "string"},
+                    "msg": {
+                        "title": "Message",
+                        "type": "string"
+                    },
+                    "type": {
+                        "title": "Error Type",
+                        "type": "string"
+                    },
                 },
             },
             "HTTPValidationError": {
@@ -76,7 +106,9 @@ openapi_schema = {
                     "detail": {
                         "title": "Detail",
                         "type": "array",
-                        "items": {"$ref": "#/components/schemas/ValidationError"},
+                        "items": {
+                            "$ref": "#/components/schemas/ValidationError"
+                        },
                     }
                 },
             },
@@ -92,23 +124,19 @@ def test_openapi_schema():
 
 
 price_missing = {
-    "detail": [
-        {
-            "loc": ["body", "price"],
-            "msg": "field required",
-            "type": "value_error.missing",
-        }
-    ]
+    "detail": [{
+        "loc": ["body", "price"],
+        "msg": "field required",
+        "type": "value_error.missing",
+    }]
 }
 
 price_not_float = {
-    "detail": [
-        {
-            "loc": ["body", "price"],
-            "msg": "value is not a valid float",
-            "type": "type_error.float",
-        }
-    ]
+    "detail": [{
+        "loc": ["body", "price"],
+        "msg": "value is not a valid float",
+        "type": "type_error.float",
+    }]
 }
 
 name_price_missing = {
@@ -127,9 +155,11 @@ name_price_missing = {
 }
 
 body_missing = {
-    "detail": [
-        {"loc": ["body"], "msg": "field required", "type": "value_error.missing"}
-    ]
+    "detail": [{
+        "loc": ["body"],
+        "msg": "field required",
+        "type": "value_error.missing"
+    }]
 }
 
 
@@ -138,30 +168,70 @@ body_missing = {
     [
         (
             "/items/",
-            {"name": "Foo", "price": 50.5},
+            {
+                "name": "Foo",
+                "price": 50.5
+            },
             200,
-            {"name": "Foo", "price": 50.5, "description": None, "tax": None},
+            {
+                "name": "Foo",
+                "price": 50.5,
+                "description": None,
+                "tax": None
+            },
         ),
         (
             "/items/",
-            {"name": "Foo", "price": "50.5"},
+            {
+                "name": "Foo",
+                "price": "50.5"
+            },
             200,
-            {"name": "Foo", "price": 50.5, "description": None, "tax": None},
+            {
+                "name": "Foo",
+                "price": 50.5,
+                "description": None,
+                "tax": None
+            },
         ),
         (
             "/items/",
-            {"name": "Foo", "price": "50.5", "description": "Some Foo"},
+            {
+                "name": "Foo",
+                "price": "50.5",
+                "description": "Some Foo"
+            },
             200,
-            {"name": "Foo", "price": 50.5, "description": "Some Foo", "tax": None},
+            {
+                "name": "Foo",
+                "price": 50.5,
+                "description": "Some Foo",
+                "tax": None
+            },
         ),
         (
             "/items/",
-            {"name": "Foo", "price": "50.5", "description": "Some Foo", "tax": 0.3},
+            {
+                "name": "Foo",
+                "price": "50.5",
+                "description": "Some Foo",
+                "tax": 0.3
+            },
             200,
-            {"name": "Foo", "price": 50.5, "description": "Some Foo", "tax": 0.3},
+            {
+                "name": "Foo",
+                "price": 50.5,
+                "description": "Some Foo",
+                "tax": 0.3
+            },
         ),
-        ("/items/", {"name": "Foo"}, 422, price_missing),
-        ("/items/", {"name": "Foo", "price": "twenty"}, 422, price_not_float),
+        ("/items/", {
+            "name": "Foo"
+        }, 422, price_missing),
+        ("/items/", {
+            "name": "Foo",
+            "price": "twenty"
+        }, 422, price_not_float),
         ("/items/", {}, 422, name_price_missing),
         ("/items/", None, 422, body_missing),
     ],
@@ -180,20 +250,19 @@ def test_post_broken_body():
     )
     assert response.status_code == 422, response.text
     assert response.json() == {
-        "detail": [
-            {
-                "loc": ["body", 1],
-                "msg": "Expecting property name enclosed in double quotes: line 1 column 2 (char 1)",
-                "type": "value_error.jsondecode",
-                "ctx": {
-                    "msg": "Expecting property name enclosed in double quotes",
-                    "doc": "{some broken json}",
-                    "pos": 1,
-                    "lineno": 1,
-                    "colno": 2,
-                },
-            }
-        ]
+        "detail": [{
+            "loc": ["body", 1],
+            "msg":
+            "Expecting property name enclosed in double quotes: line 1 column 2 (char 1)",
+            "type": "value_error.jsondecode",
+            "ctx": {
+                "msg": "Expecting property name enclosed in double quotes",
+                "doc": "{some broken json}",
+                "pos": 1,
+                "lineno": 1,
+                "colno": 2,
+            },
+        }]
     }
 
 
@@ -201,13 +270,11 @@ def test_post_form_for_json():
     response = client.post("/items/", data={"name": "Foo", "price": 50.5})
     assert response.status_code == 422, response.text
     assert response.json() == {
-        "detail": [
-            {
-                "loc": ["body"],
-                "msg": "value is not a valid dict",
-                "type": "type_error.dict",
-            }
-        ]
+        "detail": [{
+            "loc": ["body"],
+            "msg": "value is not a valid dict",
+            "type": "type_error.dict",
+        }]
     }
 
 
@@ -246,27 +313,29 @@ def test_no_content_type_is_json():
 def test_wrong_headers():
     data = '{"name": "Foo", "price": 50.5}'
     invalid_dict = {
-        "detail": [
-            {
-                "loc": ["body"],
-                "msg": "value is not a valid dict",
-                "type": "type_error.dict",
-            }
-        ]
+        "detail": [{
+            "loc": ["body"],
+            "msg": "value is not a valid dict",
+            "type": "type_error.dict",
+        }]
     }
 
-    response = client.post("/items/", data=data, headers={"Content-Type": "text/plain"})
+    response = client.post("/items/",
+                           data=data,
+                           headers={"Content-Type": "text/plain"})
     assert response.status_code == 422, response.text
     assert response.json() == invalid_dict
 
     response = client.post(
-        "/items/", data=data, headers={"Content-Type": "application/geo+json-seq"}
-    )
+        "/items/",
+        data=data,
+        headers={"Content-Type": "application/geo+json-seq"})
     assert response.status_code == 422, response.text
     assert response.json() == invalid_dict
     response = client.post(
-        "/items/", data=data, headers={"Content-Type": "application/not-really-json"}
-    )
+        "/items/",
+        data=data,
+        headers={"Content-Type": "application/not-really-json"})
     assert response.status_code == 422, response.text
     assert response.json() == invalid_dict
 

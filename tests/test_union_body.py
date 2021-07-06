@@ -24,21 +24,29 @@ client = TestClient(app)
 
 item_openapi_schema = {
     "openapi": "3.0.2",
-    "info": {"title": "FastAPI", "version": "0.1.0"},
+    "info": {
+        "title": "FastAPI",
+        "version": "0.1.0"
+    },
     "paths": {
         "/items/": {
             "post": {
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/json": {"schema": {}}},
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        },
                     },
                     "422": {
                         "description": "Validation Error",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                    "$ref":
+                                    "#/components/schemas/HTTPValidationError"
                                 }
                             }
                         },
@@ -50,10 +58,16 @@ item_openapi_schema = {
                     "content": {
                         "application/json": {
                             "schema": {
-                                "title": "Item",
+                                "title":
+                                "Item",
                                 "anyOf": [
-                                    {"$ref": "#/components/schemas/OtherItem"},
-                                    {"$ref": "#/components/schemas/Item"},
+                                    {
+                                        "$ref":
+                                        "#/components/schemas/OtherItem"
+                                    },
+                                    {
+                                        "$ref": "#/components/schemas/Item"
+                                    },
                                 ],
                             }
                         }
@@ -69,12 +83,22 @@ item_openapi_schema = {
                 "title": "OtherItem",
                 "required": ["price"],
                 "type": "object",
-                "properties": {"price": {"title": "Price", "type": "integer"}},
+                "properties": {
+                    "price": {
+                        "title": "Price",
+                        "type": "integer"
+                    }
+                },
             },
             "Item": {
                 "title": "Item",
                 "type": "object",
-                "properties": {"name": {"title": "Name", "type": "string"}},
+                "properties": {
+                    "name": {
+                        "title": "Name",
+                        "type": "string"
+                    }
+                },
             },
             "ValidationError": {
                 "title": "ValidationError",
@@ -84,10 +108,18 @@ item_openapi_schema = {
                     "loc": {
                         "title": "Location",
                         "type": "array",
-                        "items": {"type": "string"},
+                        "items": {
+                            "type": "string"
+                        },
                     },
-                    "msg": {"title": "Message", "type": "string"},
-                    "type": {"title": "Error Type", "type": "string"},
+                    "msg": {
+                        "title": "Message",
+                        "type": "string"
+                    },
+                    "type": {
+                        "title": "Error Type",
+                        "type": "string"
+                    },
                 },
             },
             "HTTPValidationError": {
@@ -97,7 +129,9 @@ item_openapi_schema = {
                     "detail": {
                         "title": "Detail",
                         "type": "array",
-                        "items": {"$ref": "#/components/schemas/ValidationError"},
+                        "items": {
+                            "$ref": "#/components/schemas/ValidationError"
+                        },
                     }
                 },
             },

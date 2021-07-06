@@ -6,28 +6,37 @@ client = TestClient(app)
 
 openapi_schema = {
     "openapi": "3.0.2",
-    "info": {"title": "FastAPI", "version": "0.1.0"},
+    "info": {
+        "title": "FastAPI",
+        "version": "0.1.0"
+    },
     "paths": {
         "/items/{item_id}": {
             "put": {
-                "summary": "Update Item",
-                "operationId": "update_item_items__item_id__put",
-                "parameters": [
-                    {
-                        "required": True,
-                        "schema": {"title": "Item Id", "type": "integer"},
-                        "name": "item_id",
-                        "in": "path",
-                    }
-                ],
+                "summary":
+                "Update Item",
+                "operationId":
+                "update_item_items__item_id__put",
+                "parameters": [{
+                    "required": True,
+                    "schema": {
+                        "title": "Item Id",
+                        "type": "integer"
+                    },
+                    "name": "item_id",
+                    "in": "path",
+                }],
                 "requestBody": {
                     "content": {
                         "application/json": {
-                            "schema": {"$ref": "#/components/schemas/Item"},
+                            "schema": {
+                                "$ref": "#/components/schemas/Item"
+                            },
                             "examples": {
                                 "normal": {
                                     "summary": "A normal example",
-                                    "description": "A **normal** item works correctly.",
+                                    "description":
+                                    "A **normal** item works correctly.",
                                     "value": {
                                         "name": "Foo",
                                         "description": "A very nice Item",
@@ -36,12 +45,18 @@ openapi_schema = {
                                     },
                                 },
                                 "converted": {
-                                    "summary": "An example with converted data",
-                                    "description": "FastAPI can convert price `strings` to actual `numbers` automatically",
-                                    "value": {"name": "Bar", "price": "35.4"},
+                                    "summary":
+                                    "An example with converted data",
+                                    "description":
+                                    "FastAPI can convert price `strings` to actual `numbers` automatically",
+                                    "value": {
+                                        "name": "Bar",
+                                        "price": "35.4"
+                                    },
                                 },
                                 "invalid": {
-                                    "summary": "Invalid data is rejected with an error",
+                                    "summary":
+                                    "Invalid data is rejected with an error",
                                     "value": {
                                         "name": "Baz",
                                         "price": "thirty five point four",
@@ -55,14 +70,19 @@ openapi_schema = {
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/json": {"schema": {}}},
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        },
                     },
                     "422": {
                         "description": "Validation Error",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                    "$ref":
+                                    "#/components/schemas/HTTPValidationError"
                                 }
                             }
                         },
@@ -80,7 +100,9 @@ openapi_schema = {
                     "detail": {
                         "title": "Detail",
                         "type": "array",
-                        "items": {"$ref": "#/components/schemas/ValidationError"},
+                        "items": {
+                            "$ref": "#/components/schemas/ValidationError"
+                        },
                     }
                 },
             },
@@ -89,10 +111,22 @@ openapi_schema = {
                 "required": ["name", "price"],
                 "type": "object",
                 "properties": {
-                    "name": {"title": "Name", "type": "string"},
-                    "description": {"title": "Description", "type": "string"},
-                    "price": {"title": "Price", "type": "number"},
-                    "tax": {"title": "Tax", "type": "number"},
+                    "name": {
+                        "title": "Name",
+                        "type": "string"
+                    },
+                    "description": {
+                        "title": "Description",
+                        "type": "string"
+                    },
+                    "price": {
+                        "title": "Price",
+                        "type": "number"
+                    },
+                    "tax": {
+                        "title": "Tax",
+                        "type": "number"
+                    },
                 },
             },
             "ValidationError": {
@@ -103,10 +137,18 @@ openapi_schema = {
                     "loc": {
                         "title": "Location",
                         "type": "array",
-                        "items": {"type": "string"},
+                        "items": {
+                            "type": "string"
+                        },
                     },
-                    "msg": {"title": "Message", "type": "string"},
-                    "type": {"title": "Error Type", "type": "string"},
+                    "msg": {
+                        "title": "Message",
+                        "type": "string"
+                    },
+                    "type": {
+                        "title": "Error Type",
+                        "type": "string"
+                    },
                 },
             },
         }

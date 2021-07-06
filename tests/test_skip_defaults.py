@@ -34,9 +34,9 @@ def get_root() -> ModelSubclass:
     return ModelSubclass(sub={}, y=1, z=0)
 
 
-@app.get(
-    "/exclude_unset", response_model=ModelDefaults, response_model_exclude_unset=True
-)
+@app.get("/exclude_unset",
+         response_model=ModelDefaults,
+         response_model_exclude_unset=True)
 def get_exclude_unset() -> ModelDefaults:
     return ModelDefaults(x=None, y="y")
 
@@ -50,9 +50,9 @@ def get_exclude_defaults() -> ModelDefaults:
     return ModelDefaults(x=None, y="y")
 
 
-@app.get(
-    "/exclude_none", response_model=ModelDefaults, response_model_exclude_none=True
-)
+@app.get("/exclude_none",
+         response_model=ModelDefaults,
+         response_model_exclude_none=True)
 def get_exclude_none() -> ModelDefaults:
     return ModelDefaults(x=None, y="y")
 

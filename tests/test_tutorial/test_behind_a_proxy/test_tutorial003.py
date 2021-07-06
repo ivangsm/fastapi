@@ -5,12 +5,24 @@ from docs_src.behind_a_proxy.tutorial003 import app
 client = TestClient(app)
 
 openapi_schema = {
-    "openapi": "3.0.2",
-    "info": {"title": "FastAPI", "version": "0.1.0"},
+    "openapi":
+    "3.0.2",
+    "info": {
+        "title": "FastAPI",
+        "version": "0.1.0"
+    },
     "servers": [
-        {"url": "/api/v1"},
-        {"url": "https://stag.example.com", "description": "Staging environment"},
-        {"url": "https://prod.example.com", "description": "Production environment"},
+        {
+            "url": "/api/v1"
+        },
+        {
+            "url": "https://stag.example.com",
+            "description": "Staging environment"
+        },
+        {
+            "url": "https://prod.example.com",
+            "description": "Production environment"
+        },
     ],
     "paths": {
         "/app": {
@@ -20,7 +32,11 @@ openapi_schema = {
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/json": {"schema": {}}},
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        },
                     }
                 },
             }
@@ -38,4 +54,7 @@ def test_openapi():
 def test_main():
     response = client.get("/app")
     assert response.status_code == 200
-    assert response.json() == {"message": "Hello World", "root_path": "/api/v1"}
+    assert response.json() == {
+        "message": "Hello World",
+        "root_path": "/api/v1"
+    }

@@ -8,13 +8,11 @@ from starlette.status import HTTP_403_FORBIDDEN
 
 
 class OpenIdConnect(SecurityBase):
-    def __init__(
-        self,
-        *,
-        openIdConnectUrl: str,
-        scheme_name: Optional[str] = None,
-        auto_error: bool = True
-    ):
+    def __init__(self,
+                 *,
+                 openIdConnectUrl: str,
+                 scheme_name: Optional[str] = None,
+                 auto_error: bool = True):
         self.model = OpenIdConnectModel(openIdConnectUrl=openIdConnectUrl)
         self.scheme_name = scheme_name or self.__class__.__name__
         self.auto_error = auto_error
@@ -23,8 +21,7 @@ class OpenIdConnect(SecurityBase):
         authorization: str = request.headers.get("Authorization")
         if not authorization:
             if self.auto_error:
-                raise HTTPException(
-                    status_code=HTTP_403_FORBIDDEN, detail="Not authenticated"
-                )
+                raise HTTPException(status_code=HTTP_403_FORBIDDEN,
+                                    detail="Not authenticated")
             return None
         return authorization

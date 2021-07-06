@@ -12,7 +12,10 @@ reusable_oauth2 = OAuth2(
     flows={
         "password": {
             "tokenUrl": "token",
-            "scopes": {"read:users": "Read the users", "write:users": "Create users"},
+            "scopes": {
+                "read:users": "Read the users",
+                "write:users": "Create users"
+            },
         }
     },
     auto_error=False,
@@ -46,21 +49,29 @@ client = TestClient(app)
 
 openapi_schema = {
     "openapi": "3.0.2",
-    "info": {"title": "FastAPI", "version": "0.1.0"},
+    "info": {
+        "title": "FastAPI",
+        "version": "0.1.0"
+    },
     "paths": {
         "/login": {
             "post": {
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/json": {"schema": {}}},
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        },
                     },
                     "422": {
                         "description": "Validation Error",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                    "$ref":
+                                    "#/components/schemas/HTTPValidationError"
                                 }
                             }
                         },
@@ -72,7 +83,8 @@ openapi_schema = {
                     "content": {
                         "application/x-www-form-urlencoded": {
                             "schema": {
-                                "$ref": "#/components/schemas/Body_login_login_post"
+                                "$ref":
+                                "#/components/schemas/Body_login_login_post"
                             }
                         }
                     },
@@ -85,12 +97,18 @@ openapi_schema = {
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/json": {"schema": {}}},
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        },
                     }
                 },
                 "summary": "Read Users Me",
                 "operationId": "read_users_me_users_me_get",
-                "security": [{"OAuth2": []}],
+                "security": [{
+                    "OAuth2": []
+                }],
             }
         },
     },
@@ -106,11 +124,27 @@ openapi_schema = {
                         "pattern": "password",
                         "type": "string",
                     },
-                    "username": {"title": "Username", "type": "string"},
-                    "password": {"title": "Password", "type": "string"},
-                    "scope": {"title": "Scope", "type": "string", "default": ""},
-                    "client_id": {"title": "Client Id", "type": "string"},
-                    "client_secret": {"title": "Client Secret", "type": "string"},
+                    "username": {
+                        "title": "Username",
+                        "type": "string"
+                    },
+                    "password": {
+                        "title": "Password",
+                        "type": "string"
+                    },
+                    "scope": {
+                        "title": "Scope",
+                        "type": "string",
+                        "default": ""
+                    },
+                    "client_id": {
+                        "title": "Client Id",
+                        "type": "string"
+                    },
+                    "client_secret": {
+                        "title": "Client Secret",
+                        "type": "string"
+                    },
                 },
             },
             "ValidationError": {
@@ -121,10 +155,18 @@ openapi_schema = {
                     "loc": {
                         "title": "Location",
                         "type": "array",
-                        "items": {"type": "string"},
+                        "items": {
+                            "type": "string"
+                        },
                     },
-                    "msg": {"title": "Message", "type": "string"},
-                    "type": {"title": "Error Type", "type": "string"},
+                    "msg": {
+                        "title": "Message",
+                        "type": "string"
+                    },
+                    "type": {
+                        "title": "Error Type",
+                        "type": "string"
+                    },
                 },
             },
             "HTTPValidationError": {
@@ -134,7 +176,9 @@ openapi_schema = {
                     "detail": {
                         "title": "Detail",
                         "type": "array",
-                        "items": {"$ref": "#/components/schemas/ValidationError"},
+                        "items": {
+                            "$ref": "#/components/schemas/ValidationError"
+                        },
                     }
                 },
             },
@@ -164,13 +208,15 @@ def test_openapi_schema():
 
 
 def test_security_oauth2():
-    response = client.get("/users/me", headers={"Authorization": "Bearer footokenbar"})
+    response = client.get("/users/me",
+                          headers={"Authorization": "Bearer footokenbar"})
     assert response.status_code == 200, response.text
     assert response.json() == {"username": "Bearer footokenbar"}
 
 
 def test_security_oauth2_password_other_header():
-    response = client.get("/users/me", headers={"Authorization": "Other footokenbar"})
+    response = client.get("/users/me",
+                          headers={"Authorization": "Other footokenbar"})
     assert response.status_code == 200, response.text
     assert response.json() == {"username": "Other footokenbar"}
 
@@ -202,24 +248,22 @@ required_params = {
 }
 
 grant_type_required = {
-    "detail": [
-        {
-            "loc": ["body", "grant_type"],
-            "msg": "field required",
-            "type": "value_error.missing",
-        }
-    ]
+    "detail": [{
+        "loc": ["body", "grant_type"],
+        "msg": "field required",
+        "type": "value_error.missing",
+    }]
 }
 
 grant_type_incorrect = {
-    "detail": [
-        {
-            "loc": ["body", "grant_type"],
-            "msg": 'string does not match regex "password"',
-            "type": "value_error.str.regex",
-            "ctx": {"pattern": "password"},
-        }
-    ]
+    "detail": [{
+        "loc": ["body", "grant_type"],
+        "msg": 'string does not match regex "password"',
+        "type": "value_error.str.regex",
+        "ctx": {
+            "pattern": "password"
+        },
+    }]
 }
 
 
@@ -227,14 +271,25 @@ grant_type_incorrect = {
     "data,expected_status,expected_response",
     [
         (None, 422, required_params),
-        ({"username": "johndoe", "password": "secret"}, 422, grant_type_required),
+        ({
+            "username": "johndoe",
+            "password": "secret"
+        }, 422, grant_type_required),
         (
-            {"username": "johndoe", "password": "secret", "grant_type": "incorrect"},
+            {
+                "username": "johndoe",
+                "password": "secret",
+                "grant_type": "incorrect"
+            },
             422,
             grant_type_incorrect,
         ),
         (
-            {"username": "johndoe", "password": "secret", "grant_type": "password"},
+            {
+                "username": "johndoe",
+                "password": "secret",
+                "grant_type": "password"
+            },
             200,
             {
                 "grant_type": "password",

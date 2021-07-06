@@ -13,9 +13,10 @@ app = FastAPI()
 callback_router = APIRouter(default_response_class=JSONResponse)
 
 
-@callback_router.get(
-    "{$callback_url}/callback/", responses={400: {"model": CustomModel}}
-)
+@callback_router.get("{$callback_url}/callback/",
+                     responses={400: {
+                         "model": CustomModel
+                     }})
 def callback_route():
     pass  # pragma: no cover
 
@@ -27,37 +28,45 @@ def main_route(callback_url: HttpUrl):
 
 openapi_schema = {
     "openapi": "3.0.2",
-    "info": {"title": "FastAPI", "version": "0.1.0"},
+    "info": {
+        "title": "FastAPI",
+        "version": "0.1.0"
+    },
     "paths": {
         "/": {
             "post": {
-                "summary": "Main Route",
-                "operationId": "main_route__post",
-                "parameters": [
-                    {
-                        "required": True,
-                        "schema": {
-                            "title": "Callback Url",
-                            "maxLength": 2083,
-                            "minLength": 1,
-                            "type": "string",
-                            "format": "uri",
-                        },
-                        "name": "callback_url",
-                        "in": "query",
-                    }
-                ],
+                "summary":
+                "Main Route",
+                "operationId":
+                "main_route__post",
+                "parameters": [{
+                    "required": True,
+                    "schema": {
+                        "title": "Callback Url",
+                        "maxLength": 2083,
+                        "minLength": 1,
+                        "type": "string",
+                        "format": "uri",
+                    },
+                    "name": "callback_url",
+                    "in": "query",
+                }],
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/json": {"schema": {}}},
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        },
                     },
                     "422": {
                         "description": "Validation Error",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                    "$ref":
+                                    "#/components/schemas/HTTPValidationError"
                                 }
                             }
                         },
@@ -68,13 +77,15 @@ openapi_schema = {
                         "{$callback_url}/callback/": {
                             "get": {
                                 "summary": "Callback Route",
-                                "operationId": "callback_route__callback_url__callback__get",
+                                "operationId":
+                                "callback_route__callback_url__callback__get",
                                 "responses": {
                                     "400": {
                                         "content": {
                                             "application/json": {
                                                 "schema": {
-                                                    "$ref": "#/components/schemas/CustomModel"
+                                                    "$ref":
+                                                    "#/components/schemas/CustomModel"
                                                 }
                                             }
                                         },
@@ -82,7 +93,11 @@ openapi_schema = {
                                     },
                                     "200": {
                                         "description": "Successful Response",
-                                        "content": {"application/json": {"schema": {}}},
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {}
+                                            }
+                                        },
                                     },
                                 },
                             }
@@ -98,7 +113,12 @@ openapi_schema = {
                 "title": "CustomModel",
                 "required": ["a"],
                 "type": "object",
-                "properties": {"a": {"title": "A", "type": "integer"}},
+                "properties": {
+                    "a": {
+                        "title": "A",
+                        "type": "integer"
+                    }
+                },
             },
             "HTTPValidationError": {
                 "title": "HTTPValidationError",
@@ -107,7 +127,9 @@ openapi_schema = {
                     "detail": {
                         "title": "Detail",
                         "type": "array",
-                        "items": {"$ref": "#/components/schemas/ValidationError"},
+                        "items": {
+                            "$ref": "#/components/schemas/ValidationError"
+                        },
                     }
                 },
             },
@@ -119,10 +141,18 @@ openapi_schema = {
                     "loc": {
                         "title": "Location",
                         "type": "array",
-                        "items": {"type": "string"},
+                        "items": {
+                            "type": "string"
+                        },
                     },
-                    "msg": {"title": "Message", "type": "string"},
-                    "type": {"title": "Error Type", "type": "string"},
+                    "msg": {
+                        "title": "Message",
+                        "type": "string"
+                    },
+                    "type": {
+                        "title": "Error Type",
+                        "type": "string"
+                    },
                 },
             },
         }

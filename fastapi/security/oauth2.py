@@ -42,15 +42,14 @@ class OAuth2PasswordRequestForm:
     client_secret: optional string. OAuth2 recommends sending the client_id and client_secret (if any)
         using HTTP Basic auth, as: client_id:client_secret
     """
-
     def __init__(
-        self,
-        grant_type: str = Form(None, regex="password"),
-        username: str = Form(...),
-        password: str = Form(...),
-        scope: str = Form(""),
-        client_id: Optional[str] = Form(None),
-        client_secret: Optional[str] = Form(None),
+            self,
+            grant_type: str = Form(None, regex="password"),
+            username: str = Form(...),
+            password: str = Form(...),
+            scope: str = Form(""),
+            client_id: Optional[str] = Form(None),
+            client_secret: Optional[str] = Form(None),
     ):
         self.grant_type = grant_type
         self.username = username
@@ -92,15 +91,14 @@ class OAuth2PasswordRequestFormStrict(OAuth2PasswordRequestForm):
     client_secret: optional string. OAuth2 recommends sending the client_id and client_secret (if any)
         using HTTP Basic auth, as: client_id:client_secret
     """
-
     def __init__(
-        self,
-        grant_type: str = Form(..., regex="password"),
-        username: str = Form(...),
-        password: str = Form(...),
-        scope: str = Form(""),
-        client_id: Optional[str] = Form(None),
-        client_secret: Optional[str] = Form(None),
+            self,
+            grant_type: str = Form(..., regex="password"),
+            username: str = Form(...),
+            password: str = Form(...),
+            scope: str = Form(""),
+            client_id: Optional[str] = Form(None),
+            client_secret: Optional[str] = Form(None),
     ):
         super().__init__(
             grant_type=grant_type,
@@ -113,13 +111,12 @@ class OAuth2PasswordRequestFormStrict(OAuth2PasswordRequestForm):
 
 
 class OAuth2(SecurityBase):
-    def __init__(
-        self,
-        *,
-        flows: Union[OAuthFlowsModel, Dict[str, Dict[str, Any]]] = OAuthFlowsModel(),
-        scheme_name: Optional[str] = None,
-        auto_error: Optional[bool] = True
-    ):
+    def __init__(self,
+                 *,
+                 flows: Union[OAuthFlowsModel,
+                              Dict[str, Dict[str, Any]]] = OAuthFlowsModel(),
+                 scheme_name: Optional[str] = None,
+                 auto_error: Optional[bool] = True):
         self.model = OAuth2Model(flows=flows)
         self.scheme_name = scheme_name or self.__class__.__name__
         self.auto_error = auto_error
@@ -128,9 +125,8 @@ class OAuth2(SecurityBase):
         authorization: str = request.headers.get("Authorization")
         if not authorization:
             if self.auto_error:
-                raise HTTPException(
-                    status_code=HTTP_403_FORBIDDEN, detail="Not authenticated"
-                )
+                raise HTTPException(status_code=HTTP_403_FORBIDDEN,
+                                    detail="Not authenticated")
             return None
         return authorization
 
@@ -145,8 +141,13 @@ class OAuth2PasswordBearer(OAuth2):
     ):
         if not scopes:
             scopes = {}
-        flows = OAuthFlowsModel(password={"tokenUrl": tokenUrl, "scopes": scopes})
-        super().__init__(flows=flows, scheme_name=scheme_name, auto_error=auto_error)
+        flows = OAuthFlowsModel(password={
+            "tokenUrl": tokenUrl,
+            "scopes": scopes
+        })
+        super().__init__(flows=flows,
+                         scheme_name=scheme_name,
+                         auto_error=auto_error)
 
     async def __call__(self, request: Request) -> Optional[str]:
         authorization: str = request.headers.get("Authorization")
@@ -180,9 +181,10 @@ class OAuth2AuthorizationCodeBearer(OAuth2):
                 "tokenUrl": tokenUrl,
                 "refreshUrl": refreshUrl,
                 "scopes": scopes,
-            }
-        )
-        super().__init__(flows=flows, scheme_name=scheme_name, auto_error=auto_error)
+            })
+        super().__init__(flows=flows,
+                         scheme_name=scheme_name,
+                         auto_error=auto_error)
 
     async def __call__(self, request: Request) -> Optional[str]:
         authorization: str = request.headers.get("Authorization")

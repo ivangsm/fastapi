@@ -8,21 +8,29 @@ client = TestClient(app)
 
 openapi_schema = {
     "openapi": "3.0.2",
-    "info": {"title": "FastAPI", "version": "0.1.0"},
+    "info": {
+        "title": "FastAPI",
+        "version": "0.1.0"
+    },
     "paths": {
         "/files/": {
             "post": {
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/json": {"schema": {}}},
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        },
                     },
                     "422": {
                         "description": "Validation Error",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                    "$ref":
+                                    "#/components/schemas/HTTPValidationError"
                                 }
                             }
                         },
@@ -34,7 +42,8 @@ openapi_schema = {
                     "content": {
                         "multipart/form-data": {
                             "schema": {
-                                "$ref": "#/components/schemas/Body_create_files_files__post"
+                                "$ref":
+                                "#/components/schemas/Body_create_files_files__post"
                             }
                         }
                     },
@@ -47,14 +56,19 @@ openapi_schema = {
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/json": {"schema": {}}},
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        },
                     },
                     "422": {
                         "description": "Validation Error",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                    "$ref":
+                                    "#/components/schemas/HTTPValidationError"
                                 }
                             }
                         },
@@ -66,7 +80,8 @@ openapi_schema = {
                     "content": {
                         "multipart/form-data": {
                             "schema": {
-                                "$ref": "#/components/schemas/Body_create_upload_files_uploadfiles__post"
+                                "$ref":
+                                "#/components/schemas/Body_create_upload_files_uploadfiles__post"
                             }
                         }
                     },
@@ -79,7 +94,11 @@ openapi_schema = {
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/json": {"schema": {}}},
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        },
                     }
                 },
                 "summary": "Main",
@@ -97,7 +116,10 @@ openapi_schema = {
                     "files": {
                         "title": "Files",
                         "type": "array",
-                        "items": {"type": "string", "format": "binary"},
+                        "items": {
+                            "type": "string",
+                            "format": "binary"
+                        },
                     }
                 },
             },
@@ -109,7 +131,10 @@ openapi_schema = {
                     "files": {
                         "title": "Files",
                         "type": "array",
-                        "items": {"type": "string", "format": "binary"},
+                        "items": {
+                            "type": "string",
+                            "format": "binary"
+                        },
                     }
                 },
             },
@@ -121,10 +146,18 @@ openapi_schema = {
                     "loc": {
                         "title": "Location",
                         "type": "array",
-                        "items": {"type": "string"},
+                        "items": {
+                            "type": "string"
+                        },
                     },
-                    "msg": {"title": "Message", "type": "string"},
-                    "type": {"title": "Error Type", "type": "string"},
+                    "msg": {
+                        "title": "Message",
+                        "type": "string"
+                    },
+                    "type": {
+                        "title": "Error Type",
+                        "type": "string"
+                    },
                 },
             },
             "HTTPValidationError": {
@@ -134,7 +167,9 @@ openapi_schema = {
                     "detail": {
                         "title": "Detail",
                         "type": "array",
-                        "items": {"$ref": "#/components/schemas/ValidationError"},
+                        "items": {
+                            "$ref": "#/components/schemas/ValidationError"
+                        },
                     }
                 },
             },
@@ -150,13 +185,11 @@ def test_openapi_schema():
 
 
 file_required = {
-    "detail": [
-        {
-            "loc": ["body", "files"],
-            "msg": "field required",
-            "type": "value_error.missing",
-        }
-    ]
+    "detail": [{
+        "loc": ["body", "files"],
+        "msg": "field required",
+        "type": "value_error.missing",
+    }]
 }
 
 

@@ -2,7 +2,8 @@ from fastapi import FastAPI
 
 app = FastAPI(
     title="My Super Project",
-    description="This is a very fancy project, with auto docs for the API and everything",
+    description=
+    "This is a very fancy project, with auto docs for the API and everything",
     version="2.5.0",
 )
 

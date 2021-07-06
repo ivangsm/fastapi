@@ -7,21 +7,29 @@ client = TestClient(app)
 
 openapi_schema = {
     "openapi": "3.0.2",
-    "info": {"title": "FastAPI", "version": "0.1.0"},
+    "info": {
+        "title": "FastAPI",
+        "version": "0.1.0"
+    },
     "paths": {
         "/login/": {
             "post": {
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/json": {"schema": {}}},
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        },
                     },
                     "422": {
                         "description": "Validation Error",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                    "$ref":
+                                    "#/components/schemas/HTTPValidationError"
                                 }
                             }
                         },
@@ -33,7 +41,8 @@ openapi_schema = {
                     "content": {
                         "application/x-www-form-urlencoded": {
                             "schema": {
-                                "$ref": "#/components/schemas/Body_login_login__post"
+                                "$ref":
+                                "#/components/schemas/Body_login_login__post"
                             }
                         }
                     },
@@ -49,8 +58,14 @@ openapi_schema = {
                 "required": ["username", "password"],
                 "type": "object",
                 "properties": {
-                    "username": {"title": "Username", "type": "string"},
-                    "password": {"title": "Password", "type": "string"},
+                    "username": {
+                        "title": "Username",
+                        "type": "string"
+                    },
+                    "password": {
+                        "title": "Password",
+                        "type": "string"
+                    },
                 },
             },
             "ValidationError": {
@@ -61,10 +76,18 @@ openapi_schema = {
                     "loc": {
                         "title": "Location",
                         "type": "array",
-                        "items": {"type": "string"},
+                        "items": {
+                            "type": "string"
+                        },
                     },
-                    "msg": {"title": "Message", "type": "string"},
-                    "type": {"title": "Error Type", "type": "string"},
+                    "msg": {
+                        "title": "Message",
+                        "type": "string"
+                    },
+                    "type": {
+                        "title": "Error Type",
+                        "type": "string"
+                    },
                 },
             },
             "HTTPValidationError": {
@@ -74,7 +97,9 @@ openapi_schema = {
                     "detail": {
                         "title": "Detail",
                         "type": "array",
-                        "items": {"$ref": "#/components/schemas/ValidationError"},
+                        "items": {
+                            "$ref": "#/components/schemas/ValidationError"
+                        },
                     }
                 },
             },
@@ -90,22 +115,18 @@ def test_openapi_schema():
 
 
 password_required = {
-    "detail": [
-        {
-            "loc": ["body", "password"],
-            "msg": "field required",
-            "type": "value_error.missing",
-        }
-    ]
+    "detail": [{
+        "loc": ["body", "password"],
+        "msg": "field required",
+        "type": "value_error.missing",
+    }]
 }
 username_required = {
-    "detail": [
-        {
-            "loc": ["body", "username"],
-            "msg": "field required",
-            "type": "value_error.missing",
-        }
-    ]
+    "detail": [{
+        "loc": ["body", "username"],
+        "msg": "field required",
+        "type": "value_error.missing",
+    }]
 }
 username_and_password_required = {
     "detail": [
@@ -128,12 +149,21 @@ username_and_password_required = {
     [
         (
             "/login/",
-            {"username": "Foo", "password": "secret"},
+            {
+                "username": "Foo",
+                "password": "secret"
+            },
             200,
-            {"username": "Foo"},
+            {
+                "username": "Foo"
+            },
         ),
-        ("/login/", {"username": "Foo"}, 422, password_required),
-        ("/login/", {"password": "secret"}, 422, username_required),
+        ("/login/", {
+            "username": "Foo"
+        }, 422, password_required),
+        ("/login/", {
+            "password": "secret"
+        }, 422, username_required),
         ("/login/", None, 422, username_and_password_required),
     ],
 )
@@ -144,6 +174,10 @@ def test_post_body_form(path, body, expected_status, expected_response):
 
 
 def test_post_body_json():
-    response = client.post("/login/", json={"username": "Foo", "password": "secret"})
+    response = client.post("/login/",
+                           json={
+                               "username": "Foo",
+                               "password": "secret"
+                           })
     assert response.status_code == 422, response.text
     assert response.json() == username_and_password_required

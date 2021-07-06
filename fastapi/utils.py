@@ -22,8 +22,7 @@ def get_model_definitions(
     definitions: Dict[str, Dict[str, Any]] = {}
     for model in flat_models:
         m_schema, m_definitions, m_nested_models = model_process_schema(
-            model, model_name_map=model_name_map, ref_prefix=REF_PREFIX
-        )
+            model, model_name_map=model_name_map, ref_prefix=REF_PREFIX)
         definitions.update(m_definitions)
         model_name = model_name_map[model]
         definitions[model_name] = m_schema
@@ -78,19 +77,20 @@ def create_cloned_field(
     if cloned_types is None:
         cloned_types = {}
     original_type = field.type_
-    if is_dataclass(original_type) and hasattr(original_type, "__pydantic_model__"):
+    if is_dataclass(original_type) and hasattr(original_type,
+                                               "__pydantic_model__"):
         original_type = original_type.__pydantic_model__
     use_type = original_type
     if lenient_issubclass(original_type, BaseModel):
         original_type = cast(Type[BaseModel], original_type)
         use_type = cloned_types.get(original_type)
         if use_type is None:
-            use_type = create_model(original_type.__name__, __base__=original_type)
+            use_type = create_model(original_type.__name__,
+                                    __base__=original_type)
             cloned_types[original_type] = use_type
             for f in original_type.__fields__.values():
                 use_type.__fields__[f.name] = create_cloned_field(
-                    f, cloned_types=cloned_types
-                )
+                    f, cloned_types=cloned_types)
     new_field = create_response_field(name=field.name, type_=use_type)
     new_field.has_alias = field.has_alias
     new_field.alias = field.alias
@@ -107,9 +107,8 @@ def create_cloned_field(
             for sub_field in field.sub_fields
         ]
     if field.key_field:
-        new_field.key_field = create_cloned_field(
-            field.key_field, cloned_types=cloned_types
-        )
+        new_field.key_field = create_cloned_field(field.key_field,
+                                                  cloned_types=cloned_types)
     new_field.validators = field.validators
     new_field.pre_validators = field.pre_validators
     new_field.post_validators = field.post_validators
@@ -119,20 +118,19 @@ def create_cloned_field(
     return new_field
 
 
-def generate_operation_id_for_path(*, name: str, path: str, method: str) -> str:
+def generate_operation_id_for_path(*, name: str, path: str,
+                                   method: str) -> str:
     operation_id = name + path
     operation_id = re.sub("[^0-9a-zA-Z_]", "_", operation_id)
     operation_id = operation_id + "_" + method.lower()
     return operation_id
 
 
-def deep_dict_update(main_dict: Dict[Any, Any], update_dict: Dict[Any, Any]) -> None:
+def deep_dict_update(main_dict: Dict[Any, Any],
+                     update_dict: Dict[Any, Any]) -> None:
     for key in update_dict:
-        if (
-            key in main_dict
-            and isinstance(main_dict[key], dict)
-            and isinstance(update_dict[key], dict)
-        ):
+        if (key in main_dict and isinstance(main_dict[key], dict)
+                and isinstance(update_dict[key], dict)):
             deep_dict_update(main_dict[key], update_dict[key])
         else:
             main_dict[key] = update_dict[key]
@@ -149,7 +147,7 @@ def get_value_or_default(
 
     Otherwise, the first item (a `DefaultPlaceholder`) will be returned.
     """
-    items = (first_item,) + extra_items
+    items = (first_item, ) + extra_items
     for item in items:
         if not isinstance(item, DefaultPlaceholder):
             return item

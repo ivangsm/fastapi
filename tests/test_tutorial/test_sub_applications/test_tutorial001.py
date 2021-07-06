@@ -6,14 +6,21 @@ client = TestClient(app)
 
 openapi_schema_main = {
     "openapi": "3.0.2",
-    "info": {"title": "FastAPI", "version": "0.1.0"},
+    "info": {
+        "title": "FastAPI",
+        "version": "0.1.0"
+    },
     "paths": {
         "/app": {
             "get": {
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/json": {"schema": {}}},
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        },
                     }
                 },
                 "summary": "Read Main",
@@ -24,14 +31,21 @@ openapi_schema_main = {
 }
 openapi_schema_sub = {
     "openapi": "3.0.2",
-    "info": {"title": "FastAPI", "version": "0.1.0"},
+    "info": {
+        "title": "FastAPI",
+        "version": "0.1.0"
+    },
     "paths": {
         "/sub": {
             "get": {
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/json": {"schema": {}}},
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        },
                     }
                 },
                 "summary": "Read Sub",
@@ -39,7 +53,9 @@ openapi_schema_sub = {
             }
         }
     },
-    "servers": [{"url": "/subapi"}],
+    "servers": [{
+        "url": "/subapi"
+    }],
 }
 
 

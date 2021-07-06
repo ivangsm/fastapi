@@ -34,7 +34,10 @@ def valid4():
 
 openapi_schema = {
     "openapi": "3.0.2",
-    "info": {"title": "FastAPI", "version": "0.1.0"},
+    "info": {
+        "title": "FastAPI",
+        "version": "0.1.0"
+    },
     "paths": {
         "/valid1": {
             "get": {
@@ -43,7 +46,11 @@ openapi_schema = {
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/json": {"schema": {}}},
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        },
                     },
                     "500": {
                         "description": "Internal Server Error",
@@ -66,7 +73,11 @@ openapi_schema = {
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/json": {"schema": {}}},
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        },
                     },
                     "500": {
                         "description": "Internal Server Error",
@@ -75,7 +86,9 @@ openapi_schema = {
                                 "schema": {
                                     "title": "Response 500 Valid2 Valid2 Get",
                                     "type": "array",
-                                    "items": {"type": "integer"},
+                                    "items": {
+                                        "type": "integer"
+                                    },
                                 }
                             }
                         },
@@ -90,13 +103,19 @@ openapi_schema = {
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/json": {"schema": {}}},
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        },
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "content": {
                             "application/json": {
-                                "schema": {"$ref": "#/components/schemas/Model"}
+                                "schema": {
+                                    "$ref": "#/components/schemas/Model"
+                                }
                             }
                         },
                     },
@@ -110,7 +129,11 @@ openapi_schema = {
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/json": {"schema": {}}},
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        },
                     },
                     "500": {
                         "description": "Internal Server Error",
@@ -119,7 +142,9 @@ openapi_schema = {
                                 "schema": {
                                     "title": "Response 500 Valid4 Valid4 Get",
                                     "type": "array",
-                                    "items": {"$ref": "#/components/schemas/Model"},
+                                    "items": {
+                                        "$ref": "#/components/schemas/Model"
+                                    },
                                 }
                             }
                         },
@@ -134,7 +159,12 @@ openapi_schema = {
                 "title": "Model",
                 "required": ["name"],
                 "type": "object",
-                "properties": {"name": {"title": "Name", "type": "string"}},
+                "properties": {
+                    "name": {
+                        "title": "Name",
+                        "type": "string"
+                    }
+                },
             }
         }
     },

@@ -6,7 +6,8 @@ from starlette.datastructures import UploadFile as StarletteUploadFile
 
 class UploadFile(StarletteUploadFile):
     @classmethod
-    def __get_validators__(cls: Type["UploadFile"]) -> Iterable[Callable[..., Any]]:
+    def __get_validators__(
+            cls: Type["UploadFile"]) -> Iterable[Callable[..., Any]]:
         yield cls.validate
 
     @classmethod
@@ -23,7 +24,6 @@ class DefaultPlaceholder:
     It's used internally to recognize when a default value has been overwritten, even
     if the overriden default value was truthy.
     """
-
     def __init__(self, value: Any):
         self.value = value
 

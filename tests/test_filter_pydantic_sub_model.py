@@ -39,29 +39,36 @@ async def get_model_a(name: str, model_c=Depends(get_model_c)):
 
 client = TestClient(app)
 
-
 openapi_schema = {
     "openapi": "3.0.2",
-    "info": {"title": "FastAPI", "version": "0.1.0"},
+    "info": {
+        "title": "FastAPI",
+        "version": "0.1.0"
+    },
     "paths": {
         "/model/{name}": {
             "get": {
-                "summary": "Get Model A",
-                "operationId": "get_model_a_model__name__get",
-                "parameters": [
-                    {
-                        "required": True,
-                        "schema": {"title": "Name", "type": "string"},
-                        "name": "name",
-                        "in": "path",
-                    }
-                ],
+                "summary":
+                "Get Model A",
+                "operationId":
+                "get_model_a_model__name__get",
+                "parameters": [{
+                    "required": True,
+                    "schema": {
+                        "title": "Name",
+                        "type": "string"
+                    },
+                    "name": "name",
+                    "in": "path",
+                }],
                 "responses": {
                     "200": {
                         "description": "Successful Response",
                         "content": {
                             "application/json": {
-                                "schema": {"$ref": "#/components/schemas/ModelA"}
+                                "schema": {
+                                    "$ref": "#/components/schemas/ModelA"
+                                }
                             }
                         },
                     },
@@ -70,7 +77,8 @@ openapi_schema = {
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                    "$ref":
+                                    "#/components/schemas/HTTPValidationError"
                                 }
                             }
                         },
@@ -88,7 +96,9 @@ openapi_schema = {
                     "detail": {
                         "title": "Detail",
                         "type": "array",
-                        "items": {"$ref": "#/components/schemas/ValidationError"},
+                        "items": {
+                            "$ref": "#/components/schemas/ValidationError"
+                        },
                     }
                 },
             },
@@ -97,16 +107,29 @@ openapi_schema = {
                 "required": ["name", "model_b"],
                 "type": "object",
                 "properties": {
-                    "name": {"title": "Name", "type": "string"},
-                    "description": {"title": "Description", "type": "string"},
-                    "model_b": {"$ref": "#/components/schemas/ModelB"},
+                    "name": {
+                        "title": "Name",
+                        "type": "string"
+                    },
+                    "description": {
+                        "title": "Description",
+                        "type": "string"
+                    },
+                    "model_b": {
+                        "$ref": "#/components/schemas/ModelB"
+                    },
                 },
             },
             "ModelB": {
                 "title": "ModelB",
                 "required": ["username"],
                 "type": "object",
-                "properties": {"username": {"title": "Username", "type": "string"}},
+                "properties": {
+                    "username": {
+                        "title": "Username",
+                        "type": "string"
+                    }
+                },
             },
             "ValidationError": {
                 "title": "ValidationError",
@@ -116,10 +139,18 @@ openapi_schema = {
                     "loc": {
                         "title": "Location",
                         "type": "array",
-                        "items": {"type": "string"},
+                        "items": {
+                            "type": "string"
+                        },
                     },
-                    "msg": {"title": "Message", "type": "string"},
-                    "type": {"title": "Error Type", "type": "string"},
+                    "msg": {
+                        "title": "Message",
+                        "type": "string"
+                    },
+                    "type": {
+                        "title": "Error Type",
+                        "type": "string"
+                    },
                 },
             },
         }
@@ -139,17 +170,17 @@ def test_filter_sub_model():
     assert response.json() == {
         "name": "modelA",
         "description": "model-a-desc",
-        "model_b": {"username": "test-user"},
+        "model_b": {
+            "username": "test-user"
+        },
     }
 
 
 def test_validator_is_cloned():
     with pytest.raises(ValidationError) as err:
         client.get("/model/modelX")
-    assert err.value.errors() == [
-        {
-            "loc": ("response", "name"),
-            "msg": "name must end in A",
-            "type": "value_error",
-        }
-    ]
+    assert err.value.errors() == [{
+        "loc": ("response", "name"),
+        "msg": "name must end in A",
+        "type": "value_error",
+    }]

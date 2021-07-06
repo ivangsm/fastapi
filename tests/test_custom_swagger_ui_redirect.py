@@ -22,8 +22,7 @@ def test_swagger_ui():
     print(client.base_url)
     assert (
         f"oauth2RedirectUrl: window.location.origin + '{swagger_ui_oauth2_redirect_url}'"
-        in response.text
-    )
+        in response.text)
 
 
 def test_swagger_ui_oauth2_redirect():

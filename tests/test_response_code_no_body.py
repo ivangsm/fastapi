@@ -25,7 +25,10 @@ class JsonApiError(BaseModel):
     "/a",
     status_code=204,
     response_class=JsonApiResponse,
-    responses={500: {"description": "Error", "model": JsonApiError}},
+    responses={500: {
+        "description": "Error",
+        "model": JsonApiError
+    }},
 )
 async def a():
     pass  # pragma: no cover
@@ -38,7 +41,10 @@ async def b():
 
 openapi_schema = {
     "openapi": "3.0.2",
-    "info": {"title": "FastAPI", "version": "0.1.0"},
+    "info": {
+        "title": "FastAPI",
+        "version": "0.1.0"
+    },
     "paths": {
         "/a": {
             "get": {
@@ -47,11 +53,15 @@ openapi_schema = {
                         "description": "Error",
                         "content": {
                             "application/vnd.api+json": {
-                                "schema": {"$ref": "#/components/schemas/JsonApiError"}
+                                "schema": {
+                                    "$ref": "#/components/schemas/JsonApiError"
+                                }
                             }
                         },
                     },
-                    "204": {"description": "Successful Response"},
+                    "204": {
+                        "description": "Successful Response"
+                    },
                 },
                 "summary": "A",
                 "operationId": "a_a_get",
@@ -60,10 +70,16 @@ openapi_schema = {
         "/b": {
             "get": {
                 "responses": {
-                    "204": {"description": "No Content"},
+                    "204": {
+                        "description": "No Content"
+                    },
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/json": {"schema": {}}},
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        },
                     },
                 },
                 "summary": "B",
@@ -78,8 +94,14 @@ openapi_schema = {
                 "required": ["status", "title"],
                 "type": "object",
                 "properties": {
-                    "status": {"title": "Status", "type": "string"},
-                    "title": {"title": "Title", "type": "string"},
+                    "status": {
+                        "title": "Status",
+                        "type": "string"
+                    },
+                    "title": {
+                        "title": "Title",
+                        "type": "string"
+                    },
                 },
             },
             "JsonApiError": {
@@ -90,14 +112,15 @@ openapi_schema = {
                     "errors": {
                         "title": "Errors",
                         "type": "array",
-                        "items": {"$ref": "#/components/schemas/Error"},
+                        "items": {
+                            "$ref": "#/components/schemas/Error"
+                        },
                     }
                 },
             },
         }
     },
 }
-
 
 client = TestClient(app)
 

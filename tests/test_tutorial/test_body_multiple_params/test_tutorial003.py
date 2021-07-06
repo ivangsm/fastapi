@@ -7,41 +7,53 @@ client = TestClient(app)
 
 openapi_schema = {
     "openapi": "3.0.2",
-    "info": {"title": "FastAPI", "version": "0.1.0"},
+    "info": {
+        "title": "FastAPI",
+        "version": "0.1.0"
+    },
     "paths": {
         "/items/{item_id}": {
             "put": {
                 "responses": {
                     "200": {
                         "description": "Successful Response",
-                        "content": {"application/json": {"schema": {}}},
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        },
                     },
                     "422": {
                         "description": "Validation Error",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                    "$ref":
+                                    "#/components/schemas/HTTPValidationError"
                                 }
                             }
                         },
                     },
                 },
-                "summary": "Update Item",
-                "operationId": "update_item_items__item_id__put",
-                "parameters": [
-                    {
-                        "required": True,
-                        "schema": {"title": "Item Id", "type": "integer"},
-                        "name": "item_id",
-                        "in": "path",
-                    }
-                ],
+                "summary":
+                "Update Item",
+                "operationId":
+                "update_item_items__item_id__put",
+                "parameters": [{
+                    "required": True,
+                    "schema": {
+                        "title": "Item Id",
+                        "type": "integer"
+                    },
+                    "name": "item_id",
+                    "in": "path",
+                }],
                 "requestBody": {
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/Body_update_item_items__item_id__put"
+                                "$ref":
+                                "#/components/schemas/Body_update_item_items__item_id__put"
                             }
                         }
                     },
@@ -57,10 +69,22 @@ openapi_schema = {
                 "required": ["name", "price"],
                 "type": "object",
                 "properties": {
-                    "name": {"title": "Name", "type": "string"},
-                    "price": {"title": "Price", "type": "number"},
-                    "description": {"title": "Description", "type": "string"},
-                    "tax": {"title": "Tax", "type": "number"},
+                    "name": {
+                        "title": "Name",
+                        "type": "string"
+                    },
+                    "price": {
+                        "title": "Price",
+                        "type": "number"
+                    },
+                    "description": {
+                        "title": "Description",
+                        "type": "string"
+                    },
+                    "tax": {
+                        "title": "Tax",
+                        "type": "number"
+                    },
                 },
             },
             "User": {
@@ -68,8 +92,14 @@ openapi_schema = {
                 "required": ["username"],
                 "type": "object",
                 "properties": {
-                    "username": {"title": "Username", "type": "string"},
-                    "full_name": {"title": "Full Name", "type": "string"},
+                    "username": {
+                        "title": "Username",
+                        "type": "string"
+                    },
+                    "full_name": {
+                        "title": "Full Name",
+                        "type": "string"
+                    },
                 },
             },
             "Body_update_item_items__item_id__put": {
@@ -77,9 +107,16 @@ openapi_schema = {
                 "required": ["item", "user", "importance"],
                 "type": "object",
                 "properties": {
-                    "item": {"$ref": "#/components/schemas/Item"},
-                    "user": {"$ref": "#/components/schemas/User"},
-                    "importance": {"title": "Importance", "type": "integer"},
+                    "item": {
+                        "$ref": "#/components/schemas/Item"
+                    },
+                    "user": {
+                        "$ref": "#/components/schemas/User"
+                    },
+                    "importance": {
+                        "title": "Importance",
+                        "type": "integer"
+                    },
                 },
             },
             "ValidationError": {
@@ -90,10 +127,18 @@ openapi_schema = {
                     "loc": {
                         "title": "Location",
                         "type": "array",
-                        "items": {"type": "string"},
+                        "items": {
+                            "type": "string"
+                        },
                     },
-                    "msg": {"title": "Message", "type": "string"},
-                    "type": {"title": "Error Type", "type": "string"},
+                    "msg": {
+                        "title": "Message",
+                        "type": "string"
+                    },
+                    "type": {
+                        "title": "Error Type",
+                        "type": "string"
+                    },
                 },
             },
             "HTTPValidationError": {
@@ -103,7 +148,9 @@ openapi_schema = {
                     "detail": {
                         "title": "Detail",
                         "type": "array",
-                        "items": {"$ref": "#/components/schemas/ValidationError"},
+                        "items": {
+                            "$ref": "#/components/schemas/ValidationError"
+                        },
                     }
                 },
             },
@@ -126,8 +173,13 @@ def test_openapi_schema():
             "/items/5",
             {
                 "importance": 2,
-                "item": {"name": "Foo", "price": 50.5},
-                "user": {"username": "Dave"},
+                "item": {
+                    "name": "Foo",
+                    "price": 50.5
+                },
+                "user": {
+                    "username": "Dave"
+                },
             },
             200,
             {
@@ -139,7 +191,10 @@ def test_openapi_schema():
                     "description": None,
                     "tax": None,
                 },
-                "user": {"username": "Dave", "full_name": None},
+                "user": {
+                    "username": "Dave",
+                    "full_name": None
+                },
             },
         ),
         (

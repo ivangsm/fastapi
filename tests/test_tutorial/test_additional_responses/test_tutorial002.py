@@ -9,7 +9,10 @@ client = TestClient(app)
 
 openapi_schema = {
     "openapi": "3.0.2",
-    "info": {"title": "FastAPI", "version": "0.1.0"},
+    "info": {
+        "title": "FastAPI",
+        "version": "0.1.0"
+    },
     "paths": {
         "/items/{item_id}": {
             "get": {
@@ -19,7 +22,9 @@ openapi_schema = {
                         "content": {
                             "image/png": {},
                             "application/json": {
-                                "schema": {"$ref": "#/components/schemas/Item"}
+                                "schema": {
+                                    "$ref": "#/components/schemas/Item"
+                                }
                             },
                         },
                     },
@@ -28,24 +33,33 @@ openapi_schema = {
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                    "$ref":
+                                    "#/components/schemas/HTTPValidationError"
                                 }
                             }
                         },
                     },
                 },
-                "summary": "Read Item",
-                "operationId": "read_item_items__item_id__get",
+                "summary":
+                "Read Item",
+                "operationId":
+                "read_item_items__item_id__get",
                 "parameters": [
                     {
                         "required": True,
-                        "schema": {"title": "Item Id", "type": "string"},
+                        "schema": {
+                            "title": "Item Id",
+                            "type": "string"
+                        },
                         "name": "item_id",
                         "in": "path",
                     },
                     {
                         "required": False,
-                        "schema": {"title": "Img", "type": "boolean"},
+                        "schema": {
+                            "title": "Img",
+                            "type": "boolean"
+                        },
                         "name": "img",
                         "in": "query",
                     },
@@ -60,8 +74,14 @@ openapi_schema = {
                 "required": ["id", "value"],
                 "type": "object",
                 "properties": {
-                    "id": {"title": "Id", "type": "string"},
-                    "value": {"title": "Value", "type": "string"},
+                    "id": {
+                        "title": "Id",
+                        "type": "string"
+                    },
+                    "value": {
+                        "title": "Value",
+                        "type": "string"
+                    },
                 },
             },
             "ValidationError": {
@@ -72,10 +92,18 @@ openapi_schema = {
                     "loc": {
                         "title": "Location",
                         "type": "array",
-                        "items": {"type": "string"},
+                        "items": {
+                            "type": "string"
+                        },
                     },
-                    "msg": {"title": "Message", "type": "string"},
-                    "type": {"title": "Error Type", "type": "string"},
+                    "msg": {
+                        "title": "Message",
+                        "type": "string"
+                    },
+                    "type": {
+                        "title": "Error Type",
+                        "type": "string"
+                    },
                 },
             },
             "HTTPValidationError": {
@@ -85,7 +113,9 @@ openapi_schema = {
                     "detail": {
                         "title": "Detail",
                         "type": "array",
-                        "items": {"$ref": "#/components/schemas/ValidationError"},
+                        "items": {
+                            "$ref": "#/components/schemas/ValidationError"
+                        },
                     }
                 },
             },
